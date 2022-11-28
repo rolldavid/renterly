@@ -15,7 +15,7 @@ export default async function RootLayout({ children }: {
       }
       return window.matchMedia('(prefers-color-scheme: dark)').matches
                 ? 'dark'
-                : 'dark'
+                : 'light'
     }
     document.body.dataset.theme = getUserPreference();
     `;
