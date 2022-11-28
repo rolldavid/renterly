@@ -11,20 +11,7 @@ export default function NavLinks({isLoggedIn}: {isLoggedIn: string | undefined})
         <nav className={styles.container}>
             <nav className={styles.linkContainer}>
                 <Link href={"/"}>
-                    <h1 className={styles.logo}>ryo</h1>
-                </Link>
-                
-                <Link href={"/posts/build"} className={styles.linkItemBuild}>
-                    Build
-                </Link>
-                <Link href={"/posts/path"} className={styles.linkItemPath}>
-                    Path
-                </Link>
-                <Link href={"/posts/stack"} className={styles.linkItemStack}>
-                    Stack
-                </Link>
-                <Link href={"/posts/lib"} className={styles.linkItemLib}>
-                    Lib
+                    <h1 className={styles.logo}>R</h1>
                 </Link>
             </nav>
             <div className={styles.accountContainer}>
