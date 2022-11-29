@@ -1,7 +1,18 @@
-.searchInput {
-    outline: none;
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    height: 100%;
+    width: 400px;
 }
 
-.searchInput:focus input:focus {
+.searchbar {
+    width: 100%;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-oppmain);
+    border-radius: 5px;
+    border: 1px solid var(--color-border-nav);
     outline: none;
+    padding: 5px;
+    font-size: 1.25rem;
 }

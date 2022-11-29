@@ -12,6 +12,7 @@
   --extralightmidgrey: #dddbdb;
   --lightgrey: #dddddd;
   --extralightgrey: #eeeeee;
+  --extraextralightgrey: #f5f5f5;
   --hotpink: #FF69B4;
   --hotgreen: #9FE2BF;
   --hotblue: #8cdbf6;
@@ -51,7 +52,9 @@ body[data-theme="dark"] {
   --color-bg-nav: var(--offblack);
   --color-bg-content: var(--offblack);
   --color-bg-main: var(--offblack);
+  --color-bg-oppmain: var(--white);
   --color-bg-toggle: var(--toggledark);
+  --color-text-oppmain: var(--white);
   --color-newsletter-border: var(--lightgrey);
   --color-newsletter-text: var(--lightgrey);
   --color-newsletter-input: var(--extralightgrey);
@@ -91,7 +94,9 @@ body[data-theme="light"] {
   --color-bg-nav: var(--white);
   --color-bg-content: var(--white);
   --color-bg-main: var(--white);
+  --color-bg-oppmain: var(--extraextralightgrey);
   --color-bg-toggle: var(--togglelight);
+  --color-text-oppmain: var(--offblack);
   --color-newsletter-border: var(--darkgrey);
   --color-newsletter-text: var(--darkgrey);
   --color-newsletter-input: var(var(--darkgrey));
@@ -150,4 +155,44 @@ textarea {
 *:focus {
   outline: none;
 }
+
+/* Utilities */
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexColumnCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexColumnCenterFull {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.flexRowCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexRowCenterFull {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+
 

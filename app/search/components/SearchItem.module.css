@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    padding: 5px 10px 5px 10px;
+}
+
+.container:hover {
+    cursor: pointer;
+    background-color: var(--color-bg-oppmain);
+    color: var(--offblack);
+}
+
+.resultItem {
+    margin: 0px 2px 0px 2px;
+}
