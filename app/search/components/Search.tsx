@@ -1,7 +1,7 @@
 "use client"
 
-import styles from "./Searchbar.module.css"
-export default function Searchbar() {
+import styles from "./Search.module.css"
+export default function Search() {
     return(
         <div>
             <input className={styles.searchInput}/>
