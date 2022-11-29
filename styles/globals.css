@@ -147,3 +147,7 @@ textarea {
   display: contents;
 }
 
+*:focus {
+  outline: none;
+}
+

@@ -22,8 +22,8 @@ export default function ToggleTheme() {
             src={theme?.theme === "light" ? dark : light} 
             alt={"light toggle switch"} 
             className={styles.toggle} 
-            width={30} 
-            height={30}
+            width={25} 
+            height={25}
             aria-label={`Change to ${theme?.theme === "light" ? "dark" : "light"} mode`}
             title={`Change to ${theme?.theme === "light" ? "dark" : "light"} mode`}
             onClick={updateTheme}

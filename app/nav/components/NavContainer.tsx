@@ -48,7 +48,7 @@ export default function NavContainer() {
             </div>
             <div className={styles.mobile}>
                 <Link href={"/"} className={styles.logoContainer}>
-                    <h2 className={styles.logo}>ryo</h2>
+                    <h2 className={styles.logo}>R</h2>
                 </Link>
                
                 <Image 

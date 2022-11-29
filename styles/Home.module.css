@@ -21,14 +21,22 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-bg-nav);
-  border-bottom: .5px solid var(--color-accent-stack);
+  border-bottom: .5px solid var(--color-border-nav);
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 100%;
 }
 
 .buttonBasic {
   border: 1px solid var(--color-border-nav);
   color: var(--color-border-nav);
   border-radius: 5px;
-  padding: 2px 10px 2px 10px;
+  padding: 5px 12px 5px 12px;
   background-color: transparent;
   cursor: pointer;
 }

@@ -18,6 +18,8 @@
 .accountContainer {
     display: flex;
     align-items: center;
+    height: 100%;
+  
 }
 
 
@@ -42,16 +44,18 @@
 }
 
 .logo {
-    filter: drop-shadow(3px 3px 0  var(--color-dropshadow-stack));  
     font-size: 2.5rem;
 }
 
 .toggle {
-    margin: 20px 10px ;
+
+    margin: 4px 25px 0px 10px ;
+    
 }
 
 .authContainer {
     width: 100%;
+   
 }
 
 
