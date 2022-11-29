@@ -1,7 +1,0 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
-    border: 1px solid var(--color-border-nav);
-    border-radius: 5px;
-}
