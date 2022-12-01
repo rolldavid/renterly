@@ -1,29 +1,65 @@
 .container {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    justify-content: flex-start;
+    margin-top: 80px;
+
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    width: 450px;
+ }
+
+
+.titleContainer {
+
+    display: flex;
+    align-items: center;
+    
+}
+
+.title {
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 2.25rem;
+    margin: 35px 0px 35px 0px;
+}
+
+
+.searchbarContainer {
+    width: 100%;
+    padding-left: 0px;
 }
 
 .searchbar {
-    width: 100%;
+    display: flex;
     background-color: var(--color-bg-main);
-    color: var(--color-text-oppmain);
-    border-radius: 5px;
-    border: 1px solid var(--color-border-nav);
+    border-radius: 25px;
+    border: 2px solid var(--color-border-grey);
     outline: none;
-    padding: 5px;
-    font-size: 1.25rem;
+    width: 400px;
+    padding: 12px 20px 12px 20px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 1rem;
 }
 
 .resultsContainer {
+    width: 100%;
+    padding-left: 0px;
+}
+
+.resultsDetail {
     display: flex;
     flex-direction: column;
     margin-top: 5px;
-    border: 1px solid var(--color-border-nav);
-    border-radius: 5px;
+    border: 2px solid var(--lightgrey);
+    border-radius: 25px;
     max-height: 200px;
+    width: 400px;
+    padding-left: 10px;
     overflow: scroll;
 }
 
@@ -31,6 +67,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    background-color: white;
+    height: 100vh;
+    width: 100vw;
+    z-index: 20;
 }
+
