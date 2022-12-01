@@ -1,15 +1,13 @@
 "use client"
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Dispatch, SetStateAction } from "react";
 import { SearchProps } from "../types";
 import styles from "./Search.module.css"
 import SearchItem from './SearchItem'
-import Spinner from "app/property/[slug]/utils/Spinner";
 
 let timeoutId: ReturnType<typeof setTimeout>;
 
-export default function Search() {
-    const [loading, setLoading] = useState<boolean>(false)
+export default function Search({setLoading} : {setLoading: Dispatch<SetStateAction<boolean>>}) {
     const [searchTerm, setSearchTerm] = useState<string>("")
     const [results, setResults] = useState<SearchProps[] | null>(null)
     const searchRef = useRef(null)
@@ -58,7 +56,7 @@ export default function Search() {
                         />
                 </div>
             </section>
-            {!loading && results &&
+            {results &&
                     <div className={styles.resultsContainer}>
                         <div className={styles.resultsDetail}>
                         {results.map((result, index) => {

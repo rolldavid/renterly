@@ -3,6 +3,7 @@ export default function Spinner() {
     return (
         <div className={styles.container}>
             <div className={styles.loadingSpinner} />
+            <div className="lds-ripple"><div></div><div></div></div>
         </div>
         )
 }
