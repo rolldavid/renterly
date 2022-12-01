@@ -50,7 +50,46 @@
   height: 50vh;
 }
 
-@media (max-width: 750px) {
+/* Utilities */
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexColumnCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexColumnCenterFull {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.flexRowCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexRowCenterFull {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+}
+
+
+@media (max-width: 700px) {
   .container {
     display: flex;
     flex-direction: column;

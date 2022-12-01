@@ -10,12 +10,28 @@ datasource db {
 model User {
   id            String    @id @default(cuid())
   name          String?
+  firstName     String?
+  lastName      String?
+  fullName      String?
+  displayName   String?   @unique
   email         String?   @unique
   emailVerified DateTime?
+  showReviews   Boolean   @default(true)
   image         String?
   accounts      Account[]
   sessions      Session[]
   role          Role      @default(USER)
+}
+
+model Property {
+  id      String  @id @default(cuid())
+  slug    String  @unique
+  stars   Int
+  street  String
+  unit    String?
+  city    String
+  state   String
+  zipcode String
 }
 
 model Account {
