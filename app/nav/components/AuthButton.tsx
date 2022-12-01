@@ -1,19 +1,32 @@
 "use client"
-import { signIn, signOut } from "next-auth/react"
+import Link from "next/link"
+import { useState, useEffect } from "react"
+import { signIn } from "next-auth/react"
 import styles from "@/styles/Home.module.css"
 
 export default function AuthButton({ isSignedIn } : {isSignedIn: boolean}) {
+    const [userId, setUserId] = useState<string>()
+
+    useEffect(() => {
+        const getSession = async () => {
+            const res = await fetch("/api/get-user-id")
+            const data = await res.json();
+            setUserId(data.id)
+        }
+        getSession()
+    }, [])
+
     if (isSignedIn) {
         return (
-            <button className={styles.buttonBasic} onClick={() => signOut()}>
-                Sign Out
-            </button>
+            <Link href={`/account/${userId}`} className={styles.buttonBasic}>
+                PROFILE
+            </Link>
         ) 
     } else {
         return (
-            <button className={styles.buttonBasic} onClick={() => signIn()}>
-                Sign In
-            </button>
+            <div className={styles.buttonBasic} onClick={() => signIn()}>
+                LOGIN
+            </div>
         )
     }
 }

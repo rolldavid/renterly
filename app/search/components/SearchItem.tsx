@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { SyntheticEvent, useState } from "react"
 
 import styles from "./SearchItem.module.css"
-import { SearchProps } from "./types"
+import { SearchProps } from "../types"
 export default function ResultItem({result, expandSecondary, searchTerm, setLoading}: {result: SearchProps, expandSecondary: (address: string, term: string) => {}, searchTerm: string, setLoading: React.Dispatch<React.SetStateAction<boolean>>}) {
     const router = useRouter()
 

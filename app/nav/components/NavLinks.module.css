@@ -6,8 +6,6 @@
     width: 100%;
     margin: 0px 0px 0px 0px;
     padding: 0px 20px 0px 20px;
-    font-family: "Shrikhand";
-    font-weight: 700;
 }
 
 .linkContainer {
@@ -20,45 +18,29 @@
     display: flex;
     align-items: center;
     height: 100%;
-  
 }
 
-
-.linkItemBuild {
-    margin: 10px 10px ;
-    color: var(--color-accent-build);
-}
-
-.linkItemPath {
-    margin: 10px 10px ;
-    color: var(--color-accent-path);
-}
-
-.linkItemStack {
-    margin: 10px 10px ;
-    color: var(--color-accent-stack);
-}
-
-.linkItemLib {
-    margin: 10px 10px ;
-    color: var(--color-text-bookmark);
-}
-
-.logo {
-    font-size: 1.8rem;
-}
-
-.toggle {
-
-    margin: 4px 25px 0px 10px ;
-    
+.linkItem {
+    margin-left: 25px;
+    cursor: pointer;
 }
 
 .authContainer {
     width: 100%;
-   
+    margin-left: 25px;
 }
 
+.logo {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    font-family: "Shrikhand";
+    font-weight: 700;
+    color: var(--color-text-nav);
+}
+
+.toggle {
+    margin: 4px 25px 0px 10px ;
+}
 
 @media (max-width: 700px) {
     .container {

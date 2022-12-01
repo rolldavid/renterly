@@ -2,14 +2,16 @@
 :root {
   --lightgrey: #e9e9e9;
   --black: #000000;
-  --offblack: #0b0b0b;
+
+  --offblack: #333333;
+  --lightgrey: #f8f8f8;
+  --grey: #e5e5e5;
+
   --darkgrey: #1d1d1d;
-  --grey: #252525;
   --lighterdarkgrey: #373737;
   --midgrey: #908f8f;
   --lightmidgrey: #cccccc;
   --extralightmidgrey: #dddbdb;
-  --lightgrey: #dddddd;
   --extralightgrey: #eeeeee;
   --extraextralightgrey: #f5f5f5;
   --hotpink: #FF69B4;
@@ -22,8 +24,14 @@
   --toggledark: #a9a9a9;
   --togglelight: #908f8f;
   --lightpurple: #bb7ed7;
-  --color-text-main: var(--offblack);
-  --color-text-nav: var(--darkgrey);
+  
+  
+
+  --color-text-nav: var(--offblack);
+  --color-text-body: var(--offblack);
+  --color-bg-nav: var(--lightgrey);
+  --color-border-grey: var(--grey);
+
   --color-accent-stack: var(--hotpinkshadow);
   --color-accent-path: var(--hotgreenshadow);
   --color-accent-build: var(--hotblueshadow);
@@ -44,7 +52,6 @@
   --color-dropshadow-card-path: var(--lightgrey);
   --color-dropshadow-card-build: var(--lightgrey);
   --color-dropshadow-card-zap: var(--lightgrey);
-  --color-bg-nav: var(--white);
   --color-bg-content: var(--white);
   --color-bg-main: var(--white);
   --color-bg-oppmain: var(--extraextralightgrey);

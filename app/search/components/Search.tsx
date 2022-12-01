@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from "react";
-import { SearchProps } from "./types";
+import { SearchProps } from "../types";
 import styles from "./Search.module.css"
 import SearchItem from './SearchItem'
 import Spinner from "app/property/[slug]/utils/Spinner";
@@ -42,21 +42,26 @@ export default function Search() {
 
     return(
         <section className={styles.container}>
-            {loading && <div className={styles.loadingContainer}>
-                <Spinner />
-                </div>}
-            {!loading && <div>
-                <input 
-                    name="search"
-                    value={searchTerm} 
-                    className={styles.searchbar} 
-                    onChange={e => setSearchTerm(e.target.value)}
-                    ref={searchRef}
-                />
-            </div>}
+            
+            <section className={styles.searchContainer}>
+                <div className={styles.titleContainer}>
+                    <h1 className={styles.title}>Hold your landlord accountable.</h1>
+                </div>
+                <div className={styles.searchbarContainer}>
+                        <input 
+                            name="search"
+                            value={searchTerm} 
+                            className={styles.searchbar}
+                            onChange={e => setSearchTerm(e.target.value)}
+                            ref={searchRef}
+                            placeholder="Search for your address . . ."
+                        />
+                </div>
+            </section>
             {!loading && results &&
                     <div className={styles.resultsContainer}>
-                    {results.map((result, index) => {
+                        <div className={styles.resultsDetail}>
+                        {results.map((result, index) => {
                         
                         return <SearchItem 
                             key={index} 
@@ -66,6 +71,7 @@ export default function Search() {
                             setLoading={setLoading}
                         />
                     })}
+                        </div>
                 </div>
             }
         </section>

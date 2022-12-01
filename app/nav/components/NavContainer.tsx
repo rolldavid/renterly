@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -30,7 +30,7 @@ export default function NavContainer() {
             </div>
             <div className={styles.mobile}>
                 <Link href={"/"} className={styles.logoContainer}>
-                    <div className={styles.logo}>Renterly</div>
+                    <div className={styles.logo}>renterly</div>
                 </Link>
                
                 <Image 
