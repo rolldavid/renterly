@@ -8,7 +8,8 @@ export default async function Page({params: {slug}}: {params: { slug: string }})
     if (property) {
     return (
         <div className={styles.container}>
-            Welcome to property <h2>{property.street}</h2>
+            <h2>{property.street} ${property.unit}</h2>
+            <h4>{property.city} {property.state} {property.zipcode}</h4>
             <div>
                 {property.stars}
             </div>
