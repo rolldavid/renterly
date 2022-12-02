@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 import { getUser } from "@/lib/db-utils"
 import styles from "./Account.module.css"
 import { SyntheticEvent } from "react"
+import Login from "app/auth/components/Login"
 
 export default function Account({userId} : {userId: string}) {
     const { data, status } = useQuery(["user"], () => {
@@ -25,8 +26,11 @@ export default function Account({userId} : {userId: string}) {
         });
     }
 
+    if (!data.session) {
+        return <Login />
+    }
     
-    if (data && data.user) { 
+    if (data.user && data.session) { 
     return (
         <section className={styles.container}>
             <div className={styles.container}>
@@ -41,6 +45,6 @@ export default function Account({userId} : {userId: string}) {
     )
     }
     
-    return null;
+    return null
     
 }

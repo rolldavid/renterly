@@ -1,24 +1,25 @@
 "use client"
 import Link from "next/link"
-import { useState, useEffect } from "react"
+
+import { useQuery } from "@tanstack/react-query"
 import { signIn } from "next-auth/react"
+import { getUserId } from "@/lib/db-utils"
 import styles from "@/styles/Home.module.css"
 
-export default function AuthButton({ isSignedIn } : {isSignedIn: boolean}) {
-    const [userId, setUserId] = useState<string>()
+export default function AuthButton() {
+    
+    const {data, status} = useQuery(["session"], () => {
+        return getUserId()
+    })
 
-    useEffect(() => {
-        const getSession = async () => {
-            const res = await fetch("/api/get-user-id")
-            const data = await res.json();
-            setUserId(data.id)
-        }
-        getSession()
-    }, [])
+    if (status === "loading") {
+        return null
+    }
 
-    if (isSignedIn) {
+    if (status === "success" && data.id) {
+        console.log(data.id)
         return (
-            <Link href={`/account/${userId}`} className={styles.buttonBasic}>
+            <Link href={`/account/${data.id}`} className={styles.buttonBasic}>
                 PROFILE
             </Link>
         ) 

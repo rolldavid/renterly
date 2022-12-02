@@ -1,9 +1,11 @@
+"use client"
 import Link from "next/link";
 import styles from "./NavLinks.module.css"
+
 import AuthButton from "./AuthButton";
 
-export default function NavLinks({isLoggedIn}: {isLoggedIn: string | undefined}) {
-    
+export default function NavLinks() {
+   
     return (
         <nav className={styles.container}>
             <nav className={styles.linkContainer}>
@@ -13,7 +15,7 @@ export default function NavLinks({isLoggedIn}: {isLoggedIn: string | undefined})
             </nav>
             <div className={styles.accountContainer}>
                 <div className={styles.authContainer}>
-                    <AuthButton isSignedIn={isLoggedIn ? true : false}/>
+                    <AuthButton />
                 </div>
             </div>
         </nav>

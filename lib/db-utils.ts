@@ -15,5 +15,10 @@ export async function getUser(slug: string) {
 export async function getSession() {
     const res = await fetch("/api/get-session")
     return res.json()
+}
 
+export async function getUserId() {
+    const res = await fetch("/api/get-user-id")
+    const data = await res.json()
+    return data
 }

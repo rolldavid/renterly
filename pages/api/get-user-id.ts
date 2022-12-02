@@ -7,6 +7,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
         const session = await unstable_getServerSession(req, res, authOptions)
+        if (!session) {
+            return res.status(201).json({id: null})
+        }
         if (session?.user?.email) {
             const user = await prisma.user.findUnique({
                 where: {
@@ -16,10 +19,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (user) {
                 res.status(201).json({id: user.id})
             }
-            res.status(401).json({message: "Did not find user"})
+            
+        } else {
+            res.status(401).json({id: null})
         }
     } catch (err) {
-        res.status(401).json({message: "Did not manage to connect"})
+        res.status(201).json({message: "Did not manage to connect"})
     }
 
 }
