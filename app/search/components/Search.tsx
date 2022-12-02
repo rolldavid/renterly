@@ -20,7 +20,7 @@ export default function Search({setLoading} : {setLoading: Dispatch<SetStateActi
             setResults(null)
             return
         }
-        if (searchTerm.length >= 7) {
+        if (searchTerm.length >= 5) {
             const res = await fetch(`https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${process.env.NEXT_PUBLIC_SMARTY_KEY}&search=${searchTerm}&max_results=3`)
             const data = await res.json();
             setResults(data.suggestions)
@@ -40,10 +40,9 @@ export default function Search({setLoading} : {setLoading: Dispatch<SetStateActi
 
     return(
         <section className={styles.container}>
-            
             <section className={styles.searchContainer}>
                 <div className={styles.titleContainer}>
-                    <h1 className={styles.title}>Hold your landlord accountable.</h1>
+                    <h1 className={styles.title}>Transparency for every home.</h1>
                 </div>
                 <div className={styles.searchbarContainer}>
                         <input 
@@ -52,7 +51,7 @@ export default function Search({setLoading} : {setLoading: Dispatch<SetStateActi
                             className={styles.searchbar}
                             onChange={e => setSearchTerm(e.target.value)}
                             ref={searchRef}
-                            placeholder="Search for your address . . ."
+                            placeholder="Search & review your address . . ."
                         />
                 </div>
             </section>
