@@ -20,6 +20,12 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  theme: {
+    colorScheme: "light"},
+  pages: {
+    signIn: "/auth"
+  }
+  
 };
 
 const authHandler = (req: NextApiRequest, res: NextApiResponse) => {

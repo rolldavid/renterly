@@ -12,7 +12,6 @@ export default function NavLinks({isLoggedIn}: {isLoggedIn: string | undefined})
                 </Link>
             </nav>
             <div className={styles.accountContainer}>
-                
                 <div className={styles.authContainer}>
                     <AuthButton isSignedIn={isLoggedIn ? true : false}/>
                 </div>

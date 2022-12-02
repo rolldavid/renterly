@@ -3,11 +3,14 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
 
 import NavLinks from "./NavLinks"
 import styles from "./NavContainer.module.css"
 import burger from "../assets/burger-dark.png"
 import  NavModal from "./NavModal"
+
+const queryClient = new QueryClient()
 
 export default function NavContainer() {
     const [session, setSession] = useState<string>()
