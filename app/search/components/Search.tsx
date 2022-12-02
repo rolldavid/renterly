@@ -20,7 +20,7 @@ export default function Search({setLoading} : {setLoading: Dispatch<SetStateActi
             setResults(null)
             return
         }
-        if (searchTerm.length >= 5) {
+        if (searchTerm.length >= 7) {
             const res = await fetch(`https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${process.env.NEXT_PUBLIC_SMARTY_KEY}&search=${searchTerm}&max_results=3`)
             const data = await res.json();
             setResults(data.suggestions)

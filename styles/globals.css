@@ -1,16 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Shrikhand&display=swap');
 :root {
-  --lightgrey: #e9e9e9;
+
   --black: #000000;
-
   --offblack: #333333;
+  --offblack: #4f4f4f;
   --lightgrey: #f8f8f8;
+  --slightgrey: #f2f2f2;
   --grey: #e5e5e5;
+  --midgrey: #dddddd;
+  --greygrey: #afafaf;
+  --darkgrey: #838383;
+  --treegreen: #879F66;
+  --lighttreegreen: #98ac7b;
 
-  --darkgrey: #1d1d1d;
+  --color-text-nav: var(--offblack);
+  --color-text-body: var(--offblack);
+  --color-shadow-grey: var(--lightgrey);
+  --color-shadow-lightgrey: var(--grey);
+  --color-bg-nav: var(--lightgrey);
+  --color-border-grey: var(--grey);
+
+
+
   --lighterdarkgrey: #373737;
-  --midgrey: #908f8f;
-  --lightmidgrey: #cccccc;
   --extralightmidgrey: #dddbdb;
   --extralightgrey: #eeeeee;
   --extraextralightgrey: #f5f5f5;
@@ -26,11 +38,6 @@
   --lightpurple: #bb7ed7;
   
   
-
-  --color-text-nav: var(--offblack);
-  --color-text-body: var(--offblack);
-  --color-bg-nav: var(--lightgrey);
-  --color-border-grey: var(--grey);
 
   --color-accent-stack: var(--hotpinkshadow);
   --color-accent-path: var(--hotgreenshadow);
