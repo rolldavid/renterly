@@ -3,17 +3,25 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { getSession } from '@/lib/db-utils';
+import { getSession, getUserId, updateUser } from '@/lib/db-utils';
 
 export default function Confirmation() {
   const router = useRouter();
   const {data, status} = useQuery(["session"], () => {
-    return getSession()
+    return getUserId()
   })
+
+  const first = localStorage.getItem("firstName")
+  const last = localStorage.getItem("lastName")
   
   if (status !== "loading" && !data) {
     router.push('/auth');
   }
+
+  if (status === "success" && data.id && first && last) {
+        updateUser(first, last, data.id)
+  }
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 max-w-md mx-auto">
@@ -32,9 +40,7 @@ export default function Confirmation() {
           <p className="text-normal sm:text-lg text-gray-500 mt-6">
             You can close this window or click{' '}
             <Link href="/">
-           
                 this link
-         
             </Link>{' '}
             to go back to the homepage.
           </p>

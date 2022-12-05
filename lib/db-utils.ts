@@ -20,5 +20,21 @@ export async function getSession() {
 export async function getUserId() {
     const res = await fetch("/api/get-user-id")
     const data = await res.json()
-    return data
+    return data;
+}
+
+export async function updateUser(first: string, last: string, id: string) {
+    const res = await fetch("/api/update-user", {
+        method: "POST",
+        body: JSON.stringify({
+            first,
+            last,
+            id
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    return data;
 }

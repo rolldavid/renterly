@@ -17,7 +17,6 @@ export default function AuthButton() {
     }
 
     if (status === "success" && data.id) {
-        console.log(data.id)
         return (
             <Link href={`/account/${data.id}`} className={styles.buttonBasic}>
                 PROFILE
