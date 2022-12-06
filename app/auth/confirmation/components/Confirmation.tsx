@@ -4,6 +4,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { getSession, getUserId, updateUser } from '@/lib/db-utils';
+import { useEffect } from 'react';
+
+let first: string | null;
+let last: string | null;
 
 export default function Confirmation() {
   const router = useRouter();
@@ -11,8 +15,10 @@ export default function Confirmation() {
     return getUserId()
   })
 
-  const first = localStorage.getItem("firstName")
-  const last = localStorage.getItem("lastName")
+  if (typeof window !== "undefined") {
+    first = localStorage.getItem("firstName")
+    last = localStorage.getItem("lastName")
+  }
   
   if (status !== "loading" && !data) {
     router.push('/auth');
@@ -21,7 +27,6 @@ export default function Confirmation() {
   if (status === "success" && data.id && first && last) {
         updateUser(first, last, data.id)
   }
-
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 max-w-md mx-auto">
