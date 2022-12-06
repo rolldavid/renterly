@@ -1,0 +1,126 @@
+.authModuleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(100, 100, 100, .5);
+    z-index: 10;
+
+}
+
+.authModule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10vh;
+    width: 500px;
+    height: 500px;
+    background-color: none;
+    z-index: 30;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.inputContainer::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    margin-top: 25px;
+}
+
+.reviewContainer {
+    width: 100%;
+    border: 2px solid var(--color-border-grey);
+    border-radius: 5px;
+    padding: 15px 10px 10px 15px;
+}
+
+.starContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 0px 20px 0px;
+
+}
+
+.starImgContainer {
+    display: flex;
+    align-items: center;
+}
+
+.starTextContainer {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 0px 10px;
+}
+
+.starText {
+    color: var(--darkgrey);
+    font-size: .9rem;
+}
+
+.starMapItem {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.starItem {
+    margin: 0px 5px 0px 5px;
+}
+
+.inputField {
+    border: none;
+    width: 100%;
+}
+
+.inputField::placeholder {
+    color: var(--placeholdergrey);
+}
+
+.errorMessage {
+    font-size: .9rem;
+    color: var(--lightred);
+}
+
+.submitContainer {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.submitButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: var(--lighttreegreen);
+    border-radius: 25px;
+    font-size: 1rem;
+    font-family: "Montserrat";
+    font-weight: 400;
+    color: white;
+    width: 200px;
+    margin-top: 15px;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+}

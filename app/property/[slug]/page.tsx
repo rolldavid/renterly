@@ -12,9 +12,7 @@ export default async function Page({params: {slug}}: {params: { slug: string }})
         <div className={styles.container}>
                 <h1>{property.street} {property.unit}</h1>
                 <h3>{property.city} {property.state} {property.zipcode}</h3>
-                <div>
-                    {property.stars}
-                </div>
+                
                 <Reviews slug={slug}/>
         </div>
     )

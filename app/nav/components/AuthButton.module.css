@@ -1,0 +1,65 @@
+.buttonBasic {
+    color: var(--color-border-nav);
+    border: none;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+.dotWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 0;
+    margin: 0 15px 0 0;
+  
+ 
+}
+
+.dotFlashing {
+    position: relative;
+    width: 8px;
+    height: 8px;
+  
+    border-radius: 5px;
+    background-color: var(--lighttreegreen);
+    color: var(--lighttreegreen);
+    animation: dotFlashing 1s infinite linear alternate;
+    animation-delay: 0.5s;
+  }
+  .dotFlashing::before, .dotFlashing::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+  .dotFlashing::before {
+    left: -12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: var(--lighttreegreen);
+    color: var(--lighttreegreen);
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 0s;
+  }
+  .dotFlashing::after {
+    left: 12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: var(--lighttreegreen);
+    color: var(--lighttreegreen);
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: .1s;
+  }
+  
+  @keyframes dotFlashing {
+    0% {
+      background-color: var(--lighttreegreen);
+    }
+    50%, 100% {
+      background-color: rgba(152, 172, 153, 0.2)
+    }
+  }

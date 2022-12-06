@@ -8,11 +8,14 @@
   --slightgrey: #f2f2f2;
   --grey: #e5e5e5;
   --midgrey: #dddddd;
+  --placeholdergrey: #b9b9b9;
   --greygrey: #afafaf;
   --darkgrey: #838383;
   --treegreen: #879F66;
   --lighttreegreen: #98ac7b;
   --lightblue: #8ec6e6;
+  --lightred: #ff8485;
+  
 
   --color-text-nav: var(--offblack);
   --color-text-body: var(--offblack);
