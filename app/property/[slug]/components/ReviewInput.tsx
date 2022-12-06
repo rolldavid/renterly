@@ -3,7 +3,6 @@
 import { SyntheticEvent, useState, useEffect } from "react"
 import AuthContainer from "../../../auth/components/AuthContainer"
 
-
 export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, slug: string}) {
     const [checkedAuth, setCheckedAuth] = useState(false)
     const [submitted, setSubmitted] = useState(false)
@@ -16,15 +15,13 @@ export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, sl
         if (getRev && getSlug === slug) {
             setReview(getRev)
         }
-
     }, [])
-
-
 
     const handleSubmit = (e: SyntheticEvent) => {
         console.log("handling input....checking if logged in")
         e.preventDefault()
         localStorage.setItem("review", review)
+        localStorage.setItem("slug", slug)
         if (isLoggedIn) {
             console.log("sending review to db")
             setSubmitted(true)
@@ -54,6 +51,5 @@ export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, sl
             Thanks for submitting!
             </div>}
         </>
-        
     )
 }

@@ -10,10 +10,6 @@ export default function Reviews({slug}: {slug: string}) {
         return getUserId()
     })
 
-    useEffect(() => {
-        localStorage.setItem("slug", slug)
-    }, [])
-
     if (status === "success") {
         console.log(data)
         return (
