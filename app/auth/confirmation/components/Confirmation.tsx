@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { getSession, getUserId, updateUser } from '@/lib/db-utils';
-import { useEffect } from 'react';
+import { getUserId, updateUser } from '@/lib/db-utils';
 
 let first: string | null;
 let last: string | null;

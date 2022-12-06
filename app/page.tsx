@@ -10,6 +10,7 @@ import Spinner from "./property/[slug]/utils/Spinner"
 
 export default function Page() {
     const [loading, setLoading] = useState(false)
+
     return (
         <>
             {!loading && <section className={styles.searchContainer}>

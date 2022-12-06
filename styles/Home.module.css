@@ -61,15 +61,6 @@
 
 }
 
-.buttonBasic {
-  border: 1px solid var(--color-border-nav);
-  color: var(--color-border-nav);
-  border: none;
-  font-size: 1rem;
-  font-weight: 400;
-  background-color: transparent;
-  cursor: pointer;
-}
 
 .libContainer {
   display: flex;

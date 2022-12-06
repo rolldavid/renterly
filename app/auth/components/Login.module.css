@@ -10,6 +10,8 @@
     margin-top: 25px;
     padding: 0px 10px 0px 10px;
     box-shadow: 1px 1px 5px var(--greygrey);
+    background-color: white;
+    z-index: 30;
 }
 
 .checkContainer {

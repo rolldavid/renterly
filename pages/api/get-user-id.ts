@@ -17,6 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
             })
             if (user) {
+        
                 res.status(201).json({id: user.id})
             }
             
