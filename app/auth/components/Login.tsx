@@ -1,18 +1,16 @@
 "use client"
 
 import Image from "next/image"
-import { SyntheticEvent, useState } from "react"
+import { SyntheticEvent, useState, Dispatch, SetStateAction } from "react"
 import { signIn } from "next-auth/react"
 import styles from "./Login.module.css"
 
-
-export default function Login() {
+export default function Login({ isLogin, setIsLogin }: {isLogin: boolean, setIsLogin: Dispatch<SetStateAction<boolean>>}) {
     const [value, setValue] = useState("")
     const [submitted, setSubmitted] = useState(false);
 
     const handleLogin = async (e: SyntheticEvent) => {
         e.preventDefault();
-        console.log("logging in...")
       
         await signIn("email", {
             email: value,
@@ -64,12 +62,18 @@ export default function Login() {
                     </div>
                 </form>
             </div>
-            
-        </section>}
+            <div className={styles.signupButtonContainer}>
+                Need an account? <span className={styles.signupButton} onClick={() => setIsLogin(false)}>Signup</span>
+            </div> 
+        </section>
+        
+        }
+
         {submitted && <section className={styles.checkContainer}>
         <Image src={"/wand.png"} width={30} height={30} alt="magic wand" className={styles.noteImg}/>
             <p className={styles.checkText}>We've emailed you a magic link!</p>
             </section>}
+        
         </>
     )
 }

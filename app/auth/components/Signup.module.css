@@ -86,6 +86,31 @@
     
 }
 
+
+.nameContainer {
+    display: flex;
+    margin: 0px 0px 15px 0px;
+}
+
+.nameInputFirst {
+    width: 100%;
+    border: 2px solid var(--color-border-grey);
+    border-radius: 25px;
+    padding: 10px 20px 10px 20px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    margin-right: 10px;
+}
+
+.nameInputLast {
+    width: 100%;
+    border: 2px solid var(--color-border-grey);
+    border-radius: 25px;
+    padding: 10px 20px 10px 20px;
+    font-family: "Montserrat";
+    font-weight: 400;
+}
+
 .emailButton {
     display: flex;
     align-items: center;
@@ -131,37 +156,37 @@
 
 }
 
-.loginLine {
+.signupLine {
     display: flex;
     align-items: center;
     width: 80%;
     margin: 15px 0px 15px 0px;
   }
   
-.loginLine::before {
+.signupLine::before {
     margin-right: 10px;
 }
 
-.loginLine::after {
+.signupLine::after {
     margin-left: 10px;;
 }
 
-.loginLine::before, .loginLine::after {
+.signupLine::before, .signupLine::after {
     content: "";
     flex: 0 1 100%;
     border-bottom: 1px solid var(--midgrey);
     transform: translateY(50%);
 }
 
-.loginOr {
+.signupOr {
     font-size: 1rem;
     color: var(--darkgrey);
 }
 
-.signupButtonContainer {
+.loginButtonContainer {
     margin: 10px 0px 20px 0px;
 }
-.signupButton {
+.loginButton {
     cursor: pointer;
     color: var(--lighttreegreen);
 }

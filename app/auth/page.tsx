@@ -1,9 +1,7 @@
 "use client"
 
-import Login from "./components/Login";
+import AuthContainer from "./components/AuthContainer"
 
 export default function Page() {
-    return (
-            <Login />
-    )
+    return <AuthContainer />
 }

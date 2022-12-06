@@ -8,26 +8,50 @@ import { SearchProps } from "../types"
 export default function ResultItem({result, expandSecondary, searchTerm, setLoading}: {result: SearchProps, expandSecondary: (address: string, term: string) => {}, searchTerm: string, setLoading: React.Dispatch<React.SetStateAction<boolean>>}) {
     const router = useRouter()
 
-    const handleClick = async (e: SyntheticEvent, url: string) => {
+    const handleClick = async (e: SyntheticEvent, url: string, unit: boolean) => {
         setLoading(true)
         e.preventDefault();
-        const res = await fetch("/api/check-property", {
-            method: "POST",
-            body: JSON.stringify({
-                property: {
-                    slug: url,
-                    stars: 2,
-                    street: result.street_line,
-                    city: result.city,
-                    state: result.state,
-                    zipcode: result.zipcode
+
+        if (!unit) {
+            const res = await fetch("/api/check-property", {
+                method: "POST",
+                body: JSON.stringify({
+                    property: {
+                        slug: url,
+                        stars: 2,
+                        street: result.street_line,
+                        unit: "",
+                        city: result.city,
+                        state: result.state,
+                        zipcode: result.zipcode
+                    }
+                }),
+                headers: {
+                    "Content-Type": "application/json"
                 }
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        router.push(`/property/${street}-${city}-${state}-${zipcode}`)
+            })
+            router.push(`/property/${url}`)
+        } else {
+            const res = await fetch("/api/check-property", {
+                method: "POST",
+                body: JSON.stringify({
+                    property: {
+                        slug: url,
+                        stars: 2,
+                        street: result.street_line,
+                        unit: result.secondary,
+                        city: result.city,
+                        state: result.state,
+                        zipcode: result.zipcode
+                    }
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            router.push(`/property/${url}`)
+        }
+        
     }
 
     const street = result.street_line.replaceAll(" ", "-").replaceAll("/", "-").trim().toLowerCase()
@@ -54,7 +78,7 @@ export default function ResultItem({result, expandSecondary, searchTerm, setLoad
             const unit = result.secondary.replaceAll(" ", "-").replaceAll("/", "-").trim()
 
             return (
-                    <div onClick={(e) => handleClick(e, `/property/${street}-${unit}-${city}-${state}-${zipcode}`)} className={styles.container}>
+                    <div onClick={(e) => handleClick(e, `${street}-${unit}-${city}-${state}-${zipcode}`, true)} className={styles.container}>
                         {`${result.street_line} ${result.secondary} ${result.city} ${result.state} ${result.zipcode}`}
                     </div>
             ) 
@@ -64,7 +88,7 @@ export default function ResultItem({result, expandSecondary, searchTerm, setLoad
 
     return (
         <>
-            <div onClick={(e) => handleClick(e, `${street}-${city}-${state}-${zipcode}`)} className={styles.container}>
+            <div onClick={(e) => handleClick(e, `${street}-${city}-${state}-${zipcode}`, false)} className={styles.container}>
                 {`${result.street_line} ${result.city} ${result.state} ${result.zipcode}`}
             </div>
             

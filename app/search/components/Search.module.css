@@ -28,6 +28,10 @@
 }
 
 
+.titleHighlight {
+    filter: drop-shadow(2px 2px 0  var(--lightblue));  
+}
+
 .searchbarContainer {
     width: 100%;
     padding-left: 0px;

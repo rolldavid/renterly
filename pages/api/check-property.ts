@@ -14,6 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             slug: property.slug, 
             stars: property.stars,
             street: property.street,
+            unit: property.unit,
             city: property.city,
             state: property.state,
             zipcode: property.zipcode
@@ -22,5 +23,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   
     }
  
-    res.status(201).json({message: "yes"})
+    res.status(201).json({message: "success"})
 }
