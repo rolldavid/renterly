@@ -21,17 +21,38 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role          Role      @default(USER)
+  reviews       Review[]
 }
 
 model Property {
-  id      String  @id @default(cuid())
-  slug    String  @unique
+  id      String   @id @default(cuid())
+  slug    String   @unique
   stars   Int
   street  String
   unit    String?
   city    String
   state   String
   zipcode String
+  reviews Review[]
+}
+
+model Review {
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String
+  property       Property @relation(fields: [propertyId], references: [id])
+  propertyId     String
+  displayName    String
+  stars          Int
+  comment        String
+  landlordRating String?
+  safetyRating   String?
+  moveoutRating  String?
+  votes          Int?
+  response       Review?  @relation("ReviewResponse", fields: [responseId], references: [id])
+  responseId     String?  @unique
+  originalReview Review?  @relation("ReviewResponse")
 }
 
 model Account {

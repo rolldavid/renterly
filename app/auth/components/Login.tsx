@@ -2,18 +2,37 @@
 
 import Image from "next/image"
 import { SyntheticEvent, useState, Dispatch, SetStateAction } from "react"
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { signIn } from "next-auth/react"
+import { LoginProps } from "../types";
 import styles from "./Login.module.css"
+
+const schema = yup
+.object({
+  email: yup.string().email().required(),
+})
+.required();
 
 export default function Login({ isLogin, setIsLogin }: {isLogin: boolean, setIsLogin: Dispatch<SetStateAction<boolean>>}) {
     const [value, setValue] = useState("")
     const [submitted, setSubmitted] = useState(false);
 
-    const handleLogin = async (e: SyntheticEvent) => {
-        e.preventDefault();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+      } = useForm<LoginProps>({
+        resolver: yupResolver(schema),
+      });
+
+    const handleLogin = async (data: LoginProps) => {
+        console.log("handling login....")
       
         await signIn("email", {
-            email: value,
+            email: data.email,
             redirect: false,
             callbackUrl: "/auth/confirmation", 
         })
@@ -38,22 +57,21 @@ export default function Login({ isLogin, setIsLogin }: {isLogin: boolean, setIsL
                 <span className={styles.loginOr}>OR</span>
             </div>
             <div className={styles.emailContainer}>
-                <form onSubmit={handleLogin} className={styles.formContainer}>
+                <form className={styles.formContainer}>
                     <input 
-                        id="email"
+                        {...register("email")}
                         type="email"
-                        required
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
                         placeholder="jane@gmail.com"
                         className={styles.inputContainer}
                     />
-                    <button
-                        type="submit"
+                    <div
+                        onClick={handleSubmit(handleLogin)}
                         className={styles.emailButton}
                     >
                         Login with Email
-                    </button>
+                    </div>
                     <div
                         className={styles.emailNote}
                     >

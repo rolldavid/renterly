@@ -1,15 +1,16 @@
 "use client"
 
 import Image from "next/image";
-import { SyntheticEvent, useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { createReview } from "@/lib/db-utils"
 import { ReviewProps } from "./types";
 import AuthContainer from "../../../auth/components/AuthContainer"
 import styles from "./ReviewInput.module.css"
-import { json } from "stream/consumers";
+
 
 const schema = yup
 .object({
@@ -17,7 +18,7 @@ const schema = yup
 })
 .required();
 
-export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, slug: string}) {
+export default function ReviewList({isLoggedIn, slug, userId, propertyId} : {isLoggedIn: boolean, slug: string, userId: string, propertyId: string}) {
     const [checkedAuth, setCheckedAuth] = useState(false)
     const [submitted, setSubmitted] = useState(false)
     const [showAuth, setShowAuth] = useState(false)
@@ -35,9 +36,28 @@ export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, sl
         formState: { errors },
       } = useForm<ReviewProps>({
         resolver: yupResolver(schema),
-    
       });
 
+
+    const handlePost = async (data: ReviewProps) => {
+        
+        if (rating === 0) {
+            setStarError(true)
+            return
+        }
+        const strRating = rating.toString()
+        localStorage.setItem("review", review)
+        localStorage.setItem("slug", slug)
+        localStorage.setItem("star", strRating)
+        if (isLoggedIn) {
+            createReview(data.review, rating, userId, propertyId)
+            setSubmitted(true)
+            return;
+        }
+        setShowAuth(true)
+        setCheckedAuth(true)
+        return;
+    }
 
     useEffect(() => {
         const getRev = localStorage.getItem("review")
@@ -51,6 +71,10 @@ export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, sl
         }
     }, [])
 
+    useEffect(() => {
+        setShowAuth(false)
+    }, [isLoggedIn])
+
     const handleModalClose = (e: MouseEvent) => {
         e.preventDefault()
         if (e.target instanceof Element) {
@@ -59,7 +83,6 @@ export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, sl
             }
         }
     }
-
 
     useEffect(() => {
         const element = ref.current
@@ -75,26 +98,7 @@ export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, sl
         }
     }, [showAuth])
 
-    const handlePost = async (data: ReviewProps) => {
-        console.log("handling post....")
-        if (rating === 0) {
-            setStarError(true)
-            return
-        }
-        const strRating = rating.toString()
-        localStorage.setItem("review", review)
-        localStorage.setItem("slug", slug)
-        localStorage.setItem("star", strRating)
-        if (isLoggedIn) {
-            console.log("sending review to db")
-            setSubmitted(true)
-            return;
-        }
-        setShowAuth(true)
-        setCheckedAuth(true)
-        return;
-    }
-
+  
     return (
         <>
         {!submitted && <div className={styles.inputContainer}>
@@ -149,8 +153,8 @@ export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, sl
                         onChange={e => setReview(e.target.value)}
                     />
                     {starError && <p className={styles.errorMessage}>Please select a star rating to post your review.</p>}
-                    <p className={styles.errorMessage}>{errors.review?.message ? "Please enter a review." : null}</p>
-                    
+{/*                     <p className={styles.errorMessage}>{errors.review?.message ? "Please enter a review." : null}</p>
+ */}                    
                 </div> 
                 <div className={styles.submitContainer}>
                     <button type="submit" className={styles.submitButton}>
@@ -160,7 +164,7 @@ export default function ReviewList({isLoggedIn, slug} : {isLoggedIn: boolean, sl
                 
             </form>
             
-            {checkedAuth && showAuth &&
+            {checkedAuth && showAuth && !submitted &&
                 <div className={styles.authModuleContainer} ref={ref}>
                     <div className={styles.authModule}>
                         <AuthContainer />
