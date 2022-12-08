@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.status(401).json({id: null})
         }
     } catch (err) {
-        res.status(201).json({message: "Did not manage to connect"})
+        res.status(401).json({message: "Did not manage to connect"})
     }
 
 }
