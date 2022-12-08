@@ -1,3 +1,6 @@
+import { revProps } from "app/review/components/types";
+
+
 // READ
 
 export async function getUser(slug: string) {
@@ -27,6 +30,9 @@ export async function getProperty(propertyId: string) {
     const data = await res.json()
     return data;
 }
+
+
+
 
 export async function getPropertySlug(slug: string) {
     const res = await fetch("/api/get-property-slug", {
@@ -74,15 +80,15 @@ export async function updateUser(first: string, last: string, id: string) {
 
 // CREATE
 
-export async function createReview(review: string, stars: number, userId: string, propertyId: string) {
-    console.log("incoming....", review, stars, userId)
+export async function createReview({rev, rate, userId, propId}: revProps) {
+    
     const res = await fetch("/api/create-review", {
         method: "POST",
         body: JSON.stringify({
-            review,
-            stars,
-            userId,
-            propertyId
+            review: rev,
+            stars: rate,
+            userId: userId,
+            propertyId: propId
         }),
         headers: {
             "Content-Type": "application/json"
