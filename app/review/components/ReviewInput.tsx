@@ -35,7 +35,6 @@ export default function ReviewList({ property} : {property: Property}) {
         formState: { errors },
       } = useForm<ReviewProps>();
 
-
     const handlePost = async (data: ReviewProps) => {
         
         if (rating === 0) {
@@ -56,22 +55,21 @@ export default function ReviewList({ property} : {property: Property}) {
             setReviewError(null)
         }
 
-
         const strRating = rating.toString()
         localStorage.setItem("review", review)
         localStorage.setItem("slug", property.slug)
         localStorage.setItem("star", strRating)
-        if (status === "success" && queryResult.id) {
+        if (status === "success" && queryResult && property) {
             setLoading(true)
-            createReview(data.review, rating, queryResult.id, property.id)
-            setRating(0)
-            setReview("")
+            await createReview(data.review, rating, queryResult.id, property.id)
             localStorage.setItem("slug", "")
+            localStorage.setItem("review", "")
+            localStorage.setItem("star", "")
             router.push(`/property/${property.slug}`)
-            return;
-        }
-        setShowAuth(true)
-        setCheckedAuth(true)
+            return; 
+        } 
+        setShowAuth(true) 
+        setCheckedAuth(true) 
         return;
     }
 
