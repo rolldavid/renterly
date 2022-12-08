@@ -12,7 +12,6 @@ import styles from "./Reviews.module.css"
 import Link from "next/link"
 
 export default function Reviews({ property }: { property: Property }) {
-
     const {data, status} = useQuery(["reviews"], () => {
         return getProperty(property.id)
     })
@@ -31,12 +30,7 @@ export default function Reviews({ property }: { property: Property }) {
                 <section className={styles.container}>
                     <Link 
                         className={styles.reviewButton}
-                        href={{
-                            pathname: "/review",
-                            query: {
-                                slug: `${property.slug}`
-                            }
-                        }}
+                        href={`/review/${property.slug}`}
                     >
                         Add a Review
                     </Link>
