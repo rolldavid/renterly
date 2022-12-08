@@ -2,16 +2,20 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react"
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient, MutationKey } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Property } from "@prisma/client";
 import { useRouter } from "next/navigation";
+
+import { revProps } from "./types";
 
 import { createReview, getUserId } from "@/lib/db-utils"
 import { ReviewProps } from "./types";
 import AuthContainer from "../../auth/components/AuthContainer"
 import styles from "./ReviewInput.module.css"
 import Spinner from "@/lib/utils/Spinner";
+import { string } from "yup";
+
 
 export default function ReviewList({ property} : {property: Property}) {
     const [checkedAuth, setCheckedAuth] = useState(false)
@@ -24,9 +28,18 @@ export default function ReviewList({ property} : {property: Property}) {
     const [loading, setLoading] = useState(false)
     const ref = useRef<HTMLInputElement>(null)
     const router = useRouter()
+
+    const queryClient = useQueryClient()
     const {data: queryResult, status} = useQuery(["session"], () => {
         return getUserId()
     })
+
+    const { mutateAsync } = useMutation(createReview, {
+        onSuccess: () => {
+            queryClient.invalidateQueries(['reviews'])
+          },
+    });
+
 
     const {
         register,
@@ -61,17 +74,19 @@ export default function ReviewList({ property} : {property: Property}) {
         localStorage.setItem("star", strRating)
         if (status === "success" && queryResult && property) {
             setLoading(true)
-            await createReview(data.review, rating, queryResult.id, property.id)
+            await mutateAsync({rev: data.review, rate: rating, userId: queryResult.id, propId: property.id})
             localStorage.setItem("slug", "")
             localStorage.setItem("review", "")
             localStorage.setItem("star", "")
-            router.push(`/property/${property.slug}`)
+            router.replace(`/property/${property.slug}`)
             return; 
         } 
         setShowAuth(true) 
         setCheckedAuth(true) 
         return;
     }
+
+    
 
     useEffect(() => {
         const getRev = localStorage.getItem("review")
