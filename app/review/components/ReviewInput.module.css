@@ -83,16 +83,10 @@
     font-size: .9rem;
 }
 
-.starMapItem {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
 .starItem {
     margin: 0px 5px 0px 5px;
 }
+
 
 .inputField {
     border: none;

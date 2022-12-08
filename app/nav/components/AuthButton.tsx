@@ -8,8 +8,6 @@ import styles from "./AuthButton.module.css"
 
 
 export default function AuthButton() {
-    
-    
     const {data, status} = useQuery(["session"], () => {
         return getUserId()
     })

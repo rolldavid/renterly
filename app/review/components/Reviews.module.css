@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+}
+
+.reviewButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: var(--lighttreegreen);
+    border-radius: 25px;
+    font-size: 1rem;
+    font-family: "Montserrat";
+    font-weight: 400;
+    color: white;
+    width: 150px;
+    margin-top: 15px;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+}

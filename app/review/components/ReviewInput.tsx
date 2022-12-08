@@ -2,56 +2,72 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react"
+import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { Property } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
-import { createReview } from "@/lib/db-utils"
+import { createReview, getUserId } from "@/lib/db-utils"
 import { ReviewProps } from "./types";
-import AuthContainer from "../../../auth/components/AuthContainer"
+import AuthContainer from "../../auth/components/AuthContainer"
 import styles from "./ReviewInput.module.css"
+import Spinner from "@/lib/utils/Spinner";
 
-
-const schema = yup
-.object({
-  review: yup.string().required(),
-})
-.required();
-
-export default function ReviewList({isLoggedIn, slug, userId, propertyId} : {isLoggedIn: boolean, slug: string, userId: string, propertyId: string}) {
+export default function ReviewList({ property} : {property: Property}) {
     const [checkedAuth, setCheckedAuth] = useState(false)
-    const [submitted, setSubmitted] = useState(false)
     const [showAuth, setShowAuth] = useState(false)
     const [review, setReview] = useState("")
+    const [reviewError, setReviewError] = useState<string | null>(null)
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     const [starError, setStarError] = useState(false)
-
+    const [loading, setLoading] = useState(false)
     const ref = useRef<HTMLInputElement>(null)
+    const router = useRouter()
+    const {data: queryResult, status} = useQuery(["session"], () => {
+        return getUserId()
+    })
 
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
-      } = useForm<ReviewProps>({
-        resolver: yupResolver(schema),
-      });
+      } = useForm<ReviewProps>();
 
 
     const handlePost = async (data: ReviewProps) => {
         
         if (rating === 0) {
             setStarError(true)
-            return
+            return;
+        } else {
+            setStarError(false)
         }
+
+        if (review.length < 10) {
+            setReviewError("starting")
+            return;
+
+        } else if (review.length < 50) {
+            setReviewError("min")
+            return;
+        } else {
+            setReviewError(null)
+        }
+
+
         const strRating = rating.toString()
         localStorage.setItem("review", review)
-        localStorage.setItem("slug", slug)
+        localStorage.setItem("slug", property.slug)
         localStorage.setItem("star", strRating)
-        if (isLoggedIn) {
-            createReview(data.review, rating, userId, propertyId)
-            setSubmitted(true)
+        if (status === "success" && queryResult.id) {
+            setLoading(true)
+            createReview(data.review, rating, queryResult.id, property.id)
+            setRating(0)
+            setReview("")
+            localStorage.setItem("slug", "")
+            router.push(`/property/${property.slug}`)
             return;
         }
         setShowAuth(true)
@@ -64,7 +80,7 @@ export default function ReviewList({isLoggedIn, slug, userId, propertyId} : {isL
         const getSlug = localStorage.getItem("slug")
         const getStar = localStorage.getItem("star")
        
-        if (getRev && getSlug === slug && getStar) {
+        if (getRev && getSlug === property.slug && getStar) {
             const parseStar = parseInt(getStar)
             setReview(getRev)
             setRating(parseStar)
@@ -72,8 +88,10 @@ export default function ReviewList({isLoggedIn, slug, userId, propertyId} : {isL
     }, [])
 
     useEffect(() => {
-        setShowAuth(false)
-    }, [isLoggedIn])
+        if (status === "success" && queryResult.id) {
+            setShowAuth(false)
+        }
+    }, [queryResult])
 
     const handleModalClose = (e: MouseEvent) => {
         e.preventDefault()
@@ -94,14 +112,14 @@ export default function ReviewList({isLoggedIn, slug, userId, propertyId} : {isL
             if (element) {
             element.removeEventListener("click", e => handleModalClose(e))
             }
-           
         }
     }, [showAuth])
 
   
     return (
         <>
-        {!submitted && <div className={styles.inputContainer}>
+       
+        {!loading && <div className={styles.inputContainer}>
             <form onSubmit={handleSubmit(handlePost)} className={styles.formContainer}>
                 <div className={styles.reviewContainer}>
                     <div className={styles.starContainer}>
@@ -153,8 +171,9 @@ export default function ReviewList({isLoggedIn, slug, userId, propertyId} : {isL
                         onChange={e => setReview(e.target.value)}
                     />
                     {starError && <p className={styles.errorMessage}>Please select a star rating to post your review.</p>}
-{/*                     <p className={styles.errorMessage}>{errors.review?.message ? "Please enter a review." : null}</p>
- */}                    
+                    {reviewError === "starting" && <p className={styles.errorMessage}>{`Looks like you're just getting started...`}</p>}
+                    {reviewError === "min" && <p className={styles.errorMessage}>{`Please make your review at least 50 characters.`}</p>}
+                
                 </div> 
                 <div className={styles.submitContainer}>
                     <button type="submit" className={styles.submitButton}>
@@ -164,7 +183,7 @@ export default function ReviewList({isLoggedIn, slug, userId, propertyId} : {isL
                 
             </form>
             
-            {checkedAuth && showAuth && !submitted &&
+            {checkedAuth && showAuth &&
                 <div className={styles.authModuleContainer} ref={ref}>
                     <div className={styles.authModule}>
                         <AuthContainer />
@@ -172,9 +191,9 @@ export default function ReviewList({isLoggedIn, slug, userId, propertyId} : {isL
                 </div>
             }
         </div>}
-        {submitted && <div>
-            Thanks for submitting!
-            </div>}
+        {loading && <div className={styles.inputContainer}>
+            <Spinner />
+        </div>}
         </>
     )
 }

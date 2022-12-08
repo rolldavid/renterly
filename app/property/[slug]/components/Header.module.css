@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    margin: 50px 0px 0px 0px;
+  }
+
+
+  .starItem {
+    margin: 0px 5px 0px 5px;
+  }
+
+  .propertyTitle {
+    margin: 0px 0px 12px 0px; 
+  }
+
+  .propertySubtitle {
+    margin: 0px 0px 20px 0px;
+    font-size: 1.5rem;
+  }
