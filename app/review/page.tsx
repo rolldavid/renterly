@@ -1,17 +1,22 @@
+"use client"
 
-import { prisma } from "@/lib/prisma";
+import { useQuery } from "@tanstack/react-query";
 import ReviewInput from "./components/ReviewInput";
+import { getPropertySlug } from "@/lib/db-utils";
 
-export default async function Page({searchParams} : {searchParams?: { [key: string]: string | undefined };}) {
+export default function Page({searchParams} : {searchParams?: { [key: string]: string | undefined };}) {
     const slugParam = searchParams?.slug ? searchParams.slug : "1212-1-2-12th-st-oroville-CA-95965"
-    const property = await prisma.property.findUnique({
-        where: {
-            slug: slugParam
-        }
+ 
+    const {data, status} = useQuery(["reviewProp"], () => {
+        const res = getPropertySlug(slugParam)
+        console.log("what I found....", res)
+        return res
     })
-    if (property) {
-        return <ReviewInput property={property}/>
+
+    if (status === "success" && data.property) {
+        return <ReviewInput property={data.property}/>
     }
-   
-    return null;
+
+  
+    return <div>Nothing to see here...</div>
 }
