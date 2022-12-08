@@ -2,8 +2,20 @@
 
 import Image from "next/image"
 import { SyntheticEvent, useState, Dispatch, SetStateAction } from "react"
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { signIn } from "next-auth/react"
 import styles from "./Signup.module.css"
+import { SignupProps } from "../types";
+
+const schema = yup
+.object({
+  email: yup.string().email().required(),
+  firstName: yup.string().required(),
+  lastName: yup.string().required()
+})
+.required();
 
 export default function Signup({ isLogin, setIsLogin }: {isLogin: boolean, setIsLogin: Dispatch<SetStateAction<boolean>>}) {
     const [email, setEmail] = useState("")
@@ -11,16 +23,23 @@ export default function Signup({ isLogin, setIsLogin }: {isLogin: boolean, setIs
     const [lastName, setLastName] = useState("")
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSignup = async (e: SyntheticEvent) => {
-        e.preventDefault();
-      
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+      } = useForm<SignupProps>({
+        resolver: yupResolver(schema),
+      });
+
+    const handleSignup = async (data: SignupProps) => {
         await signIn("email", {
-            email: email,
+            email: data.email,
             redirect: false,
             callbackUrl: "/auth/confirmation", 
         })
-        localStorage.setItem("firstName", firstName)
-        localStorage.setItem("lastName", lastName)
+        localStorage.setItem("firstName", data.firstName)
+        localStorage.setItem("lastName", data.lastName)
         setSubmitted(true)
     }
 
@@ -42,42 +61,36 @@ export default function Signup({ isLogin, setIsLogin }: {isLogin: boolean, setIs
                 <span className={styles.signupOr}>OR</span>
             </div>
             <div className={styles.emailContainer}>
-                <form onSubmit={handleSignup} className={styles.formContainer}>
+                <form className={styles.formContainer}>
                     <div className={styles.nameContainer}>
                         <input 
-                            id="firstName"
-                            type="text"
-                            required
+                            {...register("firstName")}
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             placeholder="First Name"
                             className={styles.nameInputFirst}
                         />
                         <input 
-                        id="lastName"
-                        type="text"
-                        required
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        placeholder="Last Name"
-                        className={styles.nameInputLast}
+                            {...register("lastName")}
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            placeholder="Last Name"
+                            className={styles.nameInputLast}
                         />
                     </div>
                         <input 
-                            id="email"
-                            type="email"
-                            required
+                            {...register("email")}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Email"
                             className={styles.inputContainer}
                         />
-                    <button
-                        type="submit"
+                    <div
+                        onClick={handleSubmit(handleSignup)}
                         className={styles.emailButton}
                     >
                         Signup with Email
-                    </button>
+                    </div>
                     <div
                         className={styles.emailNote}
                     >

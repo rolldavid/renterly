@@ -24,6 +24,12 @@
     z-index: 30;
 }
 
+.firstOneTitle {
+    font-weight: 400;
+    margin: 25px 0px 10px 0px;
+    color: var(--lighttreegreen);
+  }
+
 .inputContainer {
     display: flex;
     align-items: flex-start;
@@ -124,3 +130,4 @@
     padding: 10px 15px 10px 15px;
     cursor: pointer;
 }
+

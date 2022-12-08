@@ -20,13 +20,13 @@ export default function Search({setLoading} : {setLoading: Dispatch<SetStateActi
             setResults(null)
             return
         }
-        if (searchTerm.length >= 5) {
-            const res = await fetch(`https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${process.env.NEXT_PUBLIC_SMARTY_KEY}&search=${searchTerm}&max_results=3`)
+        if (searchTerm.length >= 3) {
+            const res = await fetch(`https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${process.env.NEXT_PUBLIC_SMARTY_KEY}&search=${searchTerm}&max_results=5`)
             const data = await res.json();
             setResults(data.suggestions)
         }
       }
-      timeoutId = setTimeout(handleLookup, 500)
+      timeoutId = setTimeout(handleLookup, 250)
 
 
     }, [searchTerm])
