@@ -7,8 +7,6 @@ import { useForm } from "react-hook-form";
 import { Property } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
-import { revProps } from "./types";
-
 import { createReview, getUserId } from "@/lib/db-utils"
 import { ReviewProps } from "./types";
 import AuthContainer from "../../auth/components/AuthContainer"
@@ -72,7 +70,7 @@ export default function ReviewList({ property} : {property: Property}) {
         localStorage.setItem("review", review)
         localStorage.setItem("slug", property.slug)
         localStorage.setItem("star", strRating)
-        if (status === "success" && queryResult && property) {
+        if (status === "success" && queryResult.id) {
             setLoading(true)
             await mutateAsync({rev: data.review, rate: rating, userId: queryResult.id, propId: property.id})
             localStorage.setItem("slug", "")
