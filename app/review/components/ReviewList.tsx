@@ -7,7 +7,11 @@ export default function ReviewList({ reviewList }: { reviewList: Review[] }) {
     return(
         <div className={styles.container}>
             { reviewList.map((review, index) => {
-                return <ReviewItem review={review}/>
+                return (
+                    <div key={index} className={styles.container}>
+                        <ReviewItem review={review} />
+                    </div>
+                )
             }) }
         </div>
     )

@@ -6,7 +6,7 @@ import Search from "./search/components/Search"
 import house from "./assets/house.png"
 
 import styles from "@/styles/Home.module.css"
-import Spinner from "./property/[slug]/utils/Spinner"
+import Spinner from "@/lib/utils/Spinner"
 
 export default function Page() {
     const [loading, setLoading] = useState(false)

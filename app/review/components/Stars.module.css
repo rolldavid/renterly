@@ -1,0 +1,20 @@
+.starContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+  }
+
+  .starMapItem {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.starItem {
+    margin: 0px 5px 0px 5px;
+}

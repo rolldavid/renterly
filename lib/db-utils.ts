@@ -14,8 +14,8 @@ export async function getUser(slug: string) {
     return data;
 }
 
-export async function getSessionProperty(propertyId: string) {
-    const res = await fetch("/api/get-session-property", {
+export async function getProperty(propertyId: string) {
+    const res = await fetch("/api/get-property", {
         method: "POST",
         body: JSON.stringify({
             propertyId
