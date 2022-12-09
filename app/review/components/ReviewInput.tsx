@@ -72,7 +72,7 @@ export default function ReviewList({ property} : {property: Property}) {
         localStorage.setItem("star", strRating)
         if (status === "success" && queryResult.id) {
             setLoading(true)
-            await mutateAsync({rev: data.review, rate: rating, userId: queryResult.id, propId: property.id})
+            await mutateAsync({rev: review, rate: rating, userId: queryResult.id, propId: property.id})
             localStorage.setItem("slug", "")
             localStorage.setItem("review", "")
             localStorage.setItem("star", "")
