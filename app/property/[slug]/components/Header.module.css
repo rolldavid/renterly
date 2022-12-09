@@ -16,9 +16,11 @@
 
   .propertyTitle {
     margin: 0px 0px 12px 0px; 
+    cursor: default;
   }
 
   .propertySubtitle {
     margin: 0px 0px 20px 0px;
     font-size: 1.5rem;
+    cursor: default;
   }

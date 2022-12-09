@@ -2,23 +2,52 @@ import Image from "next/image";
 
 import styles from "./Stars.module.css"
 
-export default function Stars() {
+export default function Stars({ stars } : { stars: number[]}) {
+    console.log(stars)
+    const average = stars.reduce((a, b) => a + b, 0) / stars.length;
+    const quotient = Math.floor(average / .5)
+    let starTracker = quotient;
+
     return (
-        <div className={styles.starContainer}>{[...Array(5)].map((star, index) => {        
+        <div className={styles.starContainer}>{[...Array(5)].map((star, index) => {       
+            if (starTracker > 0) {
+                if (starTracker - 2 >= 0) {
+                    starTracker -= 2
+                    return (         
+                        <Image 
+                                src={"/fullStar.png"} 
+                                width={30} 
+                                height={30} 
+                                alt="rating star" 
+                                className={styles.starRatingImg}
+                                key={index}
+                            />     
+                    );
+                } 
+
+                starTracker -= 1
+                return (         
+                    <Image 
+                            src={"/halfStar.png"} 
+                            width={30} 
+                            height={30} 
+                            alt="rating star" 
+                            className={styles.starRatingImg}
+                            key={index}
+                        />     
+                );
+            }
             return (         
-            <span 
-                className={styles.starMapItem}
-                key={index}
-            >
                 <Image 
                         src={"/emptyStar.png"} 
                         width={30} 
                         height={30} 
                         alt="rating star" 
-                        className={styles.starItem}
-                    />
-            </span>        
+                        className={styles.starRatingImg}
+                        key={index}
+                    />     
             );
+            
         })}
     </div>
     )

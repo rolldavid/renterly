@@ -14,11 +14,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const user = await prisma.user.findUnique({
                 where: {
                     email: session.user.email
+                },
+                include: {
+                    reviews: true
                 }
             })
             if (user) {
-        
-                res.status(201).json({id: user.id})
+
+                res.status(201).json({user: user})
             }
             
         } else {

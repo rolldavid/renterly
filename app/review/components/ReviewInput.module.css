@@ -12,6 +12,54 @@
 
 }
 
+
+.preSubmitContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.presubmitTip {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border: none;
+    background-color: var(--lightgrey);
+    border-radius: 5px;
+    font-size: .8rem;
+    font-family: "Montserrat";
+    font-weight: 400;
+    padding: 10px 10px 10px 10px;
+    width: 355px;
+    margin: 15px 0px 15px 0px;
+}
+
+
+.presubmitTitle {
+    font-weight: 600;
+    color: var(--darkergrey);
+    text-align: center;
+    justify-content: flex-start;
+    width: 100%;
+    text-align: left;
+    font-size: .85rem;
+    margin: 0px 0px 10px 0px;
+}
+
+.presubmitImg {
+    margin-right: 5px;
+    margin-bottom: -3px;
+    opacity: .5;
+  }
+
+.presubmitText {
+    color: var(--darkergrey);
+    margin: 0;
+    text-align: left;
+}
+
 .authModule {
     display: flex;
     align-items: center;
@@ -85,8 +133,8 @@
 
 .starItem {
     margin: 0px 5px 0px 5px;
+    cursor: pointer;
 }
-
 
 .inputField {
     border: none;

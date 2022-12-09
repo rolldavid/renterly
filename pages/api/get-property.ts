@@ -12,8 +12,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             include: {
                 reviews: {
                     orderBy: {
-                        createdAt: "desc"
-                    }
+                        createdAt: "desc",
+                    },
                 }
             },
            

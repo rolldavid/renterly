@@ -1,18 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
-import { Property } from "@prisma/client";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
     const { property } = req.body;
   
-
     await prisma.property.upsert({
         where: {slug: property.slug}, 
         update: {},
         create: {
             slug: property.slug, 
-            stars: property.stars,
+            stars: [],
             street: property.street,
             unit: property.unit,
             city: property.city,

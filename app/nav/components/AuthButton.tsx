@@ -5,8 +5,6 @@ import { signIn } from "next-auth/react"
 import { getUserId } from "@/lib/db-utils"
 import styles from "./AuthButton.module.css"
 
-
-
 export default function AuthButton() {
     const {data, status} = useQuery(["session"], () => {
         return getUserId()
@@ -20,9 +18,9 @@ export default function AuthButton() {
         )
     }
 
-    if (status === "success" && data.id) {
+    if (status === "success" && data.user) {
         return (
-            <Link href={`/account/${data.id}`} className={styles.buttonBasic}>
+            <Link href={`/account/${data.user.id}`} className={styles.buttonBasic}>
                 PROFILE
             </Link>
         ) 
