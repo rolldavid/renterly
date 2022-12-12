@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react"
-import { useQuery, useMutation, useQueryClient, MutationKey } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Property } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,6 @@ import AuthContainer from "../../auth/components/AuthContainer"
 import styles from "./ReviewInput.module.css"
 import Spinner from "@/lib/utils/Spinner";
 import { string } from "yup";
-
 
 export default function ReviewList({ property} : {property: Property}) {
     const [checkedAuth, setCheckedAuth] = useState(false)
@@ -37,7 +36,6 @@ export default function ReviewList({ property} : {property: Property}) {
             queryClient.invalidateQueries(['reviews'])
           },
     });
-
 
     const {
         register,
@@ -70,20 +68,19 @@ export default function ReviewList({ property} : {property: Property}) {
         localStorage.setItem("review", review)
         localStorage.setItem("slug", property.slug)
         localStorage.setItem("star", strRating)
-        if (status === "success" && queryResult.id) {
+        if (status === "success" && queryResult.user) {
             setLoading(true)
-            await mutateAsync({rev: review, rate: rating, userId: queryResult.id, propId: property.id})
+            await mutateAsync({rev: review, rate: rating, userId: queryResult.user.id, propId: property.id})
             localStorage.setItem("slug", "")
             localStorage.setItem("review", "")
             localStorage.setItem("star", "")
-            router.replace(`/property/${property.slug}`)
+            router.push(`/property/${property.slug}`)
             return; 
         } 
         setShowAuth(true) 
         setCheckedAuth(true) 
         return;
     }
-
     
 
     useEffect(() => {
@@ -153,7 +150,7 @@ export default function ReviewList({ property} : {property: Property}) {
                                         onClick={() => setRating(starIndex)}
                                     /> 
                                     : <Image 
-                                        src={"/emptyStar.png"} 
+                                        src={"/greyStar.png"} 
                                         width={23} 
                                         height={23} 
                                         alt="rating star" 
@@ -186,7 +183,14 @@ export default function ReviewList({ property} : {property: Property}) {
                     {reviewError === "min" && <p className={styles.errorMessage}>{`Please make your review at least 50 characters.`}</p>}
                 
                 </div> 
+                <div className={styles.preSubmitContainer}>
+                    <div className={styles.presubmitTip}>
+                        <p className={styles.presubmitTitle}> <Image src={"/images/icons/lock.png"} width={15} height={15} alt="magic wand" className={styles.presubmitImg}/>Anonymous by Default </p>
+                        <p className={styles.presubmitText}>We'll create an anonymous profile for you. Update your information any time in your account settings.</p>
+                    </div>
+                </div>
                 <div className={styles.submitContainer}>
+                    
                     <button type="submit" className={styles.submitButton}>
                         Post Review
                     </button>

@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.displayName {
+
+}
+
+
+.displayNameSession {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0px 10px 0px;
+}
+
+.nameTitle {
+    margin: 0;
+}
+
+.editContainer {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 3px 10px;
+    height: 100%;
+    opacity: .5;
+}
+
+.editButton {
+    margin: 0px 0px 0px 5px;
+    height: 100%;
+    
+}
+
+.locationContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+
+}
+
+.locationTitle {
+    margin:0;
+}
+
+.editButtonLocation {
+    margin: 0px 0px 0px 10px;
+    height: 100%;
+   
+}

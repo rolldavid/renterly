@@ -77,6 +77,23 @@ export async function updateUser(first: string, last: string, id: string) {
     return data;
 }
 
+export const updateProfileImg = async ({profileImage, userId} : { profileImage: string, userId: string }) => {
+    console.log("sending update to db")
+    const res = await fetch("/api/update-profile-image", {
+        method: "POST",
+        body: JSON.stringify({
+            image: profileImage,
+            userId: userId
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    console.log("returning data", data)
+    return data;
+}
+
 
 // CREATE
 

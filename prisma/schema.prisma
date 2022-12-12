@@ -13,6 +13,9 @@ model User {
   firstName     String?
   lastName      String?
   fullName      String?
+  city          String?
+  state         String?
+  citystate     String?
   displayName   String?   @unique
   email         String?   @unique
   emailVerified DateTime?
@@ -27,7 +30,7 @@ model User {
 model Property {
   id      String   @id @default(cuid())
   slug    String   @unique
-  stars   Int
+  stars   Int[]
   street  String
   unit    String?
   city    String
@@ -43,7 +46,6 @@ model Review {
   userId         String
   property       Property @relation(fields: [propertyId], references: [id])
   propertyId     String
-  displayName    String
   stars          Int
   comment        String
   landlordRating String?

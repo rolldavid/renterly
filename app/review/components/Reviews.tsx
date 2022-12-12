@@ -22,7 +22,6 @@ export default function Reviews({ property }: { property: Property }) {
         )
     }
 
-
     if (status === "success" && data) {
         const revList: Review[] = data.reviews
         if (revList.length > 0) {

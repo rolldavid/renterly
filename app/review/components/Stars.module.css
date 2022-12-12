@@ -12,9 +12,8 @@
     background-color: transparent;
     border: none;
     outline: none;
-    cursor: pointer;
 }
 
-.starItem {
+.starRatingImg {
     margin: 0px 5px 0px 5px;
 }

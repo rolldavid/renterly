@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.imageContainer {
+  width: 100%;
+ 
+}
+
+.profileImage {
+    cursor: pointer;
+}
+
+.rotateIcon {
+    position: relative;
+    margin: 0px 0px 10px -40px;
+    cursor: pointer;
+}
+
+
+.rotateIconSpin {
+    margin: 0px 0px 10px -40px;
+    animation: spinner 750ms linear infinite;
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .expandContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 300px;
+    margin: 25px 0px 0px 0px;
+
+
+  }
+
+  .expandItem {
+    margin: 5px 5px 5px 5px;
+    cursor: pointer;
+  }

@@ -23,8 +23,8 @@ export default function Confirmation() {
     router.push('/auth');
   }
 
-  if (status === "success" && data.id && first && last) {
-        updateUser(first, last, data.id)
+  if (status === "success" && data.user && first && last) {
+        updateUser(first, last, data.user.id)
   }
 
   return (
