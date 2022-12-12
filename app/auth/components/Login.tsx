@@ -29,7 +29,6 @@ export default function Login({ isLogin, setIsLogin }: {isLogin: boolean, setIsL
       });
 
     const handleLogin = async (data: LoginProps) => {
-        console.log("handling login....")
       
         await signIn("email", {
             email: data.email,

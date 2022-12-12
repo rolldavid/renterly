@@ -94,6 +94,7 @@ body {
   transition: background 0.25s ease-in-out; 
   -ms-overflow-style: none; 
   scrollbar-width: none; 
+
 }
 
 body::-webkit-scrollbar {

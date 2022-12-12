@@ -1,11 +1,13 @@
 "use client"
 
+import { SyntheticEvent } from "react"
 import { signOut } from "next-auth/react"
 import { useQuery } from "@tanstack/react-query"
 import { getUser } from "@/lib/db-utils"
+import AccountImage from "./AccountImage"
 import styles from "./Account.module.css"
-import { SyntheticEvent } from "react"
 import AuthContainer from "../../../auth/components/AuthContainer"
+import AccountDetails from "./AccountDetails"
 
 export default function Account({userId} : {userId: string}) {
     const { data, status } = useQuery(["user"], () => {
@@ -34,7 +36,8 @@ export default function Account({userId} : {userId: string}) {
     return (
         <section className={styles.container}>
             <div className={styles.container}>
-                Hey there, {data.user.name}
+                <AccountImage user={data.user} session={data.session} />
+                <AccountDetails user={data.user} session={data.session}/>
             </div>
             <div>
             <div className={styles.logoutButton} onClick={handleLogout}>

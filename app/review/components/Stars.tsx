@@ -3,7 +3,6 @@ import Image from "next/image";
 import styles from "./Stars.module.css"
 
 export default function Stars({ stars } : { stars: number[]}) {
-    console.log(stars)
     const average = stars.reduce((a, b) => a + b, 0) / stars.length;
     const quotient = Math.floor(average / .5)
     let starTracker = quotient;

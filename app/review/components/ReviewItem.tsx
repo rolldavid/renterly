@@ -24,7 +24,6 @@ export default function ReviewItem({review} : {review: Review}) {
     let starTracker = 0;
 
     if (user) {
-        console.log(user)
         return (
             <div className={styles.container}>
                 <div className={styles.profileContainer}>
