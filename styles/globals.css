@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Shrikhand&display=swap');
 :root {
   --black: #000000;
-  --offblack: #333333;
-  --offblack: #4f4f4f;
+  --offblack: #262626;
+  --verydarkgrey: #333333;
   --lightgrey: #f8f8f8;
   --slightgrey: #f2f2f2;
   --grey: #e5e5e5;

@@ -3,29 +3,26 @@
 import { SyntheticEvent, useState } from "react"
 import Image from "next/image"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { User } from "@prisma/client"
+import { ProfileUser } from "app/account/types";
 import { updateProfileImg } from "@/lib/db-utils"
 import styles from "./AccountImage.module.css"
 
 
-export default function AccountImage ({ user, session, } : { user: User, session: boolean }) {
+export default function AccountImage ({ user, session} : { user: ProfileUser, session: boolean }) {
     const queryClient = useQueryClient()
     const [loading, setLoading] = useState("rotateIcon")
-    const [editButton, setEditButton] = useState("change")
-    const [expand, setExpand] = useState(false)
 
-
-    const updateImg = async (e: SyntheticEvent, index: number) => {
-        e.preventDefault();
-        setEditButton("rotate")
+    const updateImg = async (e: SyntheticEvent) => {
         setLoading("rotateIconSpin")
-        setExpand(false)
-        const prof = index.toString()
-        await mutateAsync({profileImage: prof, userId: user.id})
+        e.preventDefault();
+        const randProf = Math.floor(Math.random() * 15).toString()
+        if (user.userId) {
+            await mutateAsync({profileImage: randProf, userId: user.userId})
         setTimeout(() => {
             setLoading("rotateIcon")
-            setEditButton("change")
-        }, 750)
+        }, 500)
+        }
+        return;
     }
 
     const { mutateAsync } = useMutation(updateProfileImg, {
@@ -56,36 +53,19 @@ export default function AccountImage ({ user, session, } : { user: User, session
                     height={100} 
                     alt="profile" 
                     className={styles.profileImage}
-                    onClick={() => setExpand(prev => !prev)}
+                    onClick={updateImg}
                 />
-                <Image 
-                    src={`/images/icons/${editButton}.png`} 
+                
+            </div>
+        </div>
+    )
+}
+
+{/* <Image 
+                    src={`/images/icons/rotate.png`} 
                     width={35} 
                     height={35} 
                     alt="profile" 
                     className={styles[`${loading}`]}
-                    onClick={() => setExpand(prev => !prev)}
-                />
-            </div>
-           
-            {expand && <div className={styles.expandContainer}>
-                {
-                    [...Array(15)].map((item, index) => {
-                        return (
-                            <Image 
-                                src={`/images/profile/${index}.png`} 
-                                width={50} 
-                                height={50} 
-                                alt="profile" 
-                                className={styles.expandItem}
-                                onClick={(e) => updateImg(e, index)}
-                            />
-                        )
-                    })
-                }
-                
-            </div>}
-            
-        </div>
-    )
-}
+                    onClick={updateImg}
+                /> */}

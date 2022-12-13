@@ -3,35 +3,24 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { getUserId, updateUser } from '@/lib/db-utils';
-
-let first: string | null;
-let last: string | null;
+import { getSession } from '@/lib/db-utils';
 
 export default function Confirmation() {
   const router = useRouter();
   const {data, status} = useQuery(["session"], () => {
-    return getUserId()
+    return getSession()
   })
 
-  if (typeof window !== "undefined") {
-    first = localStorage.getItem("firstName")
-    last = localStorage.getItem("lastName")
-  }
-  
+
   if (status !== "loading" && !data) {
     router.push('/auth');
-  }
-
-  if (status === "success" && data.user && first && last) {
-        updateUser(first, last, data.user.id)
   }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 max-w-md mx-auto">
       {status === "loading" ? (
         <p>Loading...</p>
-      ) : !data ? (
+      ) : !data.session ? (
         <p>Redirecting...</p>
       ) : (
         <>

@@ -1,19 +1,12 @@
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
-    
-}
 
-.profileContainer {
+
+.container {
     display: flex;
     width: 100%;
     justify-content: flex-start;
+    flex-direction: column;
     padding: 10px;
+    width: 650px;
 }
 
 .reviewContainer {
@@ -25,20 +18,32 @@
     white-space: pre-wrap;
 }
 
-.profileDetails {
+.reviewInnerContainer {
+    display: flex;
+    margin: 15px 0px 20px 0px;
+    padding: 10px;
+    width: 100%;
+    text-align: start;
+    white-space: pre-wrap;
+}
+
+.reviewTitleContainer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin: 0px 0px 0px 10px;
 }
 
-.profileName {
+
+.reviewTitle {
     margin: 5px 0px 0px 0px;
 }
 
-.profileLocation {
+.reviewLocation {
     margin: 3px 0px 0px 0px;
 }
+
+
 
 .starContainer {
     display: flex;
@@ -74,3 +79,4 @@
 .starItem {
     margin: 0px 2px 0px 2px;
 }
+

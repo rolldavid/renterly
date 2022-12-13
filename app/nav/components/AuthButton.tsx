@@ -3,12 +3,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { useQuery } from "@tanstack/react-query"
 import { signIn } from "next-auth/react"
-import { getUserId } from "@/lib/db-utils"
+import { getUserSession } from "@/lib/db-utils"
 import styles from "./AuthButton.module.css"
 
 export default function AuthButton() {
     const {data, status} = useQuery(["session"], () => {
-        return getUserId()
+        return getUserSession()
     })
 
     if (status === "loading") {
@@ -19,10 +19,10 @@ export default function AuthButton() {
         )
     }
 
-    if (status === "success" && data.user) {
+    if (status === "success" && data.session) {
         return (
-            <Link href={`/account/${data.user.id}`} className={styles.buttonBasic}>
-                <Image src={`/images/profile/${data.user.image}.png`} width={30} height={30} alt="profile"/>
+            <Link href={`/account/${data.userId}`} className={styles.buttonBasic}>
+                <Image src={`/images/profile/${data.image}.png`} width={30} height={30} alt="profile"/>
             </Link>
         ) 
     } else {

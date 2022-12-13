@@ -17,26 +17,6 @@
     cursor: pointer;
 }
 
-.rotateIcon {
-    position: relative;
-    margin: 0px 0px 10px -40px;
-    cursor: pointer;
-}
-
-
-.rotateIconSpin {
-    margin: 0px 0px 10px -40px;
-    animation: spinner 750ms linear infinite;
-  }
-
-  @keyframes spinner {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 
   .expandContainer {
     display: flex;

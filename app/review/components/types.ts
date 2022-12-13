@@ -12,4 +12,7 @@ export interface revProps {
     rate: number
     userId: string
     propId: string
+    street: string
+    citystate: string
+    propertySlug: string
 }

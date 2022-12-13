@@ -1,44 +1,18 @@
-"use client"
+import { Review } from "@prisma/client";
+import Link from "next/link";
+import Image from "next/image";
+import styles from "./UserReviewItem.module.css"
 
-
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Review, User } from "@prisma/client"
-import styles from "./ReviewItem.module.css"
-
-interface UserList {
-    displayName: string;
-    citystate: string;
-    image: string;
-    userId?: string;
-}
-
-export default function ReviewItem({review, user} : {review: Review, user: UserList}) {
-
-    const readableDate = new Date(review.createdAt).toLocaleDateString("en-US", {
-        day: "numeric",
-        month: "numeric",
-        year: "numeric",
-      });
-
+export default function UserReviewItem({ review } : { review: Review }) {
     let starTracker = 0;
-
-    if (user) {
-        return (
-            <div className={styles.container}>
-                <div className={styles.profileContainer}>
-                    <Link href={`/account/${user?.userId}`}>
-                        <Image src={`/images/profile/${user.image}.png`} width={48} height={48} alt="profile placeholder"/>
-                    </Link>
-                    <div className={styles.profileDetails}>
-                        <Link href={`/account/${user?.userId}`}>
-                            <h3 className={styles.profileName}>{user.displayName}</h3>
-                        </Link>
-                        <p className={styles.profileLocation}>{user.citystate}</p>
-                    </div>
-                </div>
-                <div className={styles.starContainer}>
+    return (
+        <div className={styles.container}>
+            <div className={styles.reviewTitleContainer}>
+                <Link href={`/property/${review.propertySlug}`}><h3 className={styles.reviewTitle}>{review.street}</h3>
+                </Link>
+                <p className={styles.reviewLocation}>{review.citystate}</p>
+            </div>
+            <div className={styles.starContainer}>
                         <div className={styles.starDetails}>
                             {[...Array(5)].map((star, index) => {      
                                     if (starTracker < review.stars) {
@@ -69,17 +43,12 @@ export default function ReviewItem({review, user} : {review: Review, user: UserL
                             
                         </div>
                         <div className={styles.dateContainer}>
-                            <p className={styles.dateDetails}>{readableDate}</p>
+                            <p className={styles.dateDetails}>11/9/2022</p>
                         </div>
                 </div>
                 <div className={styles.reviewContainer}>
                     {review.comment}
                 </div>
-            </div>
-        )
-    }
-
-    return null;
-
-   
+        </div>
+    )
 }

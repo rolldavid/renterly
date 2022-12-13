@@ -1,13 +1,28 @@
 import { revProps } from "app/review/components/types";
-
+import { ProfileProps } from "app/account/types";
 
 // READ
 
-export async function getUser(slug: string) {
-    const res = await fetch("/api/get-user", {
+export async function getProfile(userId: string) {
+    const res = await fetch("/api/get-profile", {
         method: "POST",
         body: JSON.stringify({
-            userId: slug
+            userId: userId
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json()
+    return data;
+}
+
+export async function checkDisplayName(displayName: string, userId: string) {
+    const res = await fetch("/api/check-display-name", {
+        method: "POST",
+        body: JSON.stringify({
+            displayName,
+            userId
         }),
         headers: {
             "Content-Type": "application/json"
@@ -32,8 +47,6 @@ export async function getProperty(propertyId: string) {
 }
 
 
-
-
 export async function getPropertySlug(slug: string) {
     const res = await fetch("/api/get-property-slug", {
         method: "POST",
@@ -53,8 +66,8 @@ export async function getSession() {
     return res.json()
 }
 
-export async function getUserId() {
-    const res = await fetch("/api/get-user-id")
+export async function getUserSession() {
+    const res = await fetch("/api/get-user-session")
     const data = await res.json()
     return data;
 }
@@ -68,6 +81,24 @@ export async function updateUser(first: string, last: string, id: string) {
             first,
             last,
             id
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    return data;
+}
+
+export async function updateProfile({displayName, city, state, image, userId}: ProfileProps) {
+    const res = await fetch("/api/update-profile", {
+        method: "POST",
+        body: JSON.stringify({
+            displayName,
+            city,
+            state,
+            image,
+            userId
         }),
         headers: {
             "Content-Type": "application/json"
@@ -97,15 +128,17 @@ export const updateProfileImg = async ({profileImage, userId} : { profileImage: 
 
 // CREATE
 
-export async function createReview({rev, rate, userId, propId}: revProps) {
-    
+export async function createReview({rev, rate, userId, propId, street, citystate, propertySlug}: revProps) {
     const res = await fetch("/api/create-review", {
         method: "POST",
         body: JSON.stringify({
             review: rev,
             stars: rate,
             userId: userId,
-            propertyId: propId
+            propertyId: propId,
+            street: street,
+            citystate: citystate,
+            propertySlug
         }),
         headers: {
             "Content-Type": "application/json"

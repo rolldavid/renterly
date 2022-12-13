@@ -48,6 +48,9 @@ model Review {
   propertyId     String
   stars          Int
   comment        String
+  street         String
+  citystate      String
+  propertySlug   String
   landlordRating String?
   safetyRating   String?
   moveoutRating  String?

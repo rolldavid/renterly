@@ -14,17 +14,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     orderBy: {
                         createdAt: "desc",
                     },
+                    include: {
+                        user: {
+                            select: {
+                                displayName: true,
+                                citystate: true,
+                                image: true,
+                                id: true
+                            }
+                        }
+                    }
                 }
             },
            
         })
+
+        const users =  propertyReviews?.reviews.map(review => {
+            return {
+                displayName: review.user.displayName,
+                citystate: review.user.citystate,
+                image: review.user.image,
+                userId: review.user.id
+            }
+        })
     
         if (propertyReviews) {
-            res.status(201).json({reviews: propertyReviews.reviews})
+            res.status(201).json({reviews: propertyReviews.reviews, users})
         }
 
     } catch (err) {
         res.status(401).json({message: "Did not manage to connect"})
     }
-
 }
