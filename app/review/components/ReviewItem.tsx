@@ -1,18 +1,10 @@
 "use client"
 
-
-import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Review, User } from "@prisma/client"
+import { Review } from "@prisma/client"
+import { UserList } from "./types"
 import styles from "./ReviewItem.module.css"
-
-interface UserList {
-    displayName: string;
-    citystate: string;
-    image: string;
-    userId?: string;
-}
 
 export default function ReviewItem({review, user} : {review: Review, user: UserList}) {
 
@@ -45,7 +37,7 @@ export default function ReviewItem({review, user} : {review: Review, user: UserL
                                         starTracker += 1
                                         return (         
                                             <Image 
-                                                    src={"/fullStar.png"} 
+                                                    src={"/images/review/fullStar.png"} 
                                                     width={20} 
                                                     height={20} 
                                                     alt="rating star" 
@@ -56,7 +48,7 @@ export default function ReviewItem({review, user} : {review: Review, user: UserL
                                     } else {
                                         return (         
                                             <Image 
-                                                    src={"/emptyStar.png"} 
+                                                    src={"/images/review/emptyStar.png"} 
                                                     width={20} 
                                                     height={20} 
                                                     alt="rating star" 

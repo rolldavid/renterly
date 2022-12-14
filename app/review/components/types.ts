@@ -16,3 +16,10 @@ export interface revProps {
     citystate: string
     propertySlug: string
 }
+
+export interface UserList {
+    displayName: string;
+    citystate: string;
+    image: string;
+    userId?: string;
+}

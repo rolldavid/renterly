@@ -19,7 +19,7 @@ export default function UserReviewItem({ review } : { review: Review }) {
                                         starTracker += 1
                                         return (         
                                             <Image 
-                                                    src={"/fullStar.png"} 
+                                                    src={"/images/review/fullStar.png"} 
                                                     width={20} 
                                                     height={20} 
                                                     alt="rating star" 
@@ -30,7 +30,7 @@ export default function UserReviewItem({ review } : { review: Review }) {
                                     } else {
                                         return (         
                                             <Image 
-                                                    src={"/emptyStar.png"} 
+                                                    src={"/images/review/emptyStar.png"} 
                                                     width={20} 
                                                     height={20} 
                                                     alt="rating star" 

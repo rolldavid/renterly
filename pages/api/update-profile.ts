@@ -3,7 +3,9 @@ import { prisma } from "@/lib/prisma";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
-        const {userId, displayName} = req.body;
+        const {userId, displayName, image, city, state} = req.body;
+
+        const citystate = `${city}, ${state}`;
         
         try {
                 const user = await prisma.user.update({
@@ -11,7 +13,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         id: userId
                     },
                     data: {
-                        displayName: displayName
+                        displayName: displayName,
+                        city: city,
+                        state: state,
+                        image: image,
+                        citystate
                     },
                 })
                 if (user) {

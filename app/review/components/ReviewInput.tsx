@@ -14,7 +14,7 @@ import styles from "./ReviewInput.module.css"
 import Spinner from "@/lib/utils/Spinner";
 
 export default function ReviewList({ property} : {property: Property}) {
-    const [checkedAuth, setCheckedAuth] = useState(false)
+    
     const [showAuth, setShowAuth] = useState(false)
     const [review, setReview] = useState("")
     const [reviewError, setReviewError] = useState<string | null>(null)
@@ -82,10 +82,8 @@ export default function ReviewList({ property} : {property: Property}) {
             return
         } 
         setShowAuth(true) 
-        setCheckedAuth(true) 
         return;
     }
-    
 
     useEffect(() => {
         const getRev = localStorage.getItem("review")
@@ -143,7 +141,7 @@ export default function ReviewList({ property} : {property: Property}) {
                             >
                                 {index < (hover || rating) ? 
                                     <Image 
-                                        src={"/fullStar.png"} 
+                                        src={"/images/review/fullStar.png"} 
                                         width={23} height={23} 
                                         alt="rating star" 
                                         className={styles.starItem}
@@ -152,7 +150,7 @@ export default function ReviewList({ property} : {property: Property}) {
                                         onClick={() => setRating(starIndex)}
                                     /> 
                                     : <Image 
-                                        src={"/greyStar.png"} 
+                                        src={"/images/review/greyStar.png"} 
                                         width={23} 
                                         height={23} 
                                         alt="rating star" 
@@ -200,10 +198,10 @@ export default function ReviewList({ property} : {property: Property}) {
                 
             </form>
             
-            {checkedAuth && showAuth &&
+            {showAuth &&
                 <div className={styles.authModuleContainer} ref={ref}>
                     <div className={styles.authModule}>
-                        <AuthContainer />
+                        <AuthContainer fromReview={true}/>
                     </div>
                 </div>
             }

@@ -20,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
             },
            })
+        
 
         const session = await unstable_getServerSession(req, res, authOptions)
         if (!session && user) {

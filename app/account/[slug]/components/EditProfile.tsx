@@ -1,6 +1,6 @@
 "use client"
 
-import { Dispatch, SetStateAction, useState, useEffect } from "react"
+import { Dispatch, SetStateAction, useState, useEffect, MouseEvent } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -22,35 +22,38 @@ const schema = yup
 })
 .required();
 
-const stateList = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' ];
+const stateList = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' ];
 
 export default function EditProfile({user, setEditProfile} : { user: ProfileUser, setEditProfile: Dispatch<SetStateAction<boolean>> }) {
+    
+    const parsedState = user.citystate.slice((user.citystate.indexOf(",") + 2))
     const parsedCity = user.citystate.slice(0, user.citystate.indexOf(","))
-
     const [displayName, setDisplayName] = useState(user.displayName)
     const [city, setCity] = useState(parsedCity)
     const [nameAvailable, setNameAvailable] = useState(false)
     const [nameStyle, setNameStyle] = useState("available")
-    const [userImage, setuserImage] = useState("")
+    const [activeIndex, setActiveIndex] = useState(parseInt(user.image))
 
     const queryClient = useQueryClient()
+
 
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
       } = useForm<EditProfileProps>({
         resolver: yupResolver(schema),
-        reValidateMode: 'onChange'
       });
 
-    const updateName = async (data: EditProfileProps, ) => {
+
+    const handleProfileUpdate = async (data: EditProfileProps, ) => {
         if (!nameAvailable) {
             return
         }
 
         if (user.userId) {
-            await mutateAsync({displayName: data.displayName, city: data.city, state: data.state, image: userImage, userId: user.userId})
+            await mutateAsync({displayName: data.displayName, city: data.city, state: data.state, image: activeIndex.toString(), userId: user.userId})
             setEditProfile(false)
         }
     }
@@ -89,14 +92,14 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
 
     }, [nameAvailable])
 
-
+   
 
     return (
         <div className={styles.container}>
                 <div className={styles.cancelContainer}>
                     <p className={styles.cancelButton} onClick={() => setEditProfile(false)}>X</p>
                 </div>
-                <form className={styles.formContainer} onSubmit={handleSubmit(updateName)}>
+                <form className={styles.formContainer} onSubmit={handleSubmit(handleProfileUpdate)}>
                     <input 
                         {...register("displayName")}
                         value={displayName}
@@ -110,7 +113,7 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
                             onChange={e => setCity(e.target.value)}
                             className={styles.inputCity}
                         />
-                        <select {...register("state")} className={styles.inputState}>
+                        <select {...register("state")} className={styles.inputState} defaultChecked defaultValue={parsedState}>
                             {stateList.map((state, index) => {
                                 return <option value={state} key={index}>{state}</option>
                             })}
@@ -119,26 +122,14 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
                     </div>
                     <div className={styles.imageContainer}>
                         {[...Array(12)].map((item, index) => {
-                            if (index.toString() === user.image) {
-                                return (
-                                    
-                                        <Image 
-                                            src={`/images/profile/${index}.png`} 
-                                            width={75} 
-                                            height={75} 
-                                            alt="profile image"
-                                            className={styles.imageItemSelected}
-                                            key={index}
-                                        />
-                                )
-                            }
                             return (
                                     <Image 
                                         src={`/images/profile/${index}.png`} 
                                         width={75} 
                                         height={75} 
                                         alt="profile image"
-                                        className={styles.imageItem}
+                                        className={activeIndex === index ? styles.imageItemSelected : styles.imageItem}
+                                        onClick={() => setActiveIndex(index)}
                                         key={index}
                                     />
                                

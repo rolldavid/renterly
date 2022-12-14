@@ -9,6 +9,10 @@
   
 }
 
+.imageContainer {
+    width: 100%;
+}
+
 .displayName {
     width: 100%;
 }

@@ -4,7 +4,6 @@ import { SyntheticEvent } from "react"
 import { signOut } from "next-auth/react"
 import { useQuery } from "@tanstack/react-query"
 import { getProfile } from "@/lib/db-utils"
-import AccountImage from "./AccountImage"
 import styles from "./Account.module.css"
 import AuthContainer from "../../../auth/components/AuthContainer"
 import AccountDetails from "./AccountDetails"
@@ -30,14 +29,17 @@ export default function Account({userId} : {userId: string}) {
     }
 
     if (!data.session) {
-        return <AuthContainer />
+        return (
+            <div>
+                An account
+            </div>
+        )
     }
     
     if (data.user && data.session) { 
     return (
         <section className={styles.container}>
             <div className={styles.container}>
-                <AccountImage user={data.user} session={data.session} />
                 <AccountDetails user={data.user} session={data.session}/>
                 <UserReviews reviews={data.reviews}/>
             </div>

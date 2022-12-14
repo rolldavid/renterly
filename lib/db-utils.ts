@@ -46,21 +46,6 @@ export async function getProperty(propertyId: string) {
     return data;
 }
 
-
-export async function getPropertySlug(slug: string) {
-    const res = await fetch("/api/get-property-slug", {
-        method: "POST",
-        body: JSON.stringify({
-            slug
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    const data = await res.json()
-    return data;
-}
-
 export async function getSession() {
     const res = await fetch("/api/get-session")
     return res.json()
@@ -73,22 +58,6 @@ export async function getUserSession() {
 }
 
 // UPDATE
-
-export async function updateUser(first: string, last: string, id: string) {
-    const res = await fetch("/api/update-user", {
-        method: "POST",
-        body: JSON.stringify({
-            first,
-            last,
-            id
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    const data = await res.json();
-    return data;
-}
 
 export async function updateProfile({displayName, city, state, image, userId}: ProfileProps) {
     const res = await fetch("/api/update-profile", {
@@ -105,23 +74,6 @@ export async function updateProfile({displayName, city, state, image, userId}: P
         }
     })
     const data = await res.json();
-    return data;
-}
-
-export const updateProfileImg = async ({profileImage, userId} : { profileImage: string, userId: string }) => {
-    console.log("sending update to db")
-    const res = await fetch("/api/update-profile-image", {
-        method: "POST",
-        body: JSON.stringify({
-            image: profileImage,
-            userId: userId
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    const data = await res.json();
-    console.log("returning data", data)
     return data;
 }
 

@@ -24,6 +24,15 @@ export default function AccountDetails({user, session} : { user: ProfileUser, se
     if (session && user.userId) {
     return (
         <div className={styles.container}>
+            <div className={styles.imageContainer}>
+                <Image 
+                    src={`/images/profile/${user.image}.png`} 
+                    width={100} 
+                    height={100} 
+                    alt="profile" 
+                    className={styles.profileImage}
+                />
+            </div>
             <div className={styles.displayNameSession}>
                 <h1 className={styles.nameTitle}>
                     {user.displayName}

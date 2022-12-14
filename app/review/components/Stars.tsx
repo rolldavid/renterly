@@ -14,7 +14,7 @@ export default function Stars({ stars } : { stars: number[]}) {
                     starTracker -= 2
                     return (         
                         <Image 
-                                src={"/fullStar.png"} 
+                                src={"/images/review/fullStar.png"} 
                                 width={30} 
                                 height={30} 
                                 alt="rating star" 
@@ -27,7 +27,7 @@ export default function Stars({ stars } : { stars: number[]}) {
                 starTracker -= 1
                 return (         
                     <Image 
-                            src={"/halfStar.png"} 
+                            src={"/images/review/halfStar.png"} 
                             width={30} 
                             height={30} 
                             alt="rating star" 
@@ -38,7 +38,7 @@ export default function Stars({ stars } : { stars: number[]}) {
             }
             return (         
                 <Image 
-                        src={"/emptyStar.png"} 
+                        src={"/images/review/emptyStar.png"} 
                         width={30} 
                         height={30} 
                         alt="rating star" 
