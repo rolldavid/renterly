@@ -7,6 +7,33 @@
     cursor: pointer;
   }
 
+
+.authModuleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(100, 100, 100, .5);
+    z-index: 10;
+}
+
+.authModule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10vh;
+  width: 500px;
+  height: 500px;
+  background-color: none;
+  z-index: 30;
+}
+
+
 .dotWrap {
     display: flex;
     justify-content: center;
@@ -52,6 +79,9 @@
     animation: dotFlashing 1s infinite alternate;
     animation-delay: .1s;
   }
+
+
+
   
   @keyframes dotFlashing {
     0% {

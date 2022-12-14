@@ -26,6 +26,7 @@
     margin-top: 25px;
     padding: 0px 10px 0px 10px;
     box-shadow: 1px 1px 5px var(--greygrey);
+    background-color: white;
 }
 
 .checkText {
@@ -40,7 +41,7 @@
     align-items: center;
     justify-content: center;
     width: 80%;
-    padding: 20px 0px 20px 0px;
+    padding: 5px 0px 20px 0px;
 }
 
 .googleButton {
@@ -88,31 +89,6 @@
     
 }
 
-
-.nameContainer {
-    display: flex;
-    margin: 0px 0px 15px 0px;
-}
-
-.nameInputFirst {
-    width: 100%;
-    border: 2px solid var(--color-border-grey);
-    border-radius: 25px;
-    padding: 10px 20px 10px 20px;
-    font-family: "Montserrat";
-    font-weight: 400;
-    margin-right: 10px;
-}
-
-.nameInputLast {
-    width: 100%;
-    border: 2px solid var(--color-border-grey);
-    border-radius: 25px;
-    padding: 10px 20px 10px 20px;
-    font-family: "Montserrat";
-    font-weight: 400;
-}
-
 .emailButton {
     display: flex;
     align-items: center;
@@ -142,7 +118,6 @@
     font-weight: 400;
     width: 100%;
     margin-top: 15px;
- 
 }
 
 .noteImg {
@@ -158,37 +133,52 @@
 
 }
 
-.signupLine {
+.loginLine {
     display: flex;
     align-items: center;
     width: 80%;
     margin: 15px 0px 15px 0px;
   }
   
-.signupLine::before {
+.loginLine::before {
     margin-right: 10px;
 }
 
-.signupLine::after {
+.loginLine::after {
     margin-left: 10px;;
 }
 
-.signupLine::before, .signupLine::after {
+.loginLine::before, .loginLine::after {
     content: "";
     flex: 0 1 100%;
     border-bottom: 1px solid var(--midgrey);
     transform: translateY(50%);
 }
 
-.signupOr {
+.loginOr {
     font-size: 1rem;
     color: var(--darkgrey);
 }
 
-.loginButtonContainer {
-    margin: 10px 0px 20px 0px;
+.authHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px 10px 15px;
 }
-.loginButton {
-    cursor: pointer;
-    color: var(--lighttreegreen);
+
+.authHeaderTitle {
+    text-align: center;
+    font-weight: 400;
+    padding: 0px 15px 0px 15px;
+    margin: 0px 0px 5px 0px;
+}
+
+.authHeaderSubtitle {
+    text-align: center;
+    font-size: .85rem;
+    width: 100%;
+    color: var(--darkergrey);
+    padding: 0px 15px 0px 15px;
 }

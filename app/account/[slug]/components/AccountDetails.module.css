@@ -6,10 +6,15 @@
     text-align: center;
     height: 100%;
     width: 100%;
+  
+}
+
+.imageContainer {
+    width: 100%;
 }
 
 .displayName {
-
+    width: 100%;
 }
 
 
@@ -17,11 +22,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 25px 0px 10px 0px;
+    margin: 5px 0px 0px 0px;
 }
 
 .nameTitle {
     margin: 0;
+    font-size: 1.75rem;
+}
+
+.editProfileButton {
+    border: 2px solid var(--color-border-grey);
+    background: none;
+    border-radius: 5px;
+    padding: 3px 10px 3px 10px;
 }
 
 .editContainer {
@@ -35,19 +48,36 @@
 .editButton {
     margin: 0px 0px 0px 5px;
     height: 100%;
+    cursor: pointer;
     
 }
+
+.formContainerName {
+    display: flex;
+}
+
+
+.inputDisplayName {
+    font-size: 1.75rem;
+    border: 2px solid var(--color-border-grey);
+    padding: 3px 5px 3px 5px;
+    border-radius: 5px;
+    margin: 0px 5px 0px 0px;
+}
+
 
 .locationContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px 0px 10px 0px;
+    margin: 5px 0px 10px 0px;
 
 }
 
 .locationTitle {
     margin:0;
+    font-size: 1.25rem;
+    font-weight: 400;
 }
 
 .editButtonLocation {

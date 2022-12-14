@@ -12,4 +12,14 @@ export interface revProps {
     rate: number
     userId: string
     propId: string
+    street: string
+    citystate: string
+    propertySlug: string
+}
+
+export interface UserList {
+    displayName: string;
+    citystate: string;
+    image: string;
+    userId?: string;
 }

@@ -4,12 +4,18 @@ import { useQuery } from "@tanstack/react-query"
 import { Review } from "@prisma/client"
 
 import { getProperty } from "@/lib/db-utils"
-import ReviewList from "./ReviewList"
 import ReviewInput from "./ReviewInput"
 import { Property } from "@prisma/client"
+import ReviewItem from "./ReviewItem"
 import Spinner from "@/lib/utils/Spinner"
 import styles from "./Reviews.module.css"
 import Link from "next/link"
+
+interface UserList {
+    displayName: string;
+    citystate: string;
+    image: string;
+}
 
 export default function Reviews({ property }: { property: Property }) {
     const {data, status} = useQuery(["reviews"], () => {
@@ -23,7 +29,9 @@ export default function Reviews({ property }: { property: Property }) {
     }
 
     if (status === "success" && data) {
-        const revList: Review[] = data.reviews
+        const revList: Review[] = data.reviews;
+        const userList: UserList[] = data.users;
+
         if (revList.length > 0) {
             return (
                 <section className={styles.container}>
@@ -34,7 +42,11 @@ export default function Reviews({ property }: { property: Property }) {
                         Add a Review
                     </Link>
         
-                    <ReviewList reviewList={revList}/>
+                    <div className={styles.revItemContainer}>
+                        { revList.map((review, index) => {
+                            return <ReviewItem review={review} key={index} user={userList[index]}/>
+                        })}
+                    </div>
                 </section>
             )
         } else {

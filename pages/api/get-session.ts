@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const session = await unstable_getServerSession(req, res, authOptions)
 
         if (session?.user) {
-            res.status(201).json({email: session.user.email})
+            res.status(201).json({session: true})
         } else {
             res.status(201).json({message: "Did not find user"})
         }

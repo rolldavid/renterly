@@ -3,24 +3,27 @@ import { prisma } from "@/lib/prisma";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
-        const {first, last, id} = req.body;
+        const {userId, displayName, image, city, state} = req.body;
+
+        const citystate = `${city}, ${state}`;
         
         try {
-            
                 const user = await prisma.user.update({
                     where: {
-                        id: id
+                        id: userId
                     },
                     data: {
-                        firstName: first,
-                        lastName: last
+                        displayName: displayName,
+                        city: city,
+                        state: state,
+                        image: image,
+                        citystate
                     },
                 })
                 if (user) {
                     res.status(201).json({message: "success"})
                 }
                 
-            
         } catch (err) {
             res.status(401).json({message: "Did not manage to connect"})
     }}

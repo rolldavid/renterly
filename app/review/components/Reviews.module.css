@@ -5,6 +5,14 @@
     width: 800px;
 }
 
+.revItemContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px 0px 0px 0px;
+}
+
+
 .reviewButton {
     display: flex;
     align-items: center;
