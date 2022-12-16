@@ -8,6 +8,7 @@ import styles from "./Account.module.css"
 import AuthContainer from "../../../auth/components/AuthContainer"
 import AccountDetails from "./AccountDetails"
 import UserReviews from "./UserReviews"
+import Spinner from "@/lib/utils/Spinner"
 
 export default function Account({userId} : {userId: string}) {
     const { data, status } = useQuery(["user"], () => {
@@ -15,11 +16,7 @@ export default function Account({userId} : {userId: string}) {
       });
 
     if (status === "loading") {
-        return (
-            <div>
-                Hold on...
-            </div>
-        )
+        return <Spinner />
     }
 
     const handleLogout = (e: SyntheticEvent) => {

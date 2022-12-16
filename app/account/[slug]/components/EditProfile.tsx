@@ -6,13 +6,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Image from "next/image"
-import { updateProfile, checkDisplayName } from "@/lib/db-utils";
+import { updateProfile, checkDisplayName, checkCity } from "@/lib/db-utils";
 import styles from "./EditProfile.module.css"
 
 import { EditProfileProps, ProfileUser } from "app/account/types";
 
 let timeoutId: ReturnType<typeof setTimeout>;
-
+let timeoutCity: ReturnType<typeof setTimeout>;
 
 const schema = yup
 .object({
@@ -31,16 +31,16 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
     const [displayName, setDisplayName] = useState(user.displayName)
     const [city, setCity] = useState(parsedCity)
     const [nameAvailable, setNameAvailable] = useState(false)
+    const [cityAvailable, setCityAvailable] = useState(true)
     const [nameStyle, setNameStyle] = useState("available")
+    const [cityStyle, setCityStyle] = useState("cityStyleAvailable")
     const [activeIndex, setActiveIndex] = useState(parseInt(user.image))
 
     const queryClient = useQueryClient()
 
-
     const {
         register,
         handleSubmit,
-        setValue,
         formState: { errors },
       } = useForm<EditProfileProps>({
         resolver: yupResolver(schema),
@@ -48,7 +48,7 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
 
 
     const handleProfileUpdate = async (data: EditProfileProps, ) => {
-        if (!nameAvailable) {
+        if (!nameAvailable || !cityAvailable) {
             return
         }
 
@@ -64,11 +64,24 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
           },
     });
 
+    const checkNumLetter = (str : string) => {
+        return /^[A-Za-z0-9]*$/.test(str);
+      }
+
     useEffect(() => {
         if (timeoutId) clearTimeout(timeoutId)
-
         const handleLookup = async () => {
-            if (displayName.length >= 3) {
+            if (displayName.length < 5) {
+                setNameAvailable(false)
+                    return
+            } else {
+                
+                const onlyLettersNumbers = checkNumLetter(displayName)
+
+                if (!onlyLettersNumbers) {
+                    setNameAvailable(false)
+                    return
+                }
                 if (user.userId) {
                     const res = await checkDisplayName(displayName, user.userId)
                     setNameAvailable(res.nameAvailable)
@@ -80,9 +93,8 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
 
     }, [displayName])
 
-    useEffect(() => {
-        
 
+    useEffect(() => {
         if (!nameAvailable) {
             setNameStyle("unavailable")
             return
@@ -92,8 +104,32 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
 
     }, [nameAvailable])
 
-   
 
+    useEffect(() => {
+        if (timeoutCity) clearTimeout(timeoutCity)
+
+        const handleLookup = async () => {
+            if (displayName.length >= 3) {
+                if (user.userId) {
+                    const res = await checkCity(city)
+                    setCityAvailable(res.cityAvailable)
+                }
+            }
+        }
+      timeoutCity = setTimeout(handleLookup, 350)
+    }, [city])
+
+
+    useEffect(() => {
+        if (!cityAvailable) {
+            setCityStyle("cityStyleUnavailable")
+            return
+        }
+        setCityStyle("cityStyleAvailable")
+        return
+    }, [cityAvailable])
+
+   
     return (
         <div className={styles.container}>
                 <div className={styles.cancelContainer}>
@@ -111,7 +147,7 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
                             {...register("city")}
                             value={city}
                             onChange={e => setCity(e.target.value)}
-                            className={styles.inputCity}
+                            className={styles[cityStyle]}
                         />
                         <select {...register("state")} className={styles.inputState} defaultChecked defaultValue={parsedState}>
                             {stateList.map((state, index) => {
