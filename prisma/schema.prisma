@@ -42,7 +42,7 @@ model Property {
 model Review {
   id             String   @id @default(cuid())
   createdAt      DateTime @default(now())
-  user           User     @relation(fields: [userId], references: [id])
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         String
   property       Property @relation(fields: [propertyId], references: [id])
   propertyId     String
@@ -51,13 +51,15 @@ model Review {
   street         String
   citystate      String
   propertySlug   String
+  flagged        Boolean  @default(false)
   landlordRating String?
   safetyRating   String?
   moveoutRating  String?
   votes          Int?
-  response       Review?  @relation("ReviewResponse", fields: [responseId], references: [id])
-  responseId     String?  @unique
-  originalReview Review?  @relation("ReviewResponse")
+
+  response       Review? @relation("ReviewResponse", fields: [responseId], references: [id])
+  responseId     String? @unique
+  originalReview Review? @relation("ReviewResponse")
 }
 
 model Account {

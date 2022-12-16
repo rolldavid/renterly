@@ -32,6 +32,20 @@ export async function checkDisplayName(displayName: string, userId: string) {
     return data;
 }
 
+export async function checkCity(cityName: string) {
+    const res = await fetch("/api/check-city", {
+        method: "POST",
+        body: JSON.stringify({
+            cityName,
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json()
+    return data;
+}
+
 export async function getProperty(propertyId: string) {
     const res = await fetch("/api/get-property", {
         method: "POST",
