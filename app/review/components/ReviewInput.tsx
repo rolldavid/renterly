@@ -12,7 +12,7 @@ import AuthContainer from "../../auth/components/AuthContainer"
 import styles from "./ReviewInput.module.css"
 import Spinner from "@/lib/utils/Spinner";
 
-export default function ReviewInput({ property, editingReview, comment, stars, reviewId, starId} : {property: PropertyProps, editingReview: boolean, comment: string, stars: number, reviewId: string, starId: string}) {
+export default function ReviewInput({ property, editingReview, comment, stars, reviewId, starId} : {property: PropertyProps, editingReview: boolean, comment: string, stars: number, reviewId: number | null, starId: string}) {
     
     const [showAuth, setShowAuth] = useState(false)
     const [review, setReview] = useState("")
@@ -134,7 +134,6 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
 
     useEffect(() => {
         if (toggleLoaded) {
-            console.log("setting review")
             setLoaded(true)
         }
        

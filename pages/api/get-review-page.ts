@@ -53,7 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 } else {
                     const starNum = 0;
                     const commentStr = ""
-                    res.status(201).json({ property: property, comment: commentStr, stars: starNum, editingReview: false, reviewId: "" })
+                    res.status(201).json({ property: property, comment: commentStr, stars: starNum, editingReview: false, reviewId: null })
                     return
                 } 
             } 
@@ -67,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (property) {
                 const starNum = 0;
                 const commentStr = ""
-                res.status(201).json({ property: property, comment: commentStr, stars: starNum, editingReview: false, reviewId: "" })
+                res.status(201).json({ property: property, comment: commentStr, stars: starNum, editingReview: false, reviewId: null })
             } 
             
         }

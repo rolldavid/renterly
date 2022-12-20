@@ -17,7 +17,7 @@ export interface reviewProps {
     street: string
     citystate: string
     propertySlug: string
-    reviewId?: string
+    reviewId?: number | null
     starId?: string
     updating: boolean
 }
@@ -36,7 +36,7 @@ export interface UpdateProps {
     stars: number;
     propertyId: string;
     userId: string;
-    reviewId: string;
+    reviewId: number;
     starId: string;
 }
 

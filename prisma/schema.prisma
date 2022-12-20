@@ -41,7 +41,7 @@ model Property {
 }
 
 model Review {
-  id             String    @id @default(cuid())
+  id             Int       @id @default(autoincrement())
   createdAt      DateTime  @default(now())
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         String
@@ -60,7 +60,7 @@ model Review {
   moveoutRating  String?
   votes          Int?
   response       Review?   @relation("ReviewResponse", fields: [responseId], references: [id])
-  responseId     String?   @unique
+  responseId     Int?      @unique
   originalReview Review?   @relation("ReviewResponse")
 }
 
@@ -72,7 +72,7 @@ model Star {
   property   Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   propertyId String?
   review     Review?   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
-  reviewId   String?
+  reviewId   Int?
   stars      Int
 }
 

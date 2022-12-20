@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.profileContainer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+
+
+.reviewContainer {
+    display: flex;
+    margin: 15px 0px 0px 0px;
+    padding: 10px;
+    width: 100%;
+    text-align: start;
+    white-space: pre-wrap;
+}
+
+.locationContainer {
+    display: flex;
+    margin: 0px 0px 50px 0px;
+    padding: 10px;
+    width: 100%;
+    text-align: start;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.profileDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0px 0px 0px 10px;
+}
+
+.profileName {
+    margin: 5px 0px 0px 0px;
+}
+
+.profileLocation {
+    margin: 3px 0px 0px 0px;
+}
+
+.starContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    
+}
+
+.starDetails {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+.dateContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+.dateDetails {
+    display: flex;
+    align-items: flex-start;
+    margin: 0px 0px 0px 10px;
+    height: 100%;
+}
+
+.starItem {
+    margin: 0px 2px 0px 2px;
+}

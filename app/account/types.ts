@@ -50,5 +50,5 @@ export interface MappedRevList {
 
 export interface StarProps {
     stars: Star[]
-    reviewId: string
+    reviewId: number
 }

@@ -10,6 +10,7 @@
   justify-content: flex-start;
   align-items: center;
   background-color: var(--color-bg-content);
+  margin: 25px 0px 0px 0px;
 }
 
 .nav {
@@ -17,9 +18,11 @@
   width: 100vw;
   height: 50px;
   display: flex;
+  position: fixed;
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-bg-nav);
+  z-index: 10;
 }
 
 .searchContainer {

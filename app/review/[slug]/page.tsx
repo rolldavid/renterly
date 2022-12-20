@@ -65,7 +65,7 @@ export default async function Page({params: {slug}}: {params: { slug: string }})
                                 editingReview={false} 
                                 comment={commentStr} 
                                 stars={starNum}
-                                reviewId={""}
+                                reviewId={null}
                                 starId={""}
                             />
                         </div>
@@ -89,7 +89,7 @@ export default async function Page({params: {slug}}: {params: { slug: string }})
                             editingReview={false} 
                             comment={commentStr} 
                             stars={starNum}
-                            reviewId={""}
+                            reviewId={null}
                             starId={""}
                         />
                     </div>

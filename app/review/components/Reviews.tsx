@@ -51,7 +51,7 @@ export default function Reviews({ property }: { property: PropertyProps }) {
                 editingReview={false} 
                 comment={""} 
                 stars={0} 
-                reviewId={""}
+                reviewId={null}
                 starId={""}
             /> 
     )
