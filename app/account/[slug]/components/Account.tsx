@@ -38,7 +38,6 @@ export default function Account({userId} : {userId: string}) {
     
     if (status === "success" && data.session) { 
 
-        console.log(data.stars, "=======================================09----------------")
         return (
             <section className={styles.container}>
                 <div className={styles.container}>
