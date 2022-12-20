@@ -1,5 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
+import { unstable_getServerSession } from "next-auth/next"
+import { authOptions } from "./auth/[...nextauth]";
+import { Star } from "@prisma/client";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { propertyId } = req.body;
@@ -20,29 +23,58 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 displayName: true,
                                 citystate: true,
                                 image: true,
-                                id: true
+                                id: true,
                             }
-                        }
+                        },
                     }
-                }
+                }, 
+                stars: true
             },
-           
         })
 
-        const users =  propertyReviews?.reviews.map(review => {
+
+        const users =  propertyReviews?.reviews.map((review, index) => {
+            const chosenStar = propertyReviews.stars.filter(obj => {
+                return obj.userId === review.userId
+            })
+
+            const parseStar = chosenStar[0].stars
+
             return {
                 displayName: review.user.displayName,
                 citystate: review.user.citystate,
                 image: review.user.image,
-                userId: review.user.id
+                userId: review.user.id,
+                stars: parseStar
             }
         })
-    
-        if (propertyReviews) {
-            res.status(201).json({reviews: propertyReviews.reviews, users})
-        }
 
+        const session = await unstable_getServerSession(req, res, authOptions)
+
+        if (session?.user?.email && propertyReviews) {
+            const user = await prisma.user.findFirst({
+                where: 
+                    { 
+                        email: session.user.email,
+                        reviews: {
+                            some: {
+                                propertyId: propertyId
+                            }
+                        }
+                    }
+            })
+
+            if (user) {
+                res.status(201).json({reviews: propertyReviews.reviews, users, postedReview: true})
+            } else {
+                res.status(201).json({reviews: propertyReviews.reviews, users, postedReview: false})
+            }
+            
+        } else {
+           
+            res.status(201).json({reviews: propertyReviews?.reviews, users, postedReview: false})
+        }
     } catch (err) {
-        res.status(401).json({message: "Did not manage to connect"})
+        throw new Error("Did not manage to connect")
     }
 }

@@ -9,6 +9,8 @@ import AuthContainer from "../../../auth/components/AuthContainer"
 import AccountDetails from "./AccountDetails"
 import UserReviews from "./UserReviews"
 import Spinner from "@/lib/utils/Spinner"
+import { Review, Star } from "@prisma/client"
+import { RevList } from "app/account/types"
 
 export default function Account({userId} : {userId: string}) {
     const { data, status } = useQuery(["user"], () => {
@@ -32,22 +34,25 @@ export default function Account({userId} : {userId: string}) {
             </div>
         )
     }
+
     
-    if (data.user && data.session) { 
-    return (
-        <section className={styles.container}>
-            <div className={styles.container}>
-                <AccountDetails user={data.user} session={data.session}/>
-                <UserReviews reviews={data.reviews}/>
-            </div>
-            <div>
-            <div className={styles.logoutButton} onClick={handleLogout}>
-                Logout
-            </div>
-            </div>
-        </section>
-    )
-    }
+    if (status === "success" && data.session) { 
+
+        console.log(data.stars, "=======================================09----------------")
+        return (
+            <section className={styles.container}>
+                <div className={styles.container}>
+                    <AccountDetails user={data.user} session={data.session}/>
+                    <UserReviews reviews={data.reviews} stars={data.stars}/>
+                </div>
+                <div>
+                <div className={styles.logoutButton} onClick={handleLogout}>
+                    Logout
+                </div>
+                </div>
+            </section>
+        )
+        }
     
     return null
     

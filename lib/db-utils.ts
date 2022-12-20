@@ -1,5 +1,6 @@
-import { revProps } from "app/review/components/types";
+import { reviewProps, UpdateProps } from "app/review/components/types";
 import { ProfileProps } from "app/account/types";
+
 
 // READ
 
@@ -60,6 +61,35 @@ export async function getProperty(propertyId: string) {
     return data;
 }
 
+export async function getStars(propertyId: string) {
+    const res = await fetch("/api/get-stars", {
+        method: "POST",
+        body: JSON.stringify({
+            propertyId
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json()
+    return data;
+}
+
+
+export async function getReviewPage(slug: string) {
+    const res = await fetch("/api/get-review-page", {
+        method: "POST",
+        body: JSON.stringify({
+            slug
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json()
+    return data;
+}
+
 export async function getSession() {
     const res = await fetch("/api/get-session")
     return res.json()
@@ -91,20 +121,41 @@ export async function updateProfile({displayName, city, state, image, userId}: P
     return data;
 }
 
+export async function updateReview({comment, stars, propertyId, userId, starId}: UpdateProps) {
+    const res = await fetch("/api/update-review", {
+        method: "POST",
+        body: JSON.stringify({
+            comment,
+            stars,
+            propertyId,
+            userId,
+            starId
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    return data;
+}
+
 
 // CREATE
 
-export async function createReview({rev, rate, userId, propId, street, citystate, propertySlug}: revProps) {
+export async function createReview({comment, stars, userId, propertyId, street, citystate, propertySlug, starId, reviewId, updating}: reviewProps) {
     const res = await fetch("/api/create-review", {
         method: "POST",
         body: JSON.stringify({
-            review: rev,
-            stars: rate,
-            userId: userId,
-            propertyId: propId,
-            street: street,
-            citystate: citystate,
-            propertySlug
+            comment,
+            stars,
+            userId,
+            propertyId,
+            street,
+            citystate,
+            propertySlug,
+            starId,
+            reviewId,
+            updating
         }),
         headers: {
             "Content-Type": "application/json"

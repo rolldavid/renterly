@@ -1,18 +1,42 @@
+"use client"
 
-import { prisma } from "@/lib/prisma";
+import { useQuery } from "@tanstack/react-query";
+import { usePathname } from 'next/navigation';
+import { getReviewPage } from "@/lib/db-utils";
 import ReviewInput from "../components/ReviewInput";
 import styles from "@/styles/Review.module.css"
+import Loading from "./loading";
 
-export default async function Page({params: {slug}}: {params: { slug: string }}) {
-    const property = await prisma.property.findUnique({ where: { slug: slug }})
+export default function Page() {
+    const pathname = usePathname();
+    let parsedPath: string;
+    if (pathname) {
+        parsedPath = pathname.replace("/review/", "")
+    }
+
+    const { data, status } = useQuery(["reviewPage"], () => {
+        const res = getReviewPage(parsedPath)
+        return res;
+    })
+
+    if (status === "loading") {
+        return <Loading />
+    }
    
-    if (property) {
+    if (status === "success" && data.property) {
         return (
             <div className={styles.container}>
-                <ReviewInput property={property}/>
+                <ReviewInput 
+                    property={data.property} 
+                    editingReview={data.editingReview} 
+                    comment={data.comment} 
+                    stars={data.stars}
+                    reviewId={data.reviewId}
+                    starId={data.starId}
+                />
             </div>
         )
     }
 
-    return <div>Nothing to see here...</div>
+    return null;
 }

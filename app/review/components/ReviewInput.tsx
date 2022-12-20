@@ -4,21 +4,20 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { Property } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
-import { createReview, getUserSession } from "@/lib/db-utils"
-import { ReviewProps } from "./types";
+import { createReview, getUserSession, updateReview } from "@/lib/db-utils"
+import { ReviewProps, PropertyProps } from "./types";
 import AuthContainer from "../../auth/components/AuthContainer"
 import styles from "./ReviewInput.module.css"
 import Spinner from "@/lib/utils/Spinner";
 
-export default function ReviewList({ property} : {property: Property}) {
+export default function ReviewInput({ property, editingReview, comment, stars, reviewId, starId} : {property: PropertyProps, editingReview: boolean, comment: string, stars: number, reviewId: string, starId: string}) {
     
     const [showAuth, setShowAuth] = useState(false)
-    const [review, setReview] = useState("")
+    const [review, setReview] = useState(editingReview ? comment : "")
     const [reviewError, setReviewError] = useState<string | null>(null)
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(editingReview ? stars : 0);
     const [hover, setHover] = useState(0);
     const [starError, setStarError] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -34,7 +33,9 @@ export default function ReviewList({ property} : {property: Property}) {
     const { mutateAsync } = useMutation(createReview, {
         onSuccess: () => {
             queryClient.invalidateQueries(['reviews'])
-            queryClient.invalidateQueries(['session'])
+            queryClient.invalidateQueries(['reviewPage'])
+            queryClient.invalidateQueries(['stars'])
+            router.replace(`/property/${property.slug}`)
           },
     });
 
@@ -45,7 +46,9 @@ export default function ReviewList({ property} : {property: Property}) {
         formState: { errors },
       } = useForm<ReviewProps>();
 
+
     const handlePost = async (data: ReviewProps) => {
+       
         if (rating === 0) {
             setStarError(true)
             return;
@@ -68,34 +71,62 @@ export default function ReviewList({ property} : {property: Property}) {
         const citystate = `${property.city}, ${property.state}`
         const strRating = rating.toString()
 
-        localStorage.setItem("review", review)
-        localStorage.setItem("slug", property.slug)
-        localStorage.setItem("star", strRating)
+        if (!editingReview) {
+            localStorage.setItem("review", review)
+            localStorage.setItem("slug", property.slug)
+            localStorage.setItem("star", strRating)
+        }
 
         if (status === "success" && queryResult.session) {
             setLoading(true)
-            await mutateAsync({rev: review, rate: rating, userId: queryResult.userId, propId: property.id, street: street, citystate: citystate, propertySlug: property.slug})
-            localStorage.setItem("slug", "")
-            localStorage.setItem("review", "")
-            localStorage.setItem("star", "")
-            router.push(`/property/${property.slug}`)
+
+            const mutateReview = await mutateAsync({
+                comment: review,
+                stars: rating, 
+                userId: queryResult.userId, 
+                propertyId: property.id, 
+                street, 
+                citystate, 
+                propertySlug: property.slug,
+                reviewId,
+                starId,
+                updating: editingReview
+            })
+
+
+            if (!editingReview) {
+                localStorage.setItem("slug", "")
+                localStorage.setItem("review", "")
+                localStorage.setItem("star", "")
+            }
+        
             return
         } 
         setShowAuth(true) 
         return;
     }
 
+    
+
+
     useEffect(() => {
-        const getRev = localStorage.getItem("review")
-        const getSlug = localStorage.getItem("slug")
-        const getStar = localStorage.getItem("star")
        
-        if (getRev && getSlug === property.slug && getStar) {
-            const parseStar = parseInt(getStar)
-            setReview(getRev)
-            setRating(parseStar)
+        if (!editingReview) {
+            const getRev = localStorage.getItem("review")
+            const getSlug = localStorage.getItem("slug")
+            const getStar = localStorage.getItem("star")
+       
+            if (getRev && getSlug === property.slug && getStar) {
+                const parseStar = parseInt(getStar)
+                setReview(getRev)
+                setRating(parseStar)
+                return
+            }
+            return
         }
+        
     }, [])
+
 
     useEffect(() => {
         if (status === "success" && queryResult.userId) {
@@ -191,9 +222,12 @@ export default function ReviewList({ property} : {property: Property}) {
                 </div>
                 <div className={styles.submitContainer}>
                     
-                    <button type="submit" className={styles.submitButton}>
+                    {!editingReview && <button type="submit" className={styles.submitButton}>
                         Post Review
-                    </button>
+                    </button>}
+                    {editingReview && <button type="submit" className={styles.submitButton}>
+                        Update Review
+                    </button>}
                 </div>
                 
             </form>

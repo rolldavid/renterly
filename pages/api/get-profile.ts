@@ -17,33 +17,51 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     orderBy: {
                         createdAt: "desc",
                     },
+                    include: {
+                        stars: {
+                            where: {
+                                userId: userId
+                            }
+                        }
+                    }
                 }
             },
            })
         
 
         const session = await unstable_getServerSession(req, res, authOptions)
-        if (!session && user) {
+
+        if (user) {
+            const userStars = user.reviews.map(review => {
+                return {
+                    stars: review.stars,
+                    reviewId: review.id
+                }
+            })
+
+            if (!session) {
             res.status(201).json({user: {
                 displayName: user.displayName,
                 citystate: user.citystate,
                 image: user.image,
-            }, reviews: user.reviews, 
+            }, reviews: user.reviews,
+                stars: userStars, 
                 session: false})
-        } else if (user) {
-            res.status(201).json({user:{
-                displayName: user.displayName,
-                citystate: user.citystate,
-                image: user.image,
-                userId: user.id
-            }, reviews: user.reviews, 
-                session: true})
-        }
+            } else {
+                res.status(201).json({user:{
+                    displayName: user.displayName,
+                    citystate: user.citystate,
+                    image: user.image,
+                    userId: user.id
+                }, reviews: user.reviews, 
+                    stars: userStars, 
+                    session: true})
+            }
+        } 
 
         } catch (err) {
             res.status(401).json({message: "Did not manage to connect"})
         }
-    }
    
-
+    }
 }
