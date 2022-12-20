@@ -15,14 +15,17 @@ import Spinner from "@/lib/utils/Spinner";
 export default function ReviewInput({ property, editingReview, comment, stars, reviewId, starId} : {property: PropertyProps, editingReview: boolean, comment: string, stars: number, reviewId: string, starId: string}) {
     
     const [showAuth, setShowAuth] = useState(false)
-    const [review, setReview] = useState(editingReview ? comment : "")
+    const [review, setReview] = useState("")
     const [reviewError, setReviewError] = useState<string | null>(null)
-    const [rating, setRating] = useState(editingReview ? stars : 0);
+    const [rating, setRating] = useState(0);
+    const [loaded, setLoaded] = useState(false)
+    const [toggleLoaded, setToggleLoaded] = useState(false)
     const [hover, setHover] = useState(0);
     const [starError, setStarError] = useState(false)
     const [loading, setLoading] = useState(false)
     const ref = useRef<HTMLInputElement>(null)
     const router = useRouter()
+
 
     const queryClient = useQueryClient()
 
@@ -106,9 +109,6 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
         return;
     }
 
-    
-
-
     useEffect(() => {
        
         if (!editingReview) {
@@ -124,8 +124,21 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
             }
             return
         }
+
+
+        setReview(comment)
+        setRating(stars)
+        setToggleLoaded(true)
         
     }, [])
+
+    useEffect(() => {
+        if (toggleLoaded) {
+            console.log("setting review")
+            setLoaded(true)
+        }
+       
+    }, [toggleLoaded])
 
 
     useEffect(() => {

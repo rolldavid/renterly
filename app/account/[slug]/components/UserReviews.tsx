@@ -13,8 +13,6 @@ export default function ({reviews, stars} : {reviews: Review[], stars: StarProps
                         return item.reviewId === review.id
                     })
                     
-
-                    console.log(revStar[0].stars, "revstar ---------------------------")
                     return (
                         <UserReviewItem review={review} stars={revStar[0].stars} key={index}/>
                     )

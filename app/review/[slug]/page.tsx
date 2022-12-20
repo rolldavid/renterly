@@ -1,42 +1,101 @@
-"use client"
 
-import { useQuery } from "@tanstack/react-query";
-import { usePathname } from 'next/navigation';
-import { getReviewPage } from "@/lib/db-utils";
+import { prisma } from "@/lib/prisma";
+import { unstable_getServerSession } from "next-auth/next"
+import { authOptions } from "@/api/auth/[...nextauth]";
 import ReviewInput from "../components/ReviewInput";
 import styles from "@/styles/Review.module.css"
-import Loading from "./loading";
 
-export default function Page() {
-    const pathname = usePathname();
-    let parsedPath: string;
-    if (pathname) {
-        parsedPath = pathname.replace("/review/", "")
-    }
+export default async function Page({params: {slug}}: {params: { slug: string }}) {
 
-    const { data, status } = useQuery(["reviewPage"], () => {
-        const res = getReviewPage(parsedPath)
-        return res;
-    })
+        const session = await unstable_getServerSession(authOptions)
 
-    if (status === "loading") {
-        return <Loading />
-    }
-   
-    if (status === "success" && data.property) {
-        return (
-            <div className={styles.container}>
-                <ReviewInput 
-                    property={data.property} 
-                    editingReview={data.editingReview} 
-                    comment={data.comment} 
-                    stars={data.stars}
-                    reviewId={data.reviewId}
-                    starId={data.starId}
-                />
-            </div>
-        )
-    }
+        if (session?.user?.email) {
+       
+            const user = await prisma.user.findUnique({where: {email: session.user.email}})
+           
+            if (user) {
+                const property = await prisma.property.findUnique({ 
+                    where: { slug: slug },
+                    include: {
+                        reviews: {
+                            where: {
+                                userId: user.id
+                            }, 
+                            select: {
+                                comment: true,
+                                id: true
+                            }
+                        },
+                        stars: {
+                            where: {
+                                userId: user.id,
+                            }
+                        }
+                    }
+                })
 
-    return null;
+              
+                if (property && property.stars && property.stars.length > 0 && property.reviews.length > 0) {
+                    const starNum = property.stars[0].stars
+                    const commentStr = property.reviews[0].comment
+                    const starId = property.stars[0].id
+                    const reviewId = property.reviews[0].id
+
+
+                    return (
+                        <div className={styles.container}>
+                            <ReviewInput 
+                                property={property} 
+                                editingReview={true} 
+                                comment={commentStr} 
+                                stars={starNum}
+                                reviewId={reviewId}
+                                starId={starId}
+                            />
+                        </div>
+                    )
+
+                } else if (property) {
+                    const starNum = 0;
+                    const commentStr = ""
+                    return (
+                        <div className={styles.container}>
+                            <ReviewInput 
+                                property={property} 
+                                editingReview={false} 
+                                comment={commentStr} 
+                                stars={starNum}
+                                reviewId={""}
+                                starId={""}
+                            />
+                        </div>
+                    )
+                } 
+            } 
+            
+        } else {
+
+        const property = await prisma.property.findUnique({ 
+                where: { slug: slug },
+            })
+
+            if (property) {
+                const starNum = 0;
+                const commentStr = ""
+                return (
+                    <div className={styles.container}>
+                        <ReviewInput 
+                            property={property} 
+                            editingReview={false} 
+                            comment={commentStr} 
+                            stars={starNum}
+                            reviewId={""}
+                            starId={""}
+                        />
+                    </div>
+                )
+            } 
+            
+        }
+
 }
