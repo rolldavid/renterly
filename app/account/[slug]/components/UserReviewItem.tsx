@@ -1,10 +1,12 @@
-import { Review } from "@prisma/client";
+import { MappedRevList, StarProps } from "app/account/types";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./UserReviewItem.module.css"
+import { Review, Star } from "@prisma/client";
 
-export default function UserReviewItem({ review } : { review: Review }) {
+export default function UserReviewItem({ review, stars } : { review: Review, stars: Star[] }) {
     let starTracker = 0;
+    
     return (
         <div className={styles.container}>
             <div className={styles.reviewTitleContainer}>
@@ -15,7 +17,7 @@ export default function UserReviewItem({ review } : { review: Review }) {
             <div className={styles.starContainer}>
                         <div className={styles.starDetails}>
                             {[...Array(5)].map((star, index) => {      
-                                    if (starTracker < review.stars) {
+                                    if (starTracker < stars[0].stars) {
                                         starTracker += 1
                                         return (         
                                             <Image 

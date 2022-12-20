@@ -7,14 +7,26 @@ import styles from "@/styles/Property.module.css"
 
 
 export default async function Page({params: {slug}}: {params: { slug: string }}) {
-    const property = await prisma.property.findUnique({where: {slug: slug} })
+    const property = await prisma.property.findUnique({
+        where: {slug: slug},
+    })
     
     if (property) {
+       
+        const propertyDetails = {
+            id: property.id,
+            unit: property.unit,
+            street: property.street,
+            city: property.city,
+            state: property.state,
+            slug: property.slug
+        }
+
         return (
             <div className={styles.container}>
                     <Header property={property}/>
-                    <Stars stars={property.stars}/>
-                    <Reviews property={property}/>
+                    <Stars propertyId={property.id}/>
+                    <Reviews property={propertyDetails}/>
             </div>
     )
     }

@@ -2,9 +2,10 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Review } from "@prisma/client"
-import { UserList } from "./types"
+import { Review, Star } from "@prisma/client"
+import { UserList, StarProps } from "./types"
 import styles from "./ReviewItem.module.css"
+
 
 export default function ReviewItem({review, user} : {review: Review, user: UserList}) {
 
@@ -33,7 +34,7 @@ export default function ReviewItem({review, user} : {review: Review, user: UserL
                 <div className={styles.starContainer}>
                         <div className={styles.starDetails}>
                             {[...Array(5)].map((star, index) => {      
-                                    if (starTracker < review.stars) {
+                                    if (starTracker < user.stars) {
                                         starTracker += 1
                                         return (         
                                             <Image 
@@ -72,6 +73,6 @@ export default function ReviewItem({review, user} : {review: Review, user: UserL
     }
 
     return null;
+}
 
    
-}

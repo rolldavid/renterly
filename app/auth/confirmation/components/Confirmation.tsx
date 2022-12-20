@@ -11,7 +11,6 @@ export default function Confirmation() {
     return getSession()
   })
 
-
   if (status !== "loading" && !data) {
     router.push('/auth');
   }
