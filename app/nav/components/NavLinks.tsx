@@ -4,42 +4,32 @@ import Image from "next/image";
 import styles from "./NavLinks.module.css"
 
 import AuthButton from "./AuthButton";
+import NotificationIcon from "./NotificationIcon";
 
 export default function NavLinks() {
    
     return (
         <nav className={styles.container}>
-            <nav className={styles.linkContainer}>
+            <div className={styles.logoContainer}>
                 <Link href={"/"}>
                     <h1 className={styles.logo}>renterly</h1>
                 </Link>
-            </nav>
-            <div className={styles.accountContainer}>
-                
-                <div className={styles.authContainer}>
-                    <Link href={"/timeline"}>
+            </div>
+            <div className={styles.linkContainer}>
+                <Link href={"/"} className={styles.navItem}>
                         <Image 
-                            src={"/images/icons/blackStar.png"}
-                            width={22}
-                            height={22}
-                            alt="reviews"
-                            className={styles.navItem}
-                        />
-                    </Link>
-                    <Link href={"/"}>
-                        <Image 
-                            src={"/images/icons/bell-notify.png"}
+                            src={"/images/icons/search.png"}
                             width={22}
                             height={22}
                             alt="notifications"
-                            className={styles.navItem}
                         />
                     </Link>
                     <div className={styles.navItem}>
+                        <NotificationIcon />
+                    </div>
+                    <div className={styles.navItem}>
                         <AuthButton />
                     </div>
-                    
-                </div>
             </div>
         </nav>
     )

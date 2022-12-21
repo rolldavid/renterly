@@ -13,7 +13,7 @@ import styles from "./ReviewInput.module.css"
 import Spinner from "@/lib/utils/Spinner";
 
 export default function ReviewInput({ property, editingReview, comment, stars, reviewId, starId} : {property: PropertyProps, editingReview: boolean, comment: string, stars: number, reviewId: number | null, starId: string}) {
-    
+
     const [showAuth, setShowAuth] = useState(false)
     const [review, setReview] = useState("")
     const [reviewError, setReviewError] = useState<string | null>(null)

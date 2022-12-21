@@ -7,6 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const starInt = parseInt(stars)
 
+
         if (!updating) {
             try {
                 const prop = await prisma.property.update({
@@ -42,8 +43,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             }
                         },
                     }
-                }})
+                }, include: {
+                    reviews: true
+                }
+            })
 
+                const propertyReviewers = prop.reviews.filter(review => review.userId !== userId)
+                const receivers = propertyReviewers.map(review => {
+                    return {
+                        id: review.userId
+                    }
+                })
+
+
+                const notification = await prisma.notification_Active.create({
+                    data: {
+                        receivers: {
+                            connect: 
+                                receivers
+                        },
+                        notification: {
+                            connect: {
+                                id: 1
+                            }
+                        }
+                    }
+                })
                 res.status(201).json({message: "success"})
                 
                 } catch (err) {
@@ -60,14 +85,49 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 })
     
-                const prop = await prisma.review.update({
+                const review = await prisma.review.update({
                     where: {
                         id: reviewId
                     },
                     data: {
                         comment: comment,
-                    }
+                    },
+                    
                  })
+
+                 const prop = await prisma.property.findUnique({
+                    where: {
+                        id: propertyId
+                    },
+                    include: {
+                        reviews: true
+                    }
+                })
+
+                if (prop) {
+                    const propertyReviewers = prop.reviews.filter(review => review.userId !== userId)
+                    const receivers = propertyReviewers.map(review => {
+                        return {
+                            id: review.userId
+                        }
+                    })
+
+
+                    const notification = await prisma.notification_Active.create({
+                        data: {
+                            receivers: {
+                                connect: 
+                                    receivers
+                            },
+                            notification: {
+                                connect: {
+                                    id: 2
+                                }
+                            }
+                        }
+                    })
+                }
+                    
 
                  
                  res.status(201).json({message: "success"})

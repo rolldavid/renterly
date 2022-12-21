@@ -41,7 +41,6 @@ export default async function Page({params: {slug}}: {params: { slug: string }})
                     const starId = property.stars[0].id
                     const reviewId = property.reviews[0].id
 
-
                     return (
                         <div className={styles.container}>
                             <ReviewInput 

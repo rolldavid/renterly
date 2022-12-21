@@ -1,3 +1,18 @@
+.inputContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    margin: 0px 0px 100px 0px;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.inputContainer::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
 .authModuleContainer {
     display: flex;
     align-items: center;
@@ -77,18 +92,6 @@
     color: var(--lighttreegreen);
   }
 
-.inputContainer {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-}
-
-.inputContainer::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
 
 .formContainer {
     display: flex;

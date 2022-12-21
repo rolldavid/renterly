@@ -4,6 +4,12 @@ import { ProfileProps } from "app/account/types";
 
 // READ
 
+export async function getNotifications() {
+    const res = await fetch("/api/get-notifications")
+    const data = await res.json()
+    return data
+}
+
 export async function getProfile(userId: string) {
     const res = await fetch("/api/get-profile", {
         method: "POST",
