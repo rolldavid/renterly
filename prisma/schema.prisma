@@ -28,18 +28,21 @@ model User {
   stars                 Star[]
   notificationsActive   Notification_Active[]
   notificationsComplete Notification_Complete[]
+  preferences           User_Preferences[]
+  bookmarks             BookmarksByUser[]
 }
 
 model Property {
-  id      String   @id @default(cuid())
-  slug    String   @unique
-  street  String
-  unit    String?
-  city    String
-  state   String
-  zipcode String
-  reviews Review[]
-  stars   Star[]
+  id           String            @id @default(cuid())
+  slug         String            @unique
+  street       String
+  unit         String?
+  city         String
+  state        String
+  zipcode      String
+  reviews      Review[]
+  stars        Star[]
+  bookmarkedBy BookmarksByUser[]
 }
 
 model Review {
@@ -101,6 +104,28 @@ model Notification_Complete {
   notification   Notification_Detail @relation(fields: [notificationId], references: [id], onDelete: Cascade)
   notificationId Int
   receivers      User[]
+}
+
+model User_Preferences {
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
+  system         Boolean  @default(true)
+  productUpdates Boolean  @default(true)
+  bookmarkUpdate Boolean  @default(true)
+  reviewUpdate   Boolean  @default(true)
+  showReviews    Boolean  @default(true)
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
+}
+
+model BookmarksByUser {
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  assignedAt DateTime @default(now())
+
+  @@id([propertyId, userId])
 }
 
 model Account {

@@ -6,12 +6,10 @@ import { authOptions } from "./auth/[...nextauth]";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   
     try {
-        console.log("checking session")
         const session = await unstable_getServerSession(req, res, authOptions)
 
         
         if (session?.user?.email) {
-            console.log("session found, checking user", session.user.email)
 
             const user = await prisma.user.findFirst({
                 where: {email: session.user.email},
@@ -40,8 +38,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     createdAt: note.notification.createdAt
                 }
             })
-
-            console.log(mappedNotifications)
 
             if (mappedNotifications && mappedNotifications?.length > 0) {
                 res.status(201).json({activeNotifications: mappedNotifications})
