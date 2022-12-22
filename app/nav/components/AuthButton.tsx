@@ -57,15 +57,15 @@ export default function AuthButton() {
 
     if (status === "success" && data.session) {
         return (
-            <Link href={`/account/${data.userId}`} className={styles.buttonBasic}>
+            <Link href={`/account/${data.userId}`} className={styles.profileIcon}>
                 <Image src={`/images/nav/profile.png`} width={22} height={22} alt="profile"/>
             </Link>
         ) 
     } else {
         return (
             <>
-                <div className={styles.buttonBasic} onClick={() => setShowAuth(true)}>
-                    LOGIN
+                <div className={styles.loginButton} onClick={() => setShowAuth(true)}>
+                <Image src={`/images/nav/profile.png`} width={22} height={22} alt="profile"/>
                 </div>
 
                 {showAuth &&

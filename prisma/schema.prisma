@@ -8,40 +8,45 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  firstName     String?
-  lastName      String?
-  fullName      String?
-  city          String?
-  state         String?
-  citystate     String?
-  displayName   String?   @unique
-  email         String?   @unique
-  emailVerified DateTime?
-  showReviews   Boolean   @default(true)
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  role          Role      @default(USER)
-  reviews       Review[]
-  stars         Star[]
+  id                    String                  @id @default(cuid())
+  name                  String?
+  firstName             String?
+  lastName              String?
+  fullName              String?
+  city                  String?
+  state                 String?
+  citystate             String?
+  displayName           String?                 @unique
+  email                 String?                 @unique
+  emailVerified         DateTime?
+  showReviews           Boolean                 @default(true)
+  image                 String?
+  accounts              Account[]
+  sessions              Session[]
+  role                  Role                    @default(USER)
+  reviews               Review[]
+  stars                 Star[]
+  notificationsActive   Notification_Active[]
+  notificationsComplete Notification_Complete[]
+  preferences           User_Preferences[]
+  bookmarks             BookmarksByUser[]
 }
 
 model Property {
-  id      String   @id @default(cuid())
-  slug    String   @unique
-  street  String
-  unit    String?
-  city    String
-  state   String
-  zipcode String
-  reviews Review[]
-  stars   Star[]
+  id           String            @id @default(cuid())
+  slug         String            @unique
+  street       String
+  unit         String?
+  city         String
+  state        String
+  zipcode      String
+  reviews      Review[]
+  stars        Star[]
+  bookmarkedBy BookmarksByUser[]
 }
 
 model Review {
-  id             String    @id @default(cuid())
+  id             Int       @id @default(autoincrement())
   createdAt      DateTime  @default(now())
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         String
@@ -60,7 +65,7 @@ model Review {
   moveoutRating  String?
   votes          Int?
   response       Review?   @relation("ReviewResponse", fields: [responseId], references: [id])
-  responseId     String?   @unique
+  responseId     Int?      @unique
   originalReview Review?   @relation("ReviewResponse")
 }
 
@@ -72,8 +77,55 @@ model Star {
   property   Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   propertyId String?
   review     Review?   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
-  reviewId   String?
+  reviewId   Int?
   stars      Int
+}
+
+model Notification_Detail {
+  id                    Int                     @id @default(autoincrement())
+  createdAt             DateTime                @default(now())
+  message               String
+  description           String
+  notificationsActive   Notification_Active[]
+  notificationsComplete Notification_Complete[]
+}
+
+model Notification_Active {
+  id             String              @id @default(cuid())
+  createdAt      DateTime            @default(now())
+  notification   Notification_Detail @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+  notificationId Int
+  receivers      User[]
+}
+
+model Notification_Complete {
+  id             String              @id @default(cuid())
+  createdAt      DateTime            @default(now())
+  notification   Notification_Detail @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+  notificationId Int
+  receivers      User[]
+}
+
+model User_Preferences {
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
+  system         Boolean  @default(true)
+  productUpdates Boolean  @default(true)
+  bookmarkUpdate Boolean  @default(true)
+  reviewUpdate   Boolean  @default(true)
+  showReviews    Boolean  @default(true)
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
+}
+
+model BookmarksByUser {
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  assignedAt DateTime @default(now())
+
+  @@id([propertyId, userId])
 }
 
 model Account {

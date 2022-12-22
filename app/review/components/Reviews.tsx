@@ -48,10 +48,10 @@ export default function Reviews({ property }: { property: PropertyProps }) {
     return (
             <ReviewInput 
                 property={property} 
-                editingReview={false} 
+                editingReview={false}
                 comment={""} 
                 stars={0} 
-                reviewId={""}
+                reviewId={null}
                 starId={""}
             /> 
     )

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { SyntheticEvent, useState, useEffect } from "react"
+import { signOut } from "next-auth/react"
 import { ProfileUser } from "app/account/types";
 import styles from "./AccountDetails.module.css"
 import EditProfile from "./EditProfile";
@@ -10,6 +11,12 @@ import EditProfile from "./EditProfile";
 export default function AccountDetails({user, session} : { user: ProfileUser, session: boolean }) {
     const [editProfile, setEditProfile] = useState(false)
     const [city, setCity] = useState("")
+
+    const handleLogout = (e: SyntheticEvent) => {
+        signOut({
+            callbackUrl: "/"
+        });
+    }
 
     if (!session) {
         return (
@@ -44,16 +51,15 @@ export default function AccountDetails({user, session} : { user: ProfileUser, se
                 
             </div>
             {editProfile && <EditProfile user={user} setEditProfile={setEditProfile}/>}
-            <div className={styles.editContainer}>
-                    <Image 
-                        src="/images/icons/edit.png" 
-                        width={18}
-                        height={18}
-                        alt="edit button"
-                        className={styles.editButton}
-                        onClick={() => setEditProfile(prev => !prev)}
-                    /> 
+            <div className={styles.optionsContainer}>
+                <div className={styles.optionButton} onClick={() => setEditProfile(prev => !prev)}>
+                    Edit Profile
+                </div>
+                <div className={styles.optionButton} onClick={handleLogout}>
+                    Logout
+                </div>
             </div>
+            
         </div>
     )
     }

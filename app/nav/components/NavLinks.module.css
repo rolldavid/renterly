@@ -5,19 +5,24 @@
     height: 100%;
     width: 100%;
     margin: 0px 0px 0px 0px;
-    padding: 0px 20px 0px 20px;
+    padding: 0px 0px 0px 0px;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0px 0px 0px 20px;
 }
 
 .linkContainer {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     height: 100%;
-}
-
-.accountContainer {
-    display: flex;
-    align-items: center;
-    height: 100%;
+    width: 100%;
+    margin: 0px 20px 0px 0px;
+   
 }
 
 .linkItem {
@@ -25,9 +30,9 @@
     cursor: pointer;
 }
 
-.authContainer {
-    width: 100%;
-    margin-left: 25px;
+
+.navItem {
+    margin: 0px 15px 0px 15px;
 }
 
 .logo {

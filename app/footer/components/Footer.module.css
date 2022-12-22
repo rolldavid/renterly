@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-color: var(--darkgrey);
+    
+}
+
+.footerLogo {
+    display: flex;
+    align-items: flex-start;
+    margin: 0px 0px 0px 20px;
+    height: 100%;
+    width: 150px;
+
+}
+
+.logo {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    font-family: "Shrikhand";
+    font-weight: 700;
+    color: var(--white);
+    margin: 15px 0px 0px 0px;
+    cursor: default;
+}
+
+.footerContent {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 10px 25px 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.projectLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0px 25px 0px 25px;
+}
+
+.buildLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0px 25px 0px 25px;
+}
+
+.socialLinks {
+    display: flex;
+    align-items: flex-start;
+    margin: 5px 25px 0px 25px;
+}
+
+
+.footerItem {
+    font-size: .92rem;
+    margin: 2px 0px 2px 0px;
+    color: var(--white);
+}
+
+.socialImg {
+   width: 25px;
+   height: 25px;
+   margin: 0px 10px 0px 10px;
+}

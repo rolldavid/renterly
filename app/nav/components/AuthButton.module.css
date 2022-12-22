@@ -1,11 +1,12 @@
-.buttonBasic {
+.loginButton {
     color: var(--color-border-nav);
     border: none;
     font-size: 1rem;
     font-weight: 400;
     background-color: transparent;
     cursor: pointer;
-    margin-right: 5px;
+    margin: 0;
+   
   }
 
 
@@ -39,18 +40,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 32px 0;
-    margin: 0 15px 0 0;
+    height: 100%;
+    margin: 0 14px 0 0;
 }
 
 .dotFlashing {
     position: relative;
     width: 8px;
     height: 8px;
-  
     border-radius: 5px;
-    background-color: var(--lighttreegreen);
-    color: var(--lighttreegreen);
+    background-color: var(--darkgrey);
+    color: var(--darkgrey);
     animation: dotFlashing 1s infinite linear alternate;
     animation-delay: 0.5s;
   }
@@ -65,7 +65,7 @@
     width: 8px;
     height: 8px;
     border-radius: 5px;
-    background-color: var(--lighttreegreen);
+    background-color: var(--darkgrey);
     color: var(--lighttreegreen);
     animation: dotFlashing 1s infinite alternate;
     animation-delay: 0s;
@@ -75,10 +75,14 @@
     width: 8px;
     height: 8px;
     border-radius: 5px;
-    background-color: var(--lighttreegreen);
+    background-color: var(--darkgrey);
     color: var(--lighttreegreen);
     animation: dotFlashing 1s infinite alternate;
     animation-delay: .1s;
+  }
+
+  .profileIcon {
+    margin: 0px 0px 0px 0px;
   }
 
 

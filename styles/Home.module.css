@@ -1,15 +1,17 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 100vw;
 }
 
 .content {
-  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
   background-color: var(--color-bg-content);
+  margin: 25px 0px 0px 0px;
 }
 
 .nav {
@@ -20,56 +22,15 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-bg-nav);
+  z-index: 10;
 }
 
-.searchContainer {
+.footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  max-width: 1100px;
-  height: 50vh;
-  margin-top: 100px;
-}
-
-.landingImg {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-  width: 30%;
-  margin-top: 125px;
-}
-
-.landingSearch {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 100%;
-  width: 70%;
-}
-
-.loadingFull {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
   width: 100%;
-  height: 100%;
 
 }
 
-
-.libContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 50vh;
-}
 
 /* Utilities */
 
