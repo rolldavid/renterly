@@ -30,21 +30,21 @@ model User {
   notificationsComplete NotificationComplete[]
   preferences           UserPreferences[]
   bookmarks             BookmarksByUser[]
-  notifications         Notification[]
 }
 
 model Property {
-  id            String            @id @default(cuid())
-  slug          String            @unique
-  street        String
-  unit          String?
-  city          String
-  state         String
-  zipcode       String
-  reviews       Review[]
-  stars         Star[]
-  bookmarkedBy  BookmarksByUser[]
-  notifications Notification[]
+  id                   String                 @id @default(cuid())
+  slug                 String                 @unique
+  street               String
+  unit                 String?
+  city                 String
+  state                String
+  zipcode              String
+  reviews              Review[]
+  stars                Star[]
+  bookmarkedBy         BookmarksByUser[]
+  NotificationActive   NotificationActive[]
+  NotificationComplete NotificationComplete[]
 }
 
 model Review {
@@ -90,10 +90,6 @@ model Notification {
   description           String
   notificationsActive   NotificationActive[]
   notificationsComplete NotificationComplete[]
-  property              Property?              @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  user                  User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  propertyId            String?
-  userId                String?
 }
 
 model NotificationActive {
@@ -102,6 +98,9 @@ model NotificationActive {
   notification   Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
   notificationId Int
   receivers      User[]
+  property       Property?    @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  propertyId String?
 }
 
 model NotificationComplete {
@@ -110,6 +109,9 @@ model NotificationComplete {
   notification   Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
   notificationId Int
   receivers      User[]
+  property       Property?    @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  propertyId String?
 }
 
 model UserPreferences {

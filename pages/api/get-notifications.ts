@@ -17,31 +17,48 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     notificationsActive: {
                         select: {
                             createdAt: true,
-                            notification: true
-                        }, 
+                            notification: true,
                         
+                            property: true
+                        },
+                        orderBy: {
+                            createdAt: "desc"
+                        } 
                     },
                     notificationsComplete: {
                         select: {
                             createdAt: true,
-                            notification: true
+                            notification: true,
+                         
+                            property: true
                         },
+                        orderBy: {
+                            createdAt: "desc"
+                        } 
                         
                     }
                 }
-                
             })
 
             const mappedActive = user?.notificationsActive.map(note => {
                 return {
                     notification: note.notification.message,
+                    notificationId: note.notification.id,
+                    street: note.property?.street ? note.property.street : false,
+                    slug: note.property?.slug ? note.property.slug : false,
+                   
                     createdAt: note.notification.createdAt
                 }
             })
+
             const mappedComplete = user?.notificationsComplete.map(note => {
                 return {
                     notification: note.notification.message,
-                    createdAt: note.notification.createdAt
+                    notificationId: note.notification.id,
+                    street: note.property?.street ? note.property.street : false,
+                    slug: note.property?.slug ? note.property.slug : false,
+                    
+                    createdAt: note.notification.createdAt,
                 }
             })
 
@@ -52,13 +69,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     res.status(201).json({activeNotifications: mappedActive, completeNotifications: []})
                 }
               
-            } else {
+            } else { 
                 if (mappedComplete && mappedComplete.length > 0) {
                     res.status(201).json({activeNotifications: [], completeNotifications: mappedComplete})
-                } else {
+                } else { 
                     res.status(201).json({activeNotifications: [], completeNotifications: []})
-                }
-            }
+                } 
+            } 
 
         } else {
             res.status(201).json({message: "Did not find user"})

@@ -19,7 +19,7 @@
   top: 60px;
   right: 20px;
   width: 300px;
-  height: 300px;
+  max-height: 500px;
   padding: 5px 5px 5px 5px;
   background-color: white;
   z-index: 30;
@@ -75,16 +75,9 @@
     margin: 0px 0px 0px 0px;
 }
 
-.bellImg {
-    cursor: pointer;
-}
-
-.notificationsTitle {
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.15rem;
-    color: var(--darkgrey);
-    margin: 5px 0px 10px 0px;
+.notificationInner {
+    display: flex;
+    width: 100%;
 }
 
 .newTitle {
@@ -101,12 +94,6 @@
     margin: 0px 0px 5px 0px;
 }
 
-.newNotification {
-    color: var(--offblack);
-    margin: 5px 0px 5px 0px;
-}
-
-.recentNotification {
-    color: var(--darkgrey);
-    margin: 5px 0px 5px 0px;
+.bellImg {
+    cursor: pointer;
 }
