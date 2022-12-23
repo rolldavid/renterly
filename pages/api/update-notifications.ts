@@ -4,7 +4,7 @@ import { unstable_getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    console.log("starting update at api")
+    
     try {
         const session = await unstable_getServerSession(req, res, authOptions)
 
@@ -17,7 +17,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     notificationsActive: {
                         select: {
                             id: true,
-                            notification: true
+                            notification: true,
+                            property: {
+                                select: {
+                                    id: true
+                                }
+                            }, 
                         }, 
                         
                     },                        
@@ -41,6 +46,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         notification: {
                             connect: {
                                 id: note.notification.id
+                            }
+                        }, 
+                        property: {
+                            connect: {
+                                id: note.property?.id
                             }
                         }
                     }

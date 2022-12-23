@@ -2,13 +2,18 @@
 
 import { useState, useRef, useEffect, SyntheticEvent } from "react";
 import Image from "next/image"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getNotifications, updateNotifications } from "@/lib/db-utils"
+import { NotificationProps } from "../types";
+import Notification from "./Notification";
 import styles from "./NotificationIcon.module.css"
-import Notifications from "./Notifications";
 
 export default function NotificationIcon() {
     const [showNotifications, setShowNotifications] = useState(false)
+
+    const router = useRouter();
 
     const ref = useRef<HTMLInputElement>(null)
    
@@ -59,6 +64,16 @@ export default function NotificationIcon() {
         )
     }
 
+    const routeNotification = async (e: SyntheticEvent, slug: string | boolean) => {
+        e.preventDefault()
+        await updateNotifications()
+        if (slug) {
+            setShowNotifications(false)
+            router.push(`/property/${slug}`)
+        }
+
+    }
+
     if (status === "success" && data && data.activeNotifications) {
         return (
             <>
@@ -87,10 +102,10 @@ export default function NotificationIcon() {
                                 {data.activeNotifications.length > 0 && <div className={styles.notificationNewContainer}>
                                     <p className={styles.newTitle}>New</p>
                                     {
-                                        data.activeNotifications.map((notification: {notification: string, createdAt: Date}, index: number) => {
+                                        data.activeNotifications.map((notification: NotificationProps, index: number) => {
                                             return (
-                                                <div key={index}>
-                                                    <p className={styles.newNotification}>{notification.notification}</p>
+                                                <div key={index} onClick={(e) => routeNotification(e, notification.slug)} className={styles.notificationInner}>
+                                                    <Notification notification={notification} status={"new"}/>
                                                 </div>
                                             )
                                         })
@@ -99,10 +114,10 @@ export default function NotificationIcon() {
                                 {data.completeNotifications.length > 0 && <div className={styles.notificationCompleteContainer}>
                                     <p className={styles.recentTitle}>Recent</p>
                                     {
-                                        data.completeNotifications.map((notification: {notification: string, createdAt: Date}, index: number) => {
+                                        data.completeNotifications.map((notification: NotificationProps, index: number) => {
                                             return (
-                                                <div key={index}>
-                                                    <p className={styles.recentNotification}>{notification.notification}</p>
+                                                <div key={index} onClick={(e) => routeNotification(e, notification.slug)} className={styles.notificationInner}>
+                                                    <Notification notification={notification} status={"complete"}/>
                                                 </div>
                                             )
                                         })

@@ -7,6 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const starInt = parseInt(stars)
 
+        console.log("creating notification.......................")
 
         if (!updating) {
             try {
@@ -43,23 +44,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             }
                         },
                     }
-                }, include: {
-                    reviews: true
                 }
             })
 
-            console.log("created review..............", "reviews: ", prop.reviews)
+        
 
-            if (prop.reviews && prop.reviews.length > 1) {
-                console.log("connecting notifications............................")
-                const propertyReviewers = prop.reviews.filter(review => review.userId !== userId)
+            const property = await prisma.property.findUnique({where: {id: propertyId}, include: {reviews: true}},)
+
+            console.log("review created, now checking reviews......................", property?.reviews)
+            if (property?.reviews && property.reviews.length > 1) {
+                const propertyReviewers = property.reviews.filter(review => review.userId !== userId)
                 const receivers = propertyReviewers.map(review => {
                     return {
                         id: review.userId
                     }
                 })
 
-                console.log("mapped notifications, now connect them...............")
                 const notification = await prisma.notificationActive.create({
                     data: {
                         receivers: {
@@ -68,12 +68,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         },
                         notification: {
                             connect: {
-                                id: 1
+                                id: 1,
                             }
-                        }
+                        },
+                        property: {
+                            connect: {
+                                id: propertyId
+                            }
+                        }, 
+                       
                     }
                 })
-                console.log("connected notifications", notification)
             }
                 
                 res.status(201).json({message: "success"})
@@ -82,6 +87,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 throw new Error("Did not manage to connect")
             }
         } else {
+            console.log("review edited ========================================")
+
+            console.log("updating star")
             try {
                 const star = await prisma.star.update({
                     where: {
@@ -91,6 +99,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         stars: stars
                     }
                 })
+                console.log("star updated.............., updating review")
     
                 const review = await prisma.review.update({
                     where: {
@@ -101,6 +110,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     },
                     
                  })
+                 console.log("review updated........................., updating property")
 
                  const prop = await prisma.property.findUnique({
                     where: {
@@ -111,13 +121,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 })
 
-                if (prop) {
+                if (prop?.reviews && prop.reviews.length > 1) {
+                    console.log("creating notification.................first try")
                     const propertyReviewers = prop.reviews.filter(review => review.userId !== userId)
                     const receivers = propertyReviewers.map(review => {
                         return {
                             id: review.userId
                         }
                     })
+
+                    console.log("creating notification................", receivers)
+
 
 
                     const notification = await prisma.notificationActive.create({
@@ -126,15 +140,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 connect: 
                                     receivers
                             },
+                
                             notification: {
                                 connect: {
                                     id: 2
                                 }
-                            }
+                            },
+                            property: {
+                                connect: {
+                                    id: propertyId
+                                }
+                            }, 
+                           
                         }
                     })
+                    console.log("notification created......................", notification)
                 }
-                    
+
+            
                  res.status(201).json({message: "success"})
                     
             } catch (err) {
