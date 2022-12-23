@@ -48,6 +48,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
             })
 
+            console.log("created review..............", "reviews: ", prop.reviews)
+
+            if (prop.reviews && prop.reviews.length > 1) {
+                console.log("connecting notifications............................")
                 const propertyReviewers = prop.reviews.filter(review => review.userId !== userId)
                 const receivers = propertyReviewers.map(review => {
                     return {
@@ -55,8 +59,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 })
 
-
-                const notification = await prisma.notification_Active.create({
+                console.log("mapped notifications, now connect them...............")
+                const notification = await prisma.notificationActive.create({
                     data: {
                         receivers: {
                             connect: 
@@ -69,6 +73,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         }
                     }
                 })
+                console.log("connected notifications", notification)
+            }
+                
                 res.status(201).json({message: "success"})
                 
                 } catch (err) {
@@ -113,7 +120,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     })
 
 
-                    const notification = await prisma.notification_Active.create({
+                    const notification = await prisma.notificationActive.create({
                         data: {
                             receivers: {
                                 connect: 
@@ -128,8 +135,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     })
                 }
                     
-
-                 
                  res.status(201).json({message: "success"})
                     
             } catch (err) {
