@@ -32,18 +32,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 
             })
 
-            const mappedNotifications = user?.notificationsActive.map(note => {
+            const mappedActive = user?.notificationsActive.map(note => {
+                return {
+                    notification: note.notification.message,
+                    createdAt: note.notification.createdAt
+                }
+            })
+            const mappedComplete = user?.notificationsComplete.map(note => {
                 return {
                     notification: note.notification.message,
                     createdAt: note.notification.createdAt
                 }
             })
 
-            if (mappedNotifications && mappedNotifications?.length > 0) {
-                res.status(201).json({activeNotifications: mappedNotifications})
-
+            if (mappedActive && mappedActive.length > 0) {
+                if (mappedComplete && mappedComplete.length > 0) {
+                    res.status(201).json({activeNotifications: mappedActive, completeNotifications: mappedComplete})
+                } else {
+                    res.status(201).json({activeNotifications: mappedActive, completeNotifications: []})
+                }
+              
             } else {
-                res.status(201).json({activeNotifications: false})
+                if (mappedComplete && mappedComplete.length > 0) {
+                    res.status(201).json({activeNotifications: [], completeNotifications: mappedComplete})
+                } else {
+                    res.status(201).json({activeNotifications: [], completeNotifications: []})
+                }
             }
 
         } else {

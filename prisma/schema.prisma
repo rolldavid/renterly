@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id                    String                  @id @default(cuid())
+  id                    String                 @id @default(cuid())
   name                  String?
   firstName             String?
   lastName              String?
@@ -16,33 +16,35 @@ model User {
   city                  String?
   state                 String?
   citystate             String?
-  displayName           String?                 @unique
-  email                 String?                 @unique
+  displayName           String?                @unique
+  email                 String?                @unique
   emailVerified         DateTime?
-  showReviews           Boolean                 @default(true)
+  showReviews           Boolean                @default(true)
   image                 String?
   accounts              Account[]
   sessions              Session[]
-  role                  Role                    @default(USER)
+  role                  Role                   @default(USER)
   reviews               Review[]
   stars                 Star[]
-  notificationsActive   Notification_Active[]
-  notificationsComplete Notification_Complete[]
-  preferences           User_Preferences[]
+  notificationsActive   NotificationActive[]
+  notificationsComplete NotificationComplete[]
+  preferences           UserPreferences[]
   bookmarks             BookmarksByUser[]
+  notifications         Notification[]
 }
 
 model Property {
-  id           String            @id @default(cuid())
-  slug         String            @unique
-  street       String
-  unit         String?
-  city         String
-  state        String
-  zipcode      String
-  reviews      Review[]
-  stars        Star[]
-  bookmarkedBy BookmarksByUser[]
+  id            String            @id @default(cuid())
+  slug          String            @unique
+  street        String
+  unit          String?
+  city          String
+  state         String
+  zipcode       String
+  reviews       Review[]
+  stars         Star[]
+  bookmarkedBy  BookmarksByUser[]
+  notifications Notification[]
 }
 
 model Review {
@@ -81,32 +83,36 @@ model Star {
   stars      Int
 }
 
-model Notification_Detail {
-  id                    Int                     @id @default(autoincrement())
-  createdAt             DateTime                @default(now())
+model Notification {
+  id                    Int                    @id @default(autoincrement())
+  createdAt             DateTime               @default(now())
   message               String
   description           String
-  notificationsActive   Notification_Active[]
-  notificationsComplete Notification_Complete[]
+  notificationsActive   NotificationActive[]
+  notificationsComplete NotificationComplete[]
+  property              Property?              @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  user                  User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  propertyId            String?
+  userId                String?
 }
 
-model Notification_Active {
-  id             String              @id @default(cuid())
-  createdAt      DateTime            @default(now())
-  notification   Notification_Detail @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+model NotificationActive {
+  id             String       @id @default(cuid())
+  createdAt      DateTime     @default(now())
+  notification   Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
   notificationId Int
   receivers      User[]
 }
 
-model Notification_Complete {
-  id             String              @id @default(cuid())
-  createdAt      DateTime            @default(now())
-  notification   Notification_Detail @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+model NotificationComplete {
+  id             String       @id
+  createdAt      DateTime     @default(now())
+  notification   Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
   notificationId Int
   receivers      User[]
 }
 
-model User_Preferences {
+model UserPreferences {
   id             String   @id @default(cuid())
   createdAt      DateTime @default(now())
   system         Boolean  @default(true)

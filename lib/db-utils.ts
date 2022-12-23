@@ -146,6 +146,12 @@ export async function updateReview({comment, stars, propertyId, userId, starId}:
 }
 
 
+export async function updateNotifications() {
+    const res = await fetch("api/update-notifications")
+    const data = await res.json();
+    return data;
+}
+
 // CREATE
 
 export async function createReview({comment, stars, userId, propertyId, street, citystate, propertySlug, starId, reviewId, updating}: reviewProps) {
