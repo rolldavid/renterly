@@ -4,6 +4,7 @@ import "@/styles/globals.css"
 import NavContainer from "./nav/components/NavContainer";
 import Footer from "./footer/components/Footer";
 import QueryProvider from "@/lib/providers/QueryProvider";
+import ScrollToTop from "@/lib/utils/ScrollToTop";
 
 export default async function RootLayout({ children }: {
     children: React.ReactNode;
@@ -12,6 +13,7 @@ export default async function RootLayout({ children }: {
     return (
       <html lang="en">
         <body>
+            <ScrollToTop />
             <QueryProvider>
               <main className={styles.container}>
                   <section className={styles.nav}>

@@ -71,7 +71,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
             
         } else {
-           
             res.status(201).json({reviews: propertyReviews?.reviews, users, postedReview: false})
         }
     } catch (err) {
