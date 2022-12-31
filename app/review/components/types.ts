@@ -22,7 +22,6 @@ export interface reviewProps {
     updating: boolean
 }
 
-
 export interface UserList {
     displayName: string;
     citystate: string;

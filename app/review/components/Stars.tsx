@@ -11,7 +11,8 @@ import { Star } from "@prisma/client";
 export default function Stars({ propertyId }: {propertyId: string}) {
     const { data, status } = useQuery(["stars"], () => {
         return getStars(propertyId)
-    })
+    },
+    {cacheTime: 0})
 
 
     if (status === "loading") {

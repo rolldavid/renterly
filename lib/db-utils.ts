@@ -55,6 +55,7 @@ export async function checkCity(cityName: string) {
 
 export async function getProperty(propertyId: string) {
     const res = await fetch("/api/get-property", {
+        cache: 'no-store',
         method: "POST",
         body: JSON.stringify({
             propertyId
@@ -62,13 +63,14 @@ export async function getProperty(propertyId: string) {
         headers: {
             "Content-Type": "application/json"
         }
-    })
+    }, )
     const data = await res.json()
     return data;
 }
 
 export async function getStars(propertyId: string) {
     const res = await fetch("/api/get-stars", {
+        cache: 'no-store',
         method: "POST",
         body: JSON.stringify({
             propertyId
@@ -84,6 +86,7 @@ export async function getStars(propertyId: string) {
 
 export async function getReviewPage(slug: string) {
     const res = await fetch("/api/get-review-page", {
+        cache: 'no-store',
         method: "POST",
         body: JSON.stringify({
             slug
