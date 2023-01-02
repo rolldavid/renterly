@@ -41,7 +41,9 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
     margin: 0 14px 0 0;
+  
 }
 
 .dotFlashing {
@@ -61,7 +63,7 @@
     top: 0;
   }
   .dotFlashing::before {
-    left: -12px;
+    left: -10px;
     width: 8px;
     height: 8px;
     border-radius: 5px;
@@ -71,7 +73,7 @@
     animation-delay: 0s;
   }
   .dotFlashing::after {
-    left: 12px;
+    left: 10px;
     width: 8px;
     height: 8px;
     border-radius: 5px;
@@ -85,14 +87,12 @@
     margin: 0px 0px 0px 0px;
   }
 
-
-
   
   @keyframes dotFlashing {
     0% {
       background-color: var(--lighttreegreen);
     }
     50%, 100% {
-      background-color: rgba(152, 172, 153, 0.2)
+      background-color: rgba(61, 61, 61, 0.2)
     }
   }

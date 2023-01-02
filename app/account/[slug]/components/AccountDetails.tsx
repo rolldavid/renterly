@@ -8,7 +8,7 @@ import styles from "./AccountDetails.module.css"
 import EditProfile from "./EditProfile";
 
 
-export default function AccountDetails({user, session} : { user: ProfileUser, session: boolean }) {
+export default function AccountDetails({user, accountOwner} : { user: ProfileUser, accountOwner: boolean }) {
     const [editProfile, setEditProfile] = useState(false)
     const [city, setCity] = useState("")
 
@@ -18,17 +18,32 @@ export default function AccountDetails({user, session} : { user: ProfileUser, se
         });
     }
 
-    if (!session) {
+    if (!accountOwner) {
         return (
             <div className={styles.container}>
-            <h1 className={styles.displayName}>
-                {user.displayName}
-            </h1>
+            <div className={styles.imageContainer}>
+                <Image 
+                    src={`/images/profile/${user.image}.png`} 
+                    width={100} 
+                    height={100} 
+                    alt="profile" 
+                    className={styles.profileImage}
+                />
+            </div>
+            <div className={styles.displayNameSession}>
+                <h1 className={styles.nameTitle}>
+                    {user.displayName}
+                </h1>
+                
+            </div>
+            <div className={styles.locationContainer}>
+                <h2 className={styles.locationTitle}>{user.citystate}</h2>
+            </div>
         </div>
         )
     }
 
-    if (session && user.userId) {
+    if (accountOwner && user.userId) {
     return (
         <div className={styles.container}>
             <div className={styles.imageContainer}>

@@ -12,7 +12,7 @@ export interface ReviewProps {
 export interface reviewProps {
     comment: string
     stars: number
-    userId: string
+    userId: number
     propertyId: string
     street: string
     citystate: string
@@ -26,7 +26,7 @@ export interface UserList {
     displayName: string;
     citystate: string;
     image: string;
-    userId: string;
+    userId: number;
     stars: number;
 }
 
@@ -34,7 +34,7 @@ export interface UpdateProps {
     comment: string;
     stars: number;
     propertyId: string;
-    userId: string;
+    userId: number;
     reviewId: number;
     starId: string;
 }
@@ -51,6 +51,6 @@ export interface PropertyProps {
 
 //passing stars to individual reviews
 export interface StarProps {
-    userId: string;
+    userId: number;
     stars: number;
 }

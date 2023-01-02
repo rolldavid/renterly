@@ -17,19 +17,20 @@ export default function NavLinks() {
             </div>
             <div className={styles.linkContainer}>
                 <Link href={"/"} className={styles.navItem}>
-                        <Image 
-                            src={"/images/icons/search.png"}
-                            width={22}
-                            height={22}
-                            alt="notifications"
-                        />
-                    </Link>
-                    <div className={styles.navItem}>
-                        <NotificationIcon />
-                    </div>
-                    <div className={styles.navItem}>
-                        <AuthButton />
-                    </div>
+                    <Image 
+                        src={"/images/icons/search.png"}
+                        width={22}
+                        height={22}
+                        alt="notifications"
+                    />
+                </Link>
+                
+                <div className={styles.navItem}>
+                    <NotificationIcon />
+                </div>
+                <div className={styles.navItem}>
+                    <AuthButton />
+                </div>
             </div>
         </nav>
     )

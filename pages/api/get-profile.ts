@@ -30,6 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         
 
         const session = await unstable_getServerSession(req, res, authOptions)
+        const accountOwner = session?.user?.email === user?.email ? true : false
 
         if (user) {
             const userStars = user.reviews.map(review => {
@@ -39,14 +40,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
             })
 
-            if (!session) {
+            if (!accountOwner) {
             res.status(201).json({user: {
                 displayName: user.displayName,
                 citystate: user.citystate,
                 image: user.image,
             }, reviews: user.reviews,
                 stars: userStars, 
-                session: false})
+                accountOwner: false})
             } else {
                 res.status(201).json({user:{
                     displayName: user.displayName,
@@ -55,7 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     userId: user.id
                 }, reviews: user.reviews, 
                     stars: userStars, 
-                    session: true})
+                    accountOwner: true})
             }
         } 
 

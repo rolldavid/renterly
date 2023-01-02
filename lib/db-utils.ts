@@ -10,7 +10,7 @@ export async function getNotifications() {
     return data
 }
 
-export async function getProfile(userId: string) {
+export async function getProfile(userId: number) {
     const res = await fetch("/api/get-profile", {
         method: "POST",
         body: JSON.stringify({
@@ -24,7 +24,7 @@ export async function getProfile(userId: string) {
     return data;
 }
 
-export async function checkDisplayName(displayName: string, userId: string) {
+export async function checkDisplayName(displayName: string, userId: number) {
     const res = await fetch("/api/check-display-name", {
         method: "POST",
         body: JSON.stringify({

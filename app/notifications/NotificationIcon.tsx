@@ -53,6 +53,8 @@ export default function NotificationIcon() {
         updateNotifications()
     }
 
+
+
     if (status === "loading") {
         return (
             <Image 
@@ -74,7 +76,8 @@ export default function NotificationIcon() {
 
     }
 
-    if (status === "success" && data && data.activeNotifications) {
+
+    if (status === "success" && data.activeNotifications && data.loggedIn) {
         return (
             <>
             {data.activeNotifications.length > 0 && <Image 
@@ -136,7 +139,7 @@ export default function NotificationIcon() {
         ) 
     }
 
-    if (status === "success" && data) {
+    if (status === "success" && data.loggedIn) {
         return (
             <>
                 <Image 
@@ -159,12 +162,25 @@ export default function NotificationIcon() {
     }
 
     return (
+        <>
+     
         <Image 
-                src={"/images/icons/bell.png"}
-                width={22}
-                height={22}
-                alt="notifications"
-                className={styles.bellImg}
-             />
+            src={`/images/icons/bell.png`}
+            width={22}
+            height={22}
+            alt="notifications"
+            onClick={() => setShowNotifications(true)}
+            className={styles.bellImg}
+         />
+         {showNotifications &&
+                <div className={styles.notificationsModuleContainer} ref={ref}>
+                    <div className={styles.notificationsModule}>
+                        <div className={styles.searchContainer}>
+                                <p className={styles.searchText}>Add a review or follow a property to get notifications.</p>
+                            </div>
+                            </div>
+                </div>
+            }
+         </>
     )
 }
