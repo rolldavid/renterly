@@ -42,7 +42,7 @@ export default function Search({setLoading} : {setLoading: Dispatch<SetStateActi
         <section className={styles.container}>
             <section className={styles.searchContainer}>
                 <div className={styles.titleContainer}>
-                    <h1 className={styles.title}>A voice for every renter</h1>
+                    <h1 className={styles.title}>Hold every landlord accountable.</h1>
                 </div>
                 <div className={styles.searchbarContainer}>
                         <input 

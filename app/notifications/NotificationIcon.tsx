@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getNotifications, updateNotifications } from "@/lib/db-utils"
-import { NotificationProps } from "../types";
+import { NotificationProps } from "./types";
 import Notification from "./Notification";
 import styles from "./NotificationIcon.module.css"
 
@@ -24,10 +24,11 @@ export default function NotificationIcon() {
     })
 
 
-    const handleModalClose = (e: MouseEvent) => {
+    const handleModalClose = async (e: MouseEvent) => {
         e.preventDefault()
         if (e.target instanceof Element) {
             if (ref.current?.classList[0] === e.target.classList[0]) {
+                queryClient.invalidateQueries(['notification'])
                 setShowNotifications(false)
             }
         }
@@ -45,7 +46,6 @@ export default function NotificationIcon() {
             }
         }
     }, [showNotifications])
-
 
     const handleNotifications = (e: SyntheticEvent) => {
         e.preventDefault()
@@ -66,9 +66,9 @@ export default function NotificationIcon() {
 
     const routeNotification = async (e: SyntheticEvent, slug: string | boolean) => {
         e.preventDefault()
-        await updateNotifications()
         if (slug) {
             setShowNotifications(false)
+            queryClient.invalidateQueries(['notification'])
             router.push(`/property/${slug}`)
         }
 

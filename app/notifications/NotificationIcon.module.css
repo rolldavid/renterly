@@ -19,7 +19,7 @@
   top: 60px;
   right: 20px;
   width: 300px;
-  max-height: 500px;
+  height: 300px;
   padding: 5px 5px 5px 5px;
   background-color: white;
   z-index: 30;
@@ -29,6 +29,7 @@
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
 }
+
 
 .notificationsModule::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
@@ -61,7 +62,7 @@
     width: 100%;
     height: 100%;
     text-align: left;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 10px 0px;
 }
 
 .notificationCompleteContainer {
@@ -84,14 +85,14 @@
     text-align: left;
     font-weight: 600;
     color: var(--offblack);
-    margin: 0px 0px 5px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 .recentTitle {
     text-align: left;
     font-weight: 600;
     color: var(--darkgrey);
-    margin: 0px 0px 5px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 .bellImg {
