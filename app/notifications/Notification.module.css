@@ -10,20 +10,13 @@
 
 .newNotification {
     color: var(--offblack);
-    margin: 5px 0px 5px 0px;
+    margin: 8px 0px 8px 0px;
     cursor: pointer;
 }
 
 .recentNotification {
     color: var(--darkgrey);
-    margin: 5px 0px 5px 0px;
+    margin: 8px 0px 8px 0px;
     cursor: pointer;
 }
 
-.newLink {
-
-}
-
-.recentLink {
-
-}

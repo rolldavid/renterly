@@ -12,21 +12,21 @@ export interface ProfileProps {
     city: string;
     state: string;
     image: string;
-    userId: string;
+    userId: number;
 }
 
 export interface ProfileUser {
     displayName: string;
     citystate: string;
     image: string; 
-    userId?: string
+    userId?: number
 }
 
 
 export interface RevList {
     id: string;
     createdAt: Date;
-    userId: string;
+    userId: number;
     propertyId: string;
     comment: string;
     street: string;

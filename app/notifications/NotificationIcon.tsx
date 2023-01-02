@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getNotifications, updateNotifications } from "@/lib/db-utils"
-import { NotificationProps } from "../types";
+import { NotificationProps } from "./types";
 import Notification from "./Notification";
 import styles from "./NotificationIcon.module.css"
 
@@ -24,10 +24,11 @@ export default function NotificationIcon() {
     })
 
 
-    const handleModalClose = (e: MouseEvent) => {
+    const handleModalClose = async (e: MouseEvent) => {
         e.preventDefault()
         if (e.target instanceof Element) {
             if (ref.current?.classList[0] === e.target.classList[0]) {
+                queryClient.invalidateQueries(['notification'])
                 setShowNotifications(false)
             }
         }
@@ -46,12 +47,13 @@ export default function NotificationIcon() {
         }
     }, [showNotifications])
 
-
     const handleNotifications = (e: SyntheticEvent) => {
         e.preventDefault()
         setShowNotifications(true)
         updateNotifications()
     }
+
+
 
     if (status === "loading") {
         return (
@@ -66,15 +68,16 @@ export default function NotificationIcon() {
 
     const routeNotification = async (e: SyntheticEvent, slug: string | boolean) => {
         e.preventDefault()
-        await updateNotifications()
         if (slug) {
             setShowNotifications(false)
+            queryClient.invalidateQueries(['notification'])
             router.push(`/property/${slug}`)
         }
 
     }
 
-    if (status === "success" && data && data.activeNotifications) {
+
+    if (status === "success" && data.activeNotifications && data.loggedIn) {
         return (
             <>
             {data.activeNotifications.length > 0 && <Image 
@@ -136,7 +139,7 @@ export default function NotificationIcon() {
         ) 
     }
 
-    if (status === "success" && data) {
+    if (status === "success" && data.loggedIn) {
         return (
             <>
                 <Image 
@@ -159,12 +162,25 @@ export default function NotificationIcon() {
     }
 
     return (
+        <>
+     
         <Image 
-                src={"/images/icons/bell.png"}
-                width={22}
-                height={22}
-                alt="notifications"
-                className={styles.bellImg}
-             />
+            src={`/images/icons/bell.png`}
+            width={22}
+            height={22}
+            alt="notifications"
+            onClick={() => setShowNotifications(true)}
+            className={styles.bellImg}
+         />
+         {showNotifications &&
+                <div className={styles.notificationsModuleContainer} ref={ref}>
+                    <div className={styles.notificationsModule}>
+                        <div className={styles.searchContainer}>
+                                <p className={styles.searchText}>Add a review or follow a property to get notifications.</p>
+                            </div>
+                            </div>
+                </div>
+            }
+         </>
     )
 }

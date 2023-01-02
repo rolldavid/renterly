@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./NavLinks.module.css"
 
 import AuthButton from "./AuthButton";
-import NotificationIcon from "./NotificationIcon";
+import NotificationIcon from "app/notifications/NotificationIcon";
 
 export default function NavLinks() {
    
@@ -17,19 +17,20 @@ export default function NavLinks() {
             </div>
             <div className={styles.linkContainer}>
                 <Link href={"/"} className={styles.navItem}>
-                        <Image 
-                            src={"/images/icons/search.png"}
-                            width={22}
-                            height={22}
-                            alt="notifications"
-                        />
-                    </Link>
-                    <div className={styles.navItem}>
-                        <NotificationIcon />
-                    </div>
-                    <div className={styles.navItem}>
-                        <AuthButton />
-                    </div>
+                    <Image 
+                        src={"/images/icons/search.png"}
+                        width={22}
+                        height={22}
+                        alt="notifications"
+                    />
+                </Link>
+                
+                <div className={styles.navItem}>
+                    <NotificationIcon />
+                </div>
+                <div className={styles.navItem}>
+                    <AuthButton />
+                </div>
             </div>
         </nav>
     )

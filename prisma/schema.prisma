@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id                    String                 @id @default(cuid())
+  id                    Int                    @id @default(autoincrement())
   name                  String?
   firstName             String?
   lastName              String?
@@ -24,6 +24,7 @@ model User {
   accounts              Account[]
   sessions              Session[]
   role                  Role                   @default(USER)
+  status                Status                 @default(ACTIVE)
   reviews               Review[]
   stars                 Star[]
   notificationsActive   NotificationActive[]
@@ -51,7 +52,7 @@ model Review {
   id             Int       @id @default(autoincrement())
   createdAt      DateTime  @default(now())
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId         String
+  userId         Int
   property       Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   propertyId     String
   stars          Star[]
@@ -75,7 +76,7 @@ model Star {
   id         String    @id @default(cuid())
   createdAt  DateTime  @default(now())
   user       User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String?
+  userId     Int?
   property   Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   propertyId String?
   review     Review?   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
@@ -123,14 +124,14 @@ model UserPreferences {
   reviewUpdate   Boolean  @default(true)
   showReviews    Boolean  @default(true)
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId         String
+  userId         Int
 }
 
 model BookmarksByUser {
   property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   propertyId String
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String
+  userId     Int
   assignedAt DateTime @default(now())
 
   @@id([propertyId, userId])
@@ -138,7 +139,7 @@ model BookmarksByUser {
 
 model Account {
   id                String  @id @default(cuid())
-  userId            String
+  userId            Int
   type              String
   provider          String
   providerAccountId String
@@ -158,7 +159,7 @@ model Account {
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
-  userId       String
+  userId       Int
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -174,4 +175,9 @@ model VerificationToken {
 enum Role {
   USER
   ADMIN
+}
+
+enum Status {
+  ACTIVE
+  ARCHIVED
 }

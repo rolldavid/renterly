@@ -11,7 +11,7 @@ import Spinner from "@/lib/utils/Spinner"
 import { Review, Star } from "@prisma/client"
 import { RevList } from "app/account/types"
 
-export default function Account({userId} : {userId: string}) {
+export default function Account({userId} : {userId: number}) {
     const { data, status } = useQuery(["user"], () => {
         return getProfile(userId)
       });
@@ -20,21 +20,14 @@ export default function Account({userId} : {userId: string}) {
         return <Spinner />
     }
 
-    if (!data.session) {
-        return (
-            <div>
-                An account
-            </div>
-        )
-    }
-
     
-    if (status === "success" && data.session) { 
+    
+    if (status === "success" && data) { 
 
         return (
             <section className={styles.container}>
                 <div className={styles.container}>
-                    <AccountDetails user={data.user} session={data.session}/>
+                    <AccountDetails user={data.user} accountOwner={data.accountOwner}/>
                     <UserReviews reviews={data.reviews} stars={data.stars}/>
                 </div>
 

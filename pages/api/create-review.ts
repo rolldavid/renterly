@@ -7,8 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const starInt = parseInt(stars)
 
-        console.log("creating notification.......................")
-
         if (!updating) {
             try {
                 const prop = await prisma.property.update({
@@ -48,12 +46,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             })
 
         
-
             const property = await prisma.property.findUnique({where: {id: propertyId}, include: {reviews: true}},)
 
-            console.log("review created, now checking reviews......................", property?.reviews)
-            if (property?.reviews && property.reviews.length > 1) {
+
+            if (property && property.reviews.length > 1) {
+    
+
                 const propertyReviewers = property.reviews.filter(review => review.userId !== userId)
+
                 const receivers = propertyReviewers.map(review => {
                     return {
                         id: review.userId
@@ -84,12 +84,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 res.status(201).json({message: "success"})
                 
                 } catch (err) {
+
                 throw new Error("Did not manage to connect")
             }
         } else {
-            console.log("review edited ========================================")
-
-            console.log("updating star")
+          
             try {
                 const star = await prisma.star.update({
                     where: {
@@ -99,7 +98,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         stars: stars
                     }
                 })
-                console.log("star updated.............., updating review")
+    
     
                 const review = await prisma.review.update({
                     where: {
@@ -110,9 +109,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     },
                     
                  })
-                 console.log("review updated........................., updating property")
 
-                 const prop = await prisma.property.findUnique({
+                 const property = await prisma.property.findUnique({
                     where: {
                         id: propertyId
                     },
@@ -121,19 +119,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 })
 
-                if (prop?.reviews && prop.reviews.length > 1) {
-                    console.log("creating notification.................first try")
-                    const propertyReviewers = prop.reviews.filter(review => review.userId !== userId)
+            
+                if (property?.reviews && property.reviews.length > 1) {
+                   
+                    const propertyReviewers = property.reviews.filter(review => review.userId !== userId)
                     const receivers = propertyReviewers.map(review => {
                         return {
                             id: review.userId
                         }
                     })
 
-                    console.log("creating notification................", receivers)
-
-
-
+                    const checkNotifications = await prisma.notificationActive.findMany()
                     const notification = await prisma.notificationActive.create({
                         data: {
                             receivers: {
@@ -154,14 +150,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                            
                         }
                     })
-                    console.log("notification created......................", notification)
                 }
 
             
                  res.status(201).json({message: "success"})
                     
             } catch (err) {
-                res.status(401).json({message: "Did not manage to connect"})
+                throw new Error("Did not manage to connect")
         }
         }
     }
