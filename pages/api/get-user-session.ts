@@ -9,7 +9,7 @@ const names = ["Salamander", "Turtle", "Lizard", "Gharial", "Condor", "Cormorant
 const pickName = names[Math.floor(Math.random() * names.length)]; 
 const pickNum = Math.floor(Math.random() * 10000) 
 const randName = pickName + pickNum
-const randProf = Math.floor(Math.random() * 15).toString()
+const randProf = Math.floor(Math.random() * 11).toString()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 

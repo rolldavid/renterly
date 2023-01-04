@@ -1,0 +1,139 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  width: 650px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 25px 50px 15px 50px;
+  margin: 40px 0px 40px 0px;
+  background-color: var(--white);
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0px 20px 0px;
+}
+
+.titleContainer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px 0px 10px 0px;
+}
+
+.title {
+  margin: 15px 0px 5px 0px;
+}
+
+.subtitleContainer {
+  display: flex;
+  justify-content: center;
+  color: var(--darkgrey);
+}
+
+.date {
+  margin: 0px 10px 0px 0px;
+}
+
+.bookmarkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100%;
+}
+
+.postTitle {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.date {
+  display: flex;
+}
+
+.content {
+  width: 100%;
+}
+
+
+.buildTitle {
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 5px;
+  margin: 15px 0 15px 0;
+  padding: 0;
+  filter: drop-shadow(3px 3px 0 var(--color-dropshadow-build));
+  text-align: left;
+  
+}
+.pathTitle {
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 5px;
+  filter: drop-shadow(3px 3px 0  var(--color-dropshadow-path));
+  text-align: left;
+}
+.stackTitle {
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 5px;
+  filter: drop-shadow(3px 3px 0  var(--color-dropshadow-stack));  
+  text-align: left;
+}
+
+
+
+ @media (min-width: 1200px) {
+  .headerContainer {
+    width: 70%;
+  }
+
+  .content {
+    width: 70%;
+  }
+ }
+  
+  @media (max-width: 750px) {
+    .content {
+      width: 90%;
+    }
+
+    .headerContainer {
+      align-items: flex-start;
+      width: 90%;
+  }
+
+    .buildTitle {
+      font-size: 2rem;
+     
+      text-align: left;
+    }
+    .pathTitle {
+        font-size: 2rem;
+        
+        text-align: left;
+    }
+    .stackTitle {
+        font-size: 2rem;
+      
+        text-align: left;
+    }
+  }
