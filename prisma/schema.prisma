@@ -31,6 +31,7 @@ model User {
   notificationsComplete NotificationComplete[]
   preferences           UserPreferences[]
   bookmarks             BookmarksByUser[]
+  post                  Post[]
 }
 
 model Property {
@@ -116,15 +117,15 @@ model NotificationComplete {
 }
 
 model UserPreferences {
-  id             String   @id @default(cuid())
-  createdAt      DateTime @default(now())
-  system         Boolean  @default(true)
-  productUpdates Boolean  @default(true)
-  bookmarkUpdate Boolean  @default(true)
-  reviewUpdate   Boolean  @default(true)
-  showReviews    Boolean  @default(true)
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId         Int
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  system          Boolean  @default(true)
+  productUpdates  Boolean  @default(true)
+  bookmarkUpdates Boolean  @default(true)
+  reviewUpdates   Boolean  @default(true)
+  showReviews     Boolean  @default(true)
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          Int
 }
 
 model BookmarksByUser {
@@ -135,6 +136,19 @@ model BookmarksByUser {
   assignedAt DateTime @default(now())
 
   @@id([propertyId, userId])
+}
+
+model Post {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  title      String   @unique
+  slug       String   @unique
+  published  Boolean  @default(true)
+  authorId   Int
+  isFeatured Boolean  @default(false)
+  excerpt    String
+  body       String
+  author     User     @relation(fields: [authorId], references: [id])
 }
 
 model Account {

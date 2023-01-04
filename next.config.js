@@ -8,6 +8,17 @@ const nextConfig = {
       "prisma",
       "@prisma/client",
       "next-auth/client",
+      "react-markdown",
+    ],
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "renterlyblog.s3.us-west-1.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
