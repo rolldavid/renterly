@@ -1,9 +1,9 @@
-import styles from "@/styles/Home.module.css"
+import styles from "@/styles/Property.module.css"
 export default async function Layout({ children }: {
     children: React.ReactNode;
   }) {
  
     return (
-        <>{children}</>
+        <div className={styles.propertyWrapper}>{children}</div>
     );
   }

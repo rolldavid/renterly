@@ -1,20 +1,5 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  background-color: var(--color-bg-content);
-}
-
 .nav {
+  position:fixed;
   flex: auto;
   width: 100vw;
   height: 50px;
@@ -25,12 +10,30 @@
   z-index: 10;
 }
 
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  flex-grow: 1;
+  margin: 50px 0px 0px 0px;
+}
+
 .footer {
   display: flex;
   width: 100%;
-
 }
-
 
 /* Utilities */
 

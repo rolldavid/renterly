@@ -138,6 +138,7 @@ model BookmarksByUser {
   @@id([propertyId, userId])
 }
 
+
 model Post {
   id         Int      @id @default(autoincrement())
   createdAt  DateTime @default(now())

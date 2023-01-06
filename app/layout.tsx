@@ -15,13 +15,13 @@ export default async function RootLayout({ children }: {
         <body>
             <ScrollToTop />
             <QueryProvider>
-              <main className={styles.container}>
-                  <section className={styles.nav}>
-                        <NavContainer/>
-                  </section>
-                  <section className={styles.content}>
-                      {children}
-                  </section>
+              <nav className={styles.nav}>
+                  <NavContainer/>
+              </nav>
+              <main className={styles.main}>
+                <div className={styles.content}>
+                  {children}
+                </div>
               </main>
               <footer className={styles.footer}>
                 <Footer />

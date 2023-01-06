@@ -21,25 +21,25 @@ export default function AccountDetails({user, accountOwner} : { user: ProfileUse
     if (!accountOwner) {
         return (
             <div className={styles.container}>
-            <div className={styles.imageContainer}>
-                <Image 
-                    src={`/images/profile/${user.image}.png`} 
-                    width={100} 
-                    height={100} 
-                    alt="profile" 
-                    className={styles.profileImage}
-                />
+                <div className={styles.imageContainer}>
+                    <Image 
+                        src={`/images/profile/${user.image}.png`} 
+                        width={140} 
+                        height={140} 
+                        alt="profile" 
+                        className={styles.profileImage}
+                    />
+                </div>
+                <div className={styles.displayNameSession}>
+                    <h1 className={styles.nameTitle}>
+                        {user.displayName}
+                    </h1>
+                    
+                </div>
+                <div className={styles.locationContainer}>
+                    <h2 className={styles.locationTitle}>{user.citystate}</h2>
+                </div>
             </div>
-            <div className={styles.displayNameSession}>
-                <h1 className={styles.nameTitle}>
-                    {user.displayName}
-                </h1>
-                
-            </div>
-            <div className={styles.locationContainer}>
-                <h2 className={styles.locationTitle}>{user.citystate}</h2>
-            </div>
-        </div>
         )
     }
 
@@ -49,8 +49,8 @@ export default function AccountDetails({user, accountOwner} : { user: ProfileUse
             <div className={styles.imageContainer}>
                 <Image 
                     src={`/images/profile/${user.image}.png`} 
-                    width={100} 
-                    height={100} 
+                    width={140} 
+                    height={140} 
                     alt="profile" 
                     className={styles.profileImage}
                 />

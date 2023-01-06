@@ -28,7 +28,6 @@ export default function Search({setLoading} : {setLoading: Dispatch<SetStateActi
       }
       timeoutId = setTimeout(handleLookup, 350)
 
-
     }, [searchTerm])
 
     const expandSecondary = async (address: string, term: string) => {

@@ -54,13 +54,12 @@ export default function NotificationIcon() {
     }
 
 
-
     if (status === "loading") {
         return (
             <Image 
                 src={`/images/icons/bell.png`}
-                width={22}
-                height={22}
+                width={23}
+                height={26}
                 alt="notifications"
              />
         )
@@ -82,16 +81,16 @@ export default function NotificationIcon() {
             <>
             {data.activeNotifications.length > 0 && <Image 
                 src={`/images/icons/bell-notify.png`}
-                width={22}
-                height={22}
+                width={23}
+                height={26}
                 alt="notifications"
                 onClick={handleNotifications}
                 className={styles.bellImg}
              />}
             {data.activeNotifications.length === 0 && <Image 
                 src={`/images/icons/bell.png`}
-                width={22}
-                height={22}
+                width={23}
+                height={26}
                 alt="notifications"
                 onClick={handleNotifications}
                 className={styles.bellImg}
@@ -144,8 +143,8 @@ export default function NotificationIcon() {
             <>
                 <Image 
                     src={"/images/icons/bell.png"}
-                    width={22}
-                    height={22}
+                    width={23}
+                    height={26}
                     alt="notifications"
                     onClick={() => setShowNotifications(true)}
                     className={styles.bellImg}
@@ -166,8 +165,8 @@ export default function NotificationIcon() {
      
         <Image 
             src={`/images/icons/bell.png`}
-            width={22}
-            height={22}
+            width={23}
+            height={26}
             alt="notifications"
             onClick={() => setShowNotifications(true)}
             className={styles.bellImg}

@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
     try {
         const session = await unstable_getServerSession(req, res, authOptions)
-
         
         if (session?.user?.email) {
 

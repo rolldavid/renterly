@@ -34,7 +34,6 @@ export default function Confirmation() {
             </Link>{' '}
             to go back to the homepage and search for your property - you&apos;re review should still be loaded.
           </p>
-          
         </>
       )}
     </div>

@@ -1,14 +1,16 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Dispatch, SetStateAction, SyntheticEvent } from "react"
+import { AuthProps } from "../types"
 import NavLinks from "./NavLinks"
 import styles from "./NavModal.module.css"
 
-export default function NavModal({setShowModal}: {setShowModal: Dispatch<SetStateAction<boolean>> }) {
+export default function NavModal({status, userId, session, setShowModal}: AuthProps) {
     const [isMounted, setIsMounted] = useState(false)
     const handleModalClose = () => {
-        setShowModal(false)
+        if (setShowModal) {
+            setShowModal(false)
+        }
     }
 
     useEffect(() => {
@@ -26,7 +28,7 @@ export default function NavModal({setShowModal}: {setShowModal: Dispatch<SetStat
 
     return (
         <div className={styles.container}>
-           <NavLinks />
+           <NavLinks status={status} userId={userId} session={session}/>
         </div>
     )
 }

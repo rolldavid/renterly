@@ -8,6 +8,7 @@ export default function ({reviews, stars} : {reviews: Review[], stars: StarProps
         
         return (
             <div className={styles.container}>
+                <p className={styles.reviewsTitle}>Your reviews</p>
                 { reviews.map((review, index) => {
                     const revStar = stars.filter(function(item){
                         return item.reviewId === review.id
