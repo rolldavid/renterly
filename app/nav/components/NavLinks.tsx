@@ -1,12 +1,13 @@
 "use client"
 import Link from "next/link";
 import Image from "next/image";
+import { AuthProps } from "../types";
 import styles from "./NavLinks.module.css"
 
 import AuthButton from "./AuthButton";
 import NotificationIcon from "app/notifications/NotificationIcon";
 
-export default function NavLinks() {
+export default function NavLinks({status, userId, session}: AuthProps) {
    
     return (
         <nav className={styles.container}>
@@ -19,8 +20,8 @@ export default function NavLinks() {
                 <Link href={"/"} className={styles.navItem}>
                     <Image 
                         src={"/images/icons/search.png"}
-                        width={22}
-                        height={22}
+                        width={23}
+                        height={26}
                         alt="notifications"
                     />
                 </Link>
@@ -29,7 +30,7 @@ export default function NavLinks() {
                     <NotificationIcon />
                 </div>
                 <div className={styles.navItem}>
-                    <AuthButton />
+                    <AuthButton status={status} userId={userId} session={session}/>
                 </div>
             </div>
         </nav>

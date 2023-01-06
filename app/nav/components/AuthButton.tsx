@@ -3,26 +3,21 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useQuery } from "@tanstack/react-query";
-import { signIn } from "next-auth/react"
+import { AuthProps } from "../types"
 import AuthContainer from "../../auth/components/AuthContainer"
-import { getUserSession } from "@/lib/db-utils"
 import styles from "./AuthButton.module.css"
 
-export default function AuthButton() {
+
+export default function AuthButton({status, userId, session}: AuthProps) {
     const [showAuth, setShowAuth] = useState(false)
 
     const ref = useRef<HTMLInputElement>(null)
 
-    const {data, status} = useQuery(["session"], () => {
-        return getUserSession()
-    })
-
     useEffect(() => {
-        if (status === "success" && data.userId) {
+        if (status === "success" && userId) {
             setShowAuth(false)
         }
-    }, [data])
+    }, [session])
 
     const handleModalClose = (e: MouseEvent) => {
         e.preventDefault()
@@ -55,9 +50,9 @@ export default function AuthButton() {
         )
     }
 
-    if (status === "success" && data.session) {
+    if (status === "success" && session && userId) {
         return (
-            <Link href={`/account/${data.userId}`} className={styles.profileIcon}>
+            <Link href={`/account/${userId}`} className={styles.profileIcon}>
                 <Image src={`/images/nav/profile.png`} width={22} height={22} alt="profile"/>
             </Link>
         ) 
