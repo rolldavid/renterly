@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useQuery } from "@tanstack/react-query"
 import { Review, Star, Property } from "@prisma/client"
 
@@ -10,6 +11,7 @@ import ReviewItem from "./ReviewItem"
 import Spinner from "@/lib/utils/Spinner"
 import styles from "./Reviews.module.css"
 import Link from "next/link"
+import Bookmark from "./Bookmark"
 
 export default function Reviews({ property }: { property: PropertyProps }) {
     
@@ -30,13 +32,15 @@ export default function Reviews({ property }: { property: PropertyProps }) {
         if (data.reviews && data.reviews.length > 0) {
             return (
                 <section className={styles.container}>
-                    <Link 
-                        className={styles.reviewButton}
-                        href={`/review/${property.slug}`}
-                    >
-                        {data.postedReview ? "Edit Review" : "Add a Review"}
-                    </Link>
-        
+                    <div className={styles.buttonContainer}>
+                        <Link 
+                            className={styles.reviewButton}
+                            href={`/review/${property.slug}`}
+                        >
+                            {data.postedReview ? "Edit Review" : "Add a Review"}
+                        </Link>
+                        <Bookmark propertyId={property.id}/>
+                    </div>
                     <div className={styles.revItemContainer}>
                         { data.reviews.map((review: Review, index: number) => {
                             return <ReviewItem review={review} key={index} user={data.users[index]}/>
@@ -47,6 +51,17 @@ export default function Reviews({ property }: { property: PropertyProps }) {
         } 
 
     return (
+        <>
+          
+             <div className={styles.buttonContainer}>
+                    <Bookmark propertyId={property.id}/>
+            </div>
+               
+            <div className={styles.firstContainer}>
+                <Image src="/images/icons/wave.png" width="30" height="30" alt="hand waving" className={styles.firstIcon}/>
+                <p className={styles.firstTitle}>You&apos;re the first one here!</p>
+            </div>
+            
             <ReviewInput 
                 property={property} 
                 editingReview={false}
@@ -55,6 +70,7 @@ export default function Reviews({ property }: { property: PropertyProps }) {
                 reviewId={null}
                 starId={""}
             /> 
+        </>
     )
     
     }

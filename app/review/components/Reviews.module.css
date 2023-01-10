@@ -6,6 +6,15 @@
     margin: 0px 0px 100px 0px;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    margin: 0px 0px 0px 0px;
+    gap: 10px;
+}
+
 .revItemContainer {
     display: flex;
     flex-direction: column;
@@ -13,20 +22,37 @@
     margin: 50px 0px 0px 0px;
 }
 
+.firstContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 35px 0px 20px 0px;
+}
+
+.firstIcon {
+    opacity: .7;
+    margin: 0px 10px 0px 0px;
+}
+
+.firstTitle {
+    color: var(--darkestgrey);
+    font-weight: 500;
+    font-style: italic;
+}
 
 .reviewButton {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
-    background-color: var(--lighttreegreen);
+    border: 1px solid var(--darkgrey);
+    background-color: var(--darkgrey);
     border-radius: 25px;
     font-size: 1rem;
     font-family: "Montserrat";
     font-weight: 400;
     color: white;
-    width: 150px;
-    margin-top: 15px;
-    padding: 10px 15px 10px 15px;
+    width: 125px;
+    padding: 7px 9px 7px 9px;
     cursor: pointer;
 }
+

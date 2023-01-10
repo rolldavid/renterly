@@ -9,18 +9,18 @@ datasource db {
 
 model User {
   id                    Int                    @id @default(autoincrement())
+  image                 String?
+  email                 String?                @unique
+  displayName           String?                @unique
+  citystate             String?
   name                  String?
+  city                  String?
+  state                 String?
   firstName             String?
   lastName              String?
   fullName              String?
-  city                  String?
-  state                 String?
-  citystate             String?
-  displayName           String?                @unique
-  email                 String?                @unique
   emailVerified         DateTime?
   showReviews           Boolean                @default(true)
-  image                 String?
   accounts              Account[]
   sessions              Session[]
   role                  Role                   @default(USER)
@@ -137,7 +137,6 @@ model BookmarksByUser {
 
   @@id([propertyId, userId])
 }
-
 
 model Post {
   id         Int      @id @default(autoincrement())

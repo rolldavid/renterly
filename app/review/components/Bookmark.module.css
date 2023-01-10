@@ -1,0 +1,75 @@
+.followButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid var(--darkergrey);
+    border-radius: 25px;
+    font-size: 1rem;
+    font-family: "Montserrat";
+    font-weight: 400;
+    color: var(--darkergrey);
+    width: 120px;
+    padding: 7px 9px 7px 9px;
+    cursor: pointer;
+}
+
+.followImg {
+    opacity: .6;
+    margin: 0px 2px 0px 2px;
+}
+
+.dotWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+}
+
+.dotFlashing {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: var(--darkgrey);
+    color: var(--darkgrey);
+    animation: dotFlashing 1s infinite linear alternate;
+    animation-delay: 0.5s;
+  }
+  .dotFlashing::before, .dotFlashing::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+  .dotFlashing::before {
+    left: -10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: var(--darkgrey);
+    color: var(--darkgrey);
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 0s;
+  }
+  .dotFlashing::after {
+    left: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: var(--darkgrey);
+    color: var(--darkgrey);
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: .1s;
+  }
+
+  @keyframes dotFlashing {
+    0% {
+      background-color: var(--darkergrey);
+    }
+    50%, 100% {
+      background-color: var(--midgrey);
+    }
+  }

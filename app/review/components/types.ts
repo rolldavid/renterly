@@ -39,7 +39,7 @@ export interface UpdateProps {
     starId: string;
 }
 
-//passing property details to review
+// passing property details to review
 export interface PropertyProps {
     id: string;
     unit: string | null;
@@ -49,8 +49,14 @@ export interface PropertyProps {
     slug: string;
 }
 
-//passing stars to individual reviews
+// passing stars to individual reviews
 export interface StarProps {
     userId: number;
     stars: number;
+}
+
+// mutating bookmark
+export interface BookmarkProps {
+    propertyId: string
+    type: "add" | "remove"
 }

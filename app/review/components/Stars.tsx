@@ -34,8 +34,8 @@ export default function Stars({ propertyId }: {propertyId: string}) {
                         return (         
                             <Image 
                                     src={"/images/review/fullStar.png"} 
-                                    width={30} 
-                                    height={30} 
+                                    width={35} 
+                                    height={35} 
                                     alt="rating star" 
                                     className={styles.starRatingImg}
                                     key={index}
@@ -47,8 +47,8 @@ export default function Stars({ propertyId }: {propertyId: string}) {
                     return (         
                         <Image 
                                 src={"/images/review/halfStar.png"} 
-                                width={30} 
-                                height={30} 
+                                width={35} 
+                                height={35} 
                                 alt="rating star" 
                                 className={styles.starRatingImg}
                                 key={index}
@@ -58,8 +58,8 @@ export default function Stars({ propertyId }: {propertyId: string}) {
                 return (         
                     <Image 
                             src={"/images/review/emptyStar.png"} 
-                            width={30} 
-                            height={30} 
+                            width={35} 
+                            height={35} 
                             alt="rating star" 
                             className={styles.starRatingImg}
                             key={index}

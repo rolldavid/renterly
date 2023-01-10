@@ -8,6 +8,7 @@
   align-items: center;
   background-color: var(--color-bg-nav);
   z-index: 10;
+  
 }
 
 .main {
@@ -36,7 +37,6 @@
 }
 
 /* Utilities */
-
 .flexColumn {
   display: flex;
   flex-direction: column;

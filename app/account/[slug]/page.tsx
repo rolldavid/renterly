@@ -18,7 +18,7 @@ export default function Page({params: {slug}}: {params: { slug: string }}) {
       return <Spinner />
   }
 
-  if (status === "success" && data) { 
+  if (status === "success" && data.user) { 
 
       return (
             <div className={styles.container}>
