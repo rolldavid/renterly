@@ -18,7 +18,7 @@ export default function AccountDetails({user, accountOwner} : { user: ProfileUse
         });
     }
 
-    if (!accountOwner) {
+    if (!accountOwner && user.image) {
         return (
             <div className={styles.container}>
                 <div className={styles.imageContainer}>
@@ -43,7 +43,7 @@ export default function AccountDetails({user, accountOwner} : { user: ProfileUse
         )
     }
 
-    if (accountOwner && user.userId) {
+    if (accountOwner && user.userId && user.image) {
     return (
         <div className={styles.container}>
             <div className={styles.imageContainer}>

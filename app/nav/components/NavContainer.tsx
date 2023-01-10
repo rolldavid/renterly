@@ -20,7 +20,6 @@ export default function NavContainer() {
         return getUserSession()
     })
 
-
     if (status === "loading") {
         return (
             <>

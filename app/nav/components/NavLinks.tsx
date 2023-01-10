@@ -25,6 +25,14 @@ export default function NavLinks({status, userId, session}: AuthProps) {
                         alt="notifications"
                     />
                 </Link>
+                <Link href={"/"} className={styles.navItem}>
+                    <Image 
+                        src={"/images/icons/house.png"}
+                        width={23}
+                        height={26}
+                        alt="notifications"
+                    />
+                </Link>
                 
                 <div className={styles.navItem}>
                     <NotificationIcon />
