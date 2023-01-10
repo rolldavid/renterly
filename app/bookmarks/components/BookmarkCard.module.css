@@ -1,7 +1,7 @@
 
 .card {
     display: flex;
-    flex-basis: 300px;
+    flex-basis: 350px;
     justify-content: space-between;
     align-items: flex-start;
     height: 100%;

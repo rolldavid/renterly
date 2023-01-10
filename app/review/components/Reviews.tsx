@@ -58,7 +58,7 @@ export default function Reviews({ property }: { property: PropertyProps }) {
             </div>
                
             <div className={styles.firstContainer}>
-                <Image src="/images/icons/wave.png" width="30" height="30" alt="hand waving" className={styles.firstIcon}/>
+                <Image src="/images/icons/hi.png" width="30" height="30" alt="hand waving" className={styles.firstIcon}/>
                 <p className={styles.firstTitle}>You&apos;re the first one here!</p>
             </div>
             
