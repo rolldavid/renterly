@@ -2,6 +2,32 @@ import { reviewProps, UpdateProps } from "app/review/components/types";
 import { ProfileProps } from "app/account/types";
 
 
+// CREATE
+
+export async function createReview({comment, stars, userId, propertyId, street, citystate, propertySlug, starId, reviewId, updating}: reviewProps) {
+    const res = await fetch("/api/create-review", {
+        method: "POST",
+        body: JSON.stringify({
+            comment,
+            stars,
+            userId,
+            propertyId,
+            street,
+            citystate,
+            propertySlug,
+            starId,
+            reviewId,
+            updating
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    return data;
+}
+
+
 // READ
 
 export async function getNotifications() {
@@ -124,6 +150,12 @@ export async function getUserSession() {
     return data;
 }
 
+export async function getBookmarks() {
+    const res = await fetch("/api/get-bookmarks")
+    const data = await res.json()
+    return data;
+}
+
 // UPDATE
 
 export async function updateProfile({displayName, city, state, image, userId}: ProfileProps) {
@@ -169,30 +201,6 @@ export async function updateNotifications() {
     return data;
 }
 
-// CREATE
-
-export async function createReview({comment, stars, userId, propertyId, street, citystate, propertySlug, starId, reviewId, updating}: reviewProps) {
-    const res = await fetch("/api/create-review", {
-        method: "POST",
-        body: JSON.stringify({
-            comment,
-            stars,
-            userId,
-            propertyId,
-            street,
-            citystate,
-            propertySlug,
-            starId,
-            reviewId,
-            updating
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    const data = await res.json();
-    return data;
-}
 
 
 // DELETE
