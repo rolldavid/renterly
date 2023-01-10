@@ -25,7 +25,7 @@ export default function NavLinks({status, userId, session}: AuthProps) {
                         alt="notifications"
                     />
                 </Link>
-                <Link href={"/"} className={styles.navItem}>
+                <Link href={"/bookmarks"} className={styles.navItem}>
                     <Image 
                         src={"/images/icons/house.png"}
                         width={23}

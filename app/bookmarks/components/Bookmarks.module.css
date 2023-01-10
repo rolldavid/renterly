@@ -1,11 +1,20 @@
 .container {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    min-height: 85vh;
     height: 100%;
     width: 100%;
     margin: 25px 0px 25px 0px;
   }
+
+  .innerContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 850px;
+    height: 100%;
+    margin: 40px 0px 40px 0px;
+    
+  }
+

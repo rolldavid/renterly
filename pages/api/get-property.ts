@@ -66,8 +66,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             if (user) {
                 res.status(201).json({reviews: propertyReviews.reviews, users, postedReview: true})
+                return
             } else {
                 res.status(201).json({reviews: propertyReviews.reviews, users, postedReview: false})
+                return
             }
             
         } else {

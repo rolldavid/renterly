@@ -1,0 +1,43 @@
+
+.card {
+    display: flex;
+    flex-basis: 300px;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+    padding: 15px;
+    border: 2px solid var(--greygrey);
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: var(--white);
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    
+}
+
+
+.street {
+    font-weight: 600;
+    margin: 0px 0px 5px 0px;
+}
+
+.citystate {
+    margin: 0;
+}
+
+.close {
+    position: relative;
+    font-weight: 600;
+    color: var(--darkgrey);
+    margin-top: -5px;
+    cursor: pointer;
+
+}
+.date {
+    color: var(--darkergrey);
+}
