@@ -16,6 +16,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 stars: true
             }
         })
+
+        if (property?.stars) {
+                res.status(201).json({stars: property.stars})
+            return
+        }
         res.status(201).json({stars: property?.stars})
     } catch (err) {
         throw new Error("Did not manage to connect")

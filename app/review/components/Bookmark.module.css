@@ -33,10 +33,10 @@
     width: 8px;
     height: 8px;
     border-radius: 5px;
-    background-color: var(--darkgrey);
+    background-color: var(--lightgrey);
     color: var(--darkgrey);
-    animation: dotFlashing 1s infinite linear alternate;
-    animation-delay: 0.5s;
+    animation: dotFlashing 1s infinite linear;
+    animation-delay: .2s;
   }
   .dotFlashing::before, .dotFlashing::after {
     content: "";
@@ -49,9 +49,9 @@
     width: 8px;
     height: 8px;
     border-radius: 5px;
-    background-color: var(--darkgrey);
+    background-color: var(--lightgrey);
     color: var(--darkgrey);
-    animation: dotFlashing 1s infinite alternate;
+    animation: dotFlashing 1s infinite;
     animation-delay: 0s;
   }
   .dotFlashing::after {
@@ -59,17 +59,18 @@
     width: 8px;
     height: 8px;
     border-radius: 5px;
-    background-color: var(--darkgrey);
+    background-color: var(--lightgrey);
     color: var(--darkgrey);
-    animation: dotFlashing 1s infinite alternate;
-    animation-delay: .1s;
+    animation: dotFlashing .5s infinite;
+    animation-delay: .3s;
   }
 
   @keyframes dotFlashing {
     0% {
-      background-color: var(--darkergrey);
+      background-color: var(--darkgrey);
     }
     50%, 100% {
       background-color: var(--midgrey);
     }
   }
+
