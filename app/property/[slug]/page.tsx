@@ -11,6 +11,7 @@ export default async function Page({params: {slug}}: {params: { slug: string }})
         where: {slug: slug},
     })
     
+    console.log(property, "========================================")
     if (property) {
        
         const propertyDetails = {

@@ -127,8 +127,18 @@ export default function NotificationIcon() {
                                 </div>}
                                 {data.activeNotifications.length === 0 && data.completeNotifications.length === 0 && 
                                 <div className={styles.notificationContainer}>
-                                    <p className={styles.recentNotification}>No notifications</p>
-                                </div>}
+                                    <div className={styles.welcomeNotification}>
+                                        <h4 className={styles.welcomeTitle}>Welcome!</h4>
+                                        <p className={styles.welcomeText}> You&apos;ll get notified here about changes to properties you&apos;ve reviewed.</p>
+                                    </div>
+                                    <div className={styles.welcomeImgContainer}>
+                                        <Image 
+                                        className={styles.welcomeImg} 
+                                        src="/images/icons/celebrate.png" 
+                                        width={50}
+                                        height={50}
+                                        alt="celebrate icon"/>
+                                </div></div>}
                             </div>
                       
                         </div>

@@ -44,8 +44,8 @@ export default function AuthButton({status, userId, session}: AuthProps) {
 
     if (status === "loading") {
         return (
-            <div className={styles.dotWrap}>
-                <div className={styles.dotFlashing}></div>
+            <div className={styles.profileIcon}>
+                <Image src={`/images/nav/profile.png`} width={22} height={22} alt="profile"/>
             </div>
         )
     }
