@@ -8,6 +8,16 @@
     width: 100%;
 }
 
+.placeholderContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    opacity: .5;
+}
 
 .reviewsTitle {
     color: var(--darkestgrey);
@@ -16,4 +26,14 @@
     margin-left: 20px;
     margin-bottom: 20px;
     opacity: .8;
+    cursor: default;
+}
+
+.placeholderTitle {
+    color: var(--darkestgrey);
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    cursor: default;
 }

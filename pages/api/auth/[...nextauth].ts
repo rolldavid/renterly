@@ -7,7 +7,6 @@ import { prisma } from "@/lib/prisma";
 import type { NextAuthOptions } from 'next-auth'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [

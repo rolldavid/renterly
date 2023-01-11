@@ -17,28 +17,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     orderBy: {
                         createdAt: "desc",
                     },
-                    include: {
-                        stars: {
-                            where: {
-                                userId: userId
-                            }
-                        }
-                    }
-                }
+                },
+                stars: true
             },
            })
+    
         
-
         const session = await unstable_getServerSession(req, res, authOptions)
         const accountOwner = session?.user?.email === user?.email ? true : false
-
+        
         if (user) {
-            const userStars = user.reviews.map(review => {
-                return {
-                    stars: review.stars,
-                    reviewId: review.id
-                }
-            })
 
             if (!accountOwner) {
             res.status(201).json({user: {
@@ -46,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 citystate: user.citystate,
                 image: user.image,
             }, reviews: user.reviews,
-                stars: userStars, 
+                stars: user.stars, 
                 accountOwner: false})
             } else {
                 res.status(201).json({user:{
@@ -55,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     image: user.image,
                     userId: user.id
                 }, reviews: user.reviews, 
-                    stars: userStars, 
+                    stars: user.stars, 
                     accountOwner: true})
             }
         } 

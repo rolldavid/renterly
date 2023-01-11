@@ -4,7 +4,6 @@ export interface EditProfileProps {
     displayName: string;
     city: string;
     state: string;
-
 }
 
 export interface ProfileProps {

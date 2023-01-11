@@ -56,7 +56,6 @@ model Review {
   userId         Int
   property       Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   propertyId     String
-  stars          Star[]
   comment        String
   street         String
   citystate      String
@@ -68,6 +67,7 @@ model Review {
   safetyRating   String?
   moveoutRating  String?
   votes          Int?
+  stars          Star?
   response       Review?   @relation("ReviewResponse", fields: [responseId], references: [id])
   responseId     Int?      @unique
   originalReview Review?   @relation("ReviewResponse")
@@ -80,8 +80,8 @@ model Star {
   userId     Int?
   property   Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   propertyId String?
-  review     Review?   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
-  reviewId   Int?
+  review     Review    @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  reviewId   Int       @unique
   stars      Int
 }
 
