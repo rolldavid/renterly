@@ -8,6 +8,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getNotifications, updateNotifications } from "@/lib/db-utils"
 import { NotificationProps } from "./types";
 import Notification from "./Notification";
+import welcome from "./assets/celebrate.png"
 import styles from "./NotificationIcon.module.css"
 
 export default function NotificationIcon() {
@@ -129,12 +130,12 @@ export default function NotificationIcon() {
                                 <div className={styles.notificationContainer}>
                                     <div className={styles.welcomeNotification}>
                                         <h4 className={styles.welcomeTitle}>Welcome!</h4>
-                                        <p className={styles.welcomeText}> You&apos;ll get notified here about changes to properties you&apos;ve reviewed.</p>
+                                        <p className={styles.welcomeText}> Review or follow a property to get activity notifications.</p>
                                     </div>
                                     <div className={styles.welcomeImgContainer}>
                                         <Image 
                                         className={styles.welcomeImg} 
-                                        src="/images/icons/celebrate.png" 
+                                        src={welcome}
                                         width={50}
                                         height={50}
                                         alt="celebrate icon"/>

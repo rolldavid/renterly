@@ -7,6 +7,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { signIn } from "next-auth/react"
 import { LoginProps } from "../types";
+import google from "../assets/google.png"
+import wand from "../assets/wand.png"
+
 import styles from "./AuthContainer.module.css"
 
 const schema = yup
@@ -64,7 +67,7 @@ export default function Login({ fromReview }:{ fromReview: boolean }) {
             </div>}
             <div className={styles.googleContainer}>
                 <div onClick={handleGoogle} className={styles.googleButton}>
-                    <Image src={"/images/auth/google.png"} width={25} height={25} alt="Google icon"/>
+                    <Image src={google} width={25} height={25} alt="Google icon"/>
                     <p className={styles.googleText}>Continue with Google</p>
                 </div>
             </div>
@@ -91,7 +94,7 @@ export default function Login({ fromReview }:{ fromReview: boolean }) {
                         className={styles.emailNote}
                     >
                         
-                        <p className={styles.noteText}> <Image src={"/images/auth/wand.png"} width={15} height={15} alt="magic wand" className={styles.noteImg}/> We'll email you a magic link. No password required.</p>
+                        <p className={styles.noteText}> <Image src={wand} width={15} height={15} alt="magic wand" className={styles.noteImg}/> We'll email you a magic link. No password required.</p>
                     </div>
                 </form>
             </div>
@@ -101,7 +104,7 @@ export default function Login({ fromReview }:{ fromReview: boolean }) {
         }
 
         {submitted && <section className={styles.checkContainer}>
-        <Image src={"/images/auth/wand.png"} width={30} height={30} alt="magic wand" className={styles.noteImg}/>
+        <Image src={wand} width={30} height={30} alt="magic wand" className={styles.noteImg}/>
             <p className={styles.checkText}>We've emailed you a magic link!</p>
             </section>}
         

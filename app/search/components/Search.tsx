@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useState, useRef, useEffect, Dispatch, SetStateAction } from "react";
 import { SearchProps } from "../types";
-import styles from "./Search.module.css"
+import React, { useState, useRef, useEffect, Dispatch, SetStateAction } from "react";
 import SearchItem from './SearchItem'
+import styles from "./Search.module.css"
 
 let timeoutId: ReturnType<typeof setTimeout>;
 

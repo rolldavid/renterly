@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { AuthProps } from "../types"
 import AuthContainer from "../../auth/components/AuthContainer"
+import profile from "../assets/profile.png"
 import styles from "./AuthButton.module.css"
 
 
@@ -45,7 +46,7 @@ export default function AuthButton({status, userId, session}: AuthProps) {
     if (status === "loading") {
         return (
             <div className={styles.profileIcon}>
-                <Image src={`/images/nav/profile.png`} width={22} height={22} alt="profile"/>
+                <Image src={profile} width={22} height={22} alt="profile"/>
             </div>
         )
     }
@@ -53,14 +54,14 @@ export default function AuthButton({status, userId, session}: AuthProps) {
     if (status === "success" && session && userId) {
         return (
             <Link href={`/account/${userId}`} className={styles.profileIcon}>
-                <Image src={`/images/nav/profile.png`} width={22} height={22} alt="profile"/>
+                <Image src={profile} width={22} height={22} alt="profile"/>
             </Link>
         ) 
     } else {
         return (
             <>
                 <div className={styles.loginButton} onClick={() => setShowAuth(true)}>
-                <Image src={`/images/nav/profile.png`} width={22} height={22} alt="profile"/>
+                <Image src={profile} width={22} height={22} alt="profile"/>
                 </div>
 
                 {showAuth &&
