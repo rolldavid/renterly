@@ -3,8 +3,9 @@
 import { useState } from "react"
 import Image from "next/image"
 import Search from "./search/components/Search"
-import styles from "@/styles/Search.module.css"
 import Spinner from "@/lib/utils/Spinner"
+import house from "./search/assets/house.png"
+import styles from "@/styles/Search.module.css"
 
 export default function Page() {
     const [loading, setLoading] = useState(false)
@@ -17,7 +18,7 @@ export default function Page() {
                             <Search setLoading={setLoading}/>
                         </div>
                         <div className={styles.landingImg}>
-                            <Image src={"/images/search/house.png"} width={240} height={263} alt="illustration of a house"/>
+                            <Image src={house} width={240} height={263} alt="illustration of a house"/>
                         </div>
                     </section>
                 </section>}
