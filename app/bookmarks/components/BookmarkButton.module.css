@@ -1,3 +1,28 @@
+.authModuleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(100, 100, 100, .5);
+  z-index: 10;
+}
+
+.authModule {
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
+top: 10vh;
+width: 500px;
+height: 500px;
+background-color: none;
+z-index: 30;
+}
+
 .followButton {
     display: flex;
     align-items: center;
@@ -19,13 +44,18 @@
     margin: 0px 2px 0px 2px;
 }
 
+.followingImg {
+  opacity: .6;
+  margin: 0px 0px 0px 0px;
+}
+
 .dotWrap {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 10px 5.5px 10px;
 }
 
 .dotFlashing {

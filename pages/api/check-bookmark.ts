@@ -19,18 +19,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         }
                     }
                 }
-            
             })
           
             if (user?.bookmarks && user.bookmarks.length > 0) {
-                res.status(201).json({isBookmarked: true})
+                res.status(201).json({isBookmarked: true, session: true})
                 return
             } else {
-                res.status(201).json({isBookmarked: false})
+                res.status(201).json({isBookmarked: false, session: true})
                 return
-            }
+            } 
         }
-        res.status(401).json({status: "unauthorized"})
+        res.status(401).json({isBookmarked: false, session: false})
     } catch (err) {
         throw new Error("Did not manage to connect")
     }

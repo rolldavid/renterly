@@ -11,7 +11,7 @@ import ReviewItem from "./ReviewItem"
 import Spinner from "@/lib/utils/Spinner"
 import styles from "./Reviews.module.css"
 import Link from "next/link"
-import Bookmark from "./Bookmark"
+import Bookmark from "../../bookmarks/components/BookmarkButton"
 
 export default function Reviews({ property }: { property: PropertyProps }) {
     

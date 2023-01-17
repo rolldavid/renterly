@@ -1,12 +1,15 @@
 "use client"
 
-import { BookmarkProps } from "./types"
+import { BookmarkProps } from "../types"
+import { useEffect, useState, useRef, SyntheticEvent } from "react"
 import Image from "next/image"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { checkBookmark } from "@/lib/db-utils"
-import { SyntheticEvent, useState, useEffect } from "react"
+import AuthContainer from "../../auth/components/AuthContainer"
+import plus from "../assets/plus.png"
+import check from "../assets/check.png"
 
-import styles from "./Bookmark.module.css"
+import styles from "./BookmarkButton.module.css"
 
 export default function Bookmark({ propertyId }: { propertyId: string }) {
     
@@ -14,11 +17,55 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
         return checkBookmark(propertyId)
     })
 
+    const [showAuth, setShowAuth] = useState(false)
+
+    const ref = useRef<HTMLInputElement>(null)
+
+    useEffect(() => {
+        if (status === "success" && data.session) {
+            setShowAuth(false)
+        }
+    }, [data])
+
+    const handleModalClose = (e: MouseEvent) => {
+        e.preventDefault()
+        if (e.target instanceof Element) {
+            if (ref.current?.classList[0] === e.target.classList[0]) {
+                setShowAuth(false)
+            }
+        }
+    }
+
+    useEffect(() => {
+        const element = ref.current
+        if (showAuth && element) {
+            element.addEventListener("click", e => handleModalClose(e))
+        }
+     
+        return () => {
+            if (element) {
+            element.removeEventListener("click", e => handleModalClose(e))
+            }
+        }
+    }, [showAuth])
+
     
 
     const queryClient = useQueryClient()
    
+    const handleBookmark = (mutateObj: BookmarkProps, e: SyntheticEvent) => {
+        e.preventDefault()
+        if (status === "success" && !data.session) {
+            setShowAuth(true)
+            return;
+        }
+
+        updateBookmark.mutate(mutateObj)
+
+    }
+
     const updateBookmark = useMutation(async ({propertyId, type}: BookmarkProps) => {
+
         return fetch("/api/update-bookmark", {
             method: "POST",
             body: JSON.stringify({
@@ -48,6 +95,8 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
         )
     }
     
+
+
     if (status === "success" && data.isBookmarked) {
         return (
             <>
@@ -59,7 +108,12 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
                 <div 
                 className={styles.followButton}
                 onClick={() => updateBookmark.mutate({propertyId, type: "remove"})}
-            > Following
+                > <Image 
+                    src={check}
+                    width="12" 
+                    height="12" 
+                    alt="checkmark"
+                    className={styles.followingImg}/> Following
             </div>
             )}
             </>
@@ -78,10 +132,10 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
               
                  <div 
                 className={styles.followButton}
-                onClick={() => updateBookmark.mutate({propertyId, type: "add"})}
+                onClick={(e) => handleBookmark({propertyId, type: "add"}, e)}
             >
                 <Image 
-                    src="/images/icons/plus.png" 
+                    src={plus}
                     width="12" 
                     height="12" 
                     alt="plus sign"
@@ -89,6 +143,13 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
             </div>
             
             )}
+            {showAuth &&
+                    <div className={styles.authModuleContainer} ref={ref}>
+                        <div className={styles.authModule}>
+                            <AuthContainer fromReview={false}/>
+                        </div>
+                    </div>
+                }
         </>
     )
     

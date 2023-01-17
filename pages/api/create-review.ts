@@ -7,6 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const starInt = parseInt(stars)
 
+
         if (!updating) {
             try {
                 const prop = await prisma.property.update({
@@ -48,10 +49,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         
             const property = await prisma.property.findUnique({where: {id: propertyId}, include: {reviews: true}},)
 
-
             if (property && property.reviews.length > 1) {
+             
     
-
                 const propertyReviewers = property.reviews.filter(review => review.userId !== userId)
 
                 const receivers = propertyReviewers.map(review => {
@@ -60,6 +60,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 })
 
+
+                if (receivers.length > 0) {
                 const notification = await prisma.notificationActive.create({
                     data: {
                         receivers: {
@@ -79,6 +81,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                        
                     }
                 })
+                
+                }
             }
                 
                 res.status(201).json({message: "success"})
@@ -89,6 +93,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
         } else {
           
+           
             try {
                 const star = await prisma.star.update({
                     where: {
@@ -110,6 +115,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     
                  })
 
+        
+
                  const property = await prisma.property.findUnique({
                     where: {
                         id: propertyId
@@ -122,6 +129,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             
                 if (property?.reviews && property.reviews.length > 1) {
                    
+                   
                     const propertyReviewers = property.reviews.filter(review => review.userId !== userId)
                     const receivers = propertyReviewers.map(review => {
                         return {
@@ -129,7 +137,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         }
                     })
 
-                    const checkNotifications = await prisma.notificationActive.findMany()
+                    if (receivers.length > 0) {
                     const notification = await prisma.notificationActive.create({
                         data: {
                             receivers: {
@@ -150,7 +158,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                            
                         }
                     })
+              
+                    }
                 }
+
 
             
                  res.status(201).json({message: "success"})

@@ -12,6 +12,21 @@
     background-color: var(--white);
 }
 
+.placeholderCard {
+    display: flex;
+    flex-basis: 350px;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+    padding: 15px;
+    border: 2px solid var(--greygrey);
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: var(--white);
+    cursor: default;
+    opacity: .3;
+}
+
 .cardDetails {
     display: flex;
     flex-direction: column;
@@ -35,8 +50,16 @@
     color: var(--darkgrey);
     margin-top: -5px;
     cursor: pointer;
-
 }
+
+.placeholderClose {
+    position: relative;
+    font-weight: 600;
+    color: var(--darkgrey);
+    margin-top: -5px;
+    cursor: default;
+}
+
 .date {
     color: var(--darkergrey);
 }

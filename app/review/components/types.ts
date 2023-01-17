@@ -54,9 +54,3 @@ export interface StarProps {
     userId: number;
     stars: number;
 }
-
-// mutating bookmark
-export interface BookmarkProps {
-    propertyId: string
-    type: "add" | "remove"
-}
