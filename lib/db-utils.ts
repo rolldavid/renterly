@@ -204,3 +204,19 @@ export async function updateNotifications() {
 
 
 // DELETE
+
+export async function deleteReview(reviewId: number, userId: number) {
+    const res = await fetch("/api/delete-review", {
+        method: "POST",
+        body: JSON.stringify({
+            reviewId, 
+            userId
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    return data;
+
+}

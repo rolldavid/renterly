@@ -26,6 +26,19 @@
     z-index: 10;
 }
 
+.deleteModuleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(100, 100, 100, .5);
+    z-index: 10;
+}
+
 
 .preSubmitContainer {
     display: flex;
@@ -84,6 +97,23 @@
     height: 500px;
     background-color: none;
     z-index: 30;
+}
+
+.deleteModule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 25vh;
+    width: 500px;
+    height: 150px;
+    background-color: var(--white);
+    padding: 10px 0px 10px 0px;
+    border: none;
+    border-radius: 25px;
+    z-index: 30;
+    cursor: default;
 }
 
 .firstOneTitle {
@@ -168,10 +198,61 @@
     font-size: 1rem;
     font-family: "Montserrat";
     font-weight: 400;
-    color: white;
+    color: var(--white);
     width: 200px;
     margin-top: 15px;
     padding: 10px 15px 10px 15px;
     cursor: pointer;
 }
 
+.editButtonContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.confirmDelete {
+    display: flex;
+    gap: 10px;
+    
+}
+
+.deleteText {
+    padding: 0;
+    margin: 0;
+}
+
+.deleteButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--greygrey);
+    background-color: var(--white);
+    border-radius: 25px;
+    font-size: 1rem;
+    font-family: "Montserrat";
+    font-weight: 400;
+    color: var(--greygrey);
+    width: 200px;
+    margin-top: 15px;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    opacity: .95;
+}
+
+.confirmButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--lightred);
+    background-color: var(--white);
+    border-radius: 25px;
+    font-size: 1rem;
+    font-family: "Montserrat";
+    font-weight: 400;
+    color: var(--lightred);
+    width: 200px;
+    margin-top: 15px;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    opacity: .95;
+}
