@@ -12,3 +12,9 @@ export interface BookmarkList {
     isLoggedIn: boolean;
     bookmarks?: BookmarkItem[]
 }
+
+// mutating bookmark
+export interface BookmarkProps {
+    propertyId: string
+    type: "add" | "remove"
+}

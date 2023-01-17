@@ -1,11 +1,31 @@
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
     margin: 25px 0px 25px 0px;
   }
+
+  .placeholderContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    margin: 25px 0px 25px 0px;
+  }
+
+  .placeholderTitle {
+    color: var(--darkestgrey);
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin: 20px 0px 0px 0px;
+    cursor: default;
+}
 
   .innerContainer {
     display: flex;
@@ -17,3 +37,10 @@
     margin: 40px 0px 40px 0px;
   }
 
+.searchLink {
+  text-align: center;
+  border: 1px solid var(--lighttreegreen);
+  border-radius: 5px;
+  padding: 0px 5px 0px 5px;
+  color: var(--lighttreegreen);
+}

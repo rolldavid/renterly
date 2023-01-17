@@ -20,6 +20,9 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    maxAge: 365 * 24 * 60 * 60
+  },
   theme: {
     colorScheme: "light"},
   pages: {

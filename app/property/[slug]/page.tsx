@@ -12,14 +12,14 @@ export default async function Page({params: {slug}}: {params: { slug: string }})
     })
     
     if (property) {
-       
         const propertyDetails = {
             id: property.id,
             unit: property.unit,
             street: property.street,
             city: property.city,
             state: property.state,
-            slug: property.slug
+            slug: property.slug,
+            couch: property.couch
         }
 
         return (

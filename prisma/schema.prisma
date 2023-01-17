@@ -42,6 +42,7 @@ model Property {
   city                 String
   state                String
   zipcode              String
+  couch                Int
   reviews              Review[]
   stars                Star[]
   bookmarkedBy         BookmarksByUser[]
@@ -100,9 +101,9 @@ model NotificationActive {
   notification   Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
   notificationId Int
   receivers      User[]
+  sender         String?
   property       Property?    @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-
-  propertyId String?
+  propertyId     String?
 }
 
 model NotificationComplete {
@@ -111,9 +112,9 @@ model NotificationComplete {
   notification   Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
   notificationId Int
   receivers      User[]
+  sender         String?
   property       Property?    @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-
-  propertyId String?
+  propertyId     String?
 }
 
 model UserPreferences {

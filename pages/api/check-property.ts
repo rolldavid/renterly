@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
 
+const couch = (Math.floor(Math.random() * 3))
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
     const { property } = req.body;
@@ -15,7 +17,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             unit: property.unit,
             city: property.city,
             state: property.state,
-            zipcode: property.zipcode
+            zipcode: property.zipcode,
+            couch
         }
     })
   

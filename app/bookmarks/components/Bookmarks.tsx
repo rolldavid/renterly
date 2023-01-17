@@ -1,19 +1,21 @@
 "use client"
+import Link from "next/link"
 import { BookmarkList } from "../types"
 import BookmarkCard from "./BookmarkCard"
+import { placeholder } from "./Placeholder"
 import styles from "./Bookmarks.module.css"
 
 export default function Bookmarks({ isLoggedIn, bookmarks }: BookmarkList) {
 
-    if (bookmarks) {
+    if (bookmarks && bookmarks.length > 0 && isLoggedIn) {
         return (
             <div className={styles.container}>
-
+                <p className={styles.placeholderTitle}>Followed Properties</p>
                 <div className={styles.innerContainer}>
                     
                     {
                         bookmarks.map((bookmark, index) => {
-                            return <BookmarkCard bookmark={bookmark} key={index}/>
+                            return <BookmarkCard bookmark={bookmark} key={index} placeholder={false}/>
                         })
                     }
                 </div>
@@ -21,6 +23,23 @@ export default function Bookmarks({ isLoggedIn, bookmarks }: BookmarkList) {
         )
     }
 
-    return null;
+    
+        return (
+            <div className={styles.placeholderContainer}>
+                <p className={styles.placeholderTitle}>You&apos;re not following any properties yet</p>
+                <p className={styles.searchTitle}>
+                    <Link href="/" className={styles.searchLink}>
+                        Search
+                    </Link> for properties to follow</p>
+                <div className={styles.innerContainer}>
+                    {
+                        placeholder.map((bookmark, index) => {
+                            return <BookmarkCard bookmark={bookmark} key={index} placeholder={true}/>
+                        })
+                    }
+                </div>
+            </div>
+        )
+
    
 }

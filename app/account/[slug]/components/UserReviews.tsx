@@ -26,7 +26,7 @@ export default function ({reviews, stars} : {reviews: Review[], stars: Star[] })
 
         return (
             <div className={styles.container}>
-                <p className={styles.placeholderTitle}>You&apos;ll see all your reviews below</p>
+                <p className={styles.placeholderTitle}>You&apos;ll see your future reviews below</p>
                 { placeholderReviews.map((review, index) => {
                     const matchingReview = placeholderStars.filter(function(star){
                         return star.reviewId === review.id 
