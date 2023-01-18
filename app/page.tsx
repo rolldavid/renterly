@@ -18,7 +18,7 @@ export default function Page() {
                             <Search setLoading={setLoading}/>
                         </div>
                         <div className={styles.landingImg}>
-                            <Image src={house} width={240} height={263} alt="illustration of a house"/>
+                            <Image src={house} width={240} height={263} alt="illustration of a house" className={styles.landingImage}/>
                         </div>
                     </section>
                 </section>}
