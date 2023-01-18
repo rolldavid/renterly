@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AuthProps } from "../types";
-import styles from "./NavLinks.module.css"
-
 import AuthButton from "./AuthButton";
 import NotificationIcon from "app/notifications/NotificationIcon";
+import following from "../assets/house.png"
+import search from "../assets/search.png"
+import styles from "./NavLinks.module.css"
+
 
 export default function NavLinks({status, userId, session}: AuthProps) {
    
@@ -20,19 +22,23 @@ export default function NavLinks({status, userId, session}: AuthProps) {
             <div className={styles.linkContainer}>
                 <Link href={"/"} className={styles.navItem}>
                     <Image 
-                        src={"/images/icons/search.png"}
+                        src={search}
                         width={23}
                         height={26}
                         alt="notifications"
+                        className={styles.linkIcon}
                     />
+                    <h2 className={styles.navText}>Search</h2>
                 </Link>
                 <Link href={"/bookmarks"} className={styles.navItem}>
                     <Image 
-                        src={"/images/icons/house.png"}
+                        src={following}
                         width={23}
                         height={26}
                         alt="notifications"
+                        className={styles.linkIcon}
                     />
+                    <h2 className={styles.navText}>Following</h2>
                 </Link>
                 
                 <div className={styles.navItem}>

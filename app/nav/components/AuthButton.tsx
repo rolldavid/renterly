@@ -45,23 +45,26 @@ export default function AuthButton({status, userId, session}: AuthProps) {
 
     if (status === "loading") {
         return (
-            <div className={styles.profileIcon}>
-                <Image src={profile} width={22} height={22} alt="profile"/>
+            <div className={styles.authIconContainer}>
+                <Image src={profile} width={23} height={26} alt="profile"/>
+                <h2 className={styles.navText}>Profile</h2>
             </div>
         )
     }
 
     if (status === "success" && session && userId) {
         return (
-            <Link href={`/account/${userId}`} className={styles.profileIcon}>
-                <Image src={profile} width={22} height={22} alt="profile"/>
+            <Link href={`/account/${userId}`} className={styles.authIconContainer}>
+                <Image src={profile} width={23} height={26} alt="profile" className={styles.authIcon}/>
+                <h2 className={styles.navText}>Profile</h2>
             </Link>
         ) 
     } else {
         return (
             <>
-                <div className={styles.loginButton} onClick={() => setShowAuth(true)}>
-                <Image src={profile} width={22} height={22} alt="profile"/>
+                <div className={styles.authIconContainer} onClick={() => setShowAuth(true)}>
+                    <Image src={profile} width={23} height={26} alt="profile" className={styles.authIcon}/>
+                    <h2 className={styles.navText}>Profile</h2>
                 </div>
 
                 {showAuth &&

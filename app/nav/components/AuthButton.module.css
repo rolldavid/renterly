@@ -6,9 +6,7 @@
     background-color: transparent;
     cursor: pointer;
     margin: 0;
-   
   }
-
 
 .authModuleContainer {
     display: flex;
@@ -36,63 +34,32 @@
 }
 
 
-.dotWrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    margin: 0 14px 0 0;
-  
+.navText {
+  display: none;
 }
 
-.dotFlashing {
-    position: relative;
-    width: 8px;
-    height: 8px;
-    border-radius: 5px;
-    background-color: var(--darkgrey);
-    color: var(--darkgrey);
-    animation: dotFlashing 1s infinite linear alternate;
-    animation-delay: 0.5s;
-  }
-  .dotFlashing::before, .dotFlashing::after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top: 0;
-  }
-  .dotFlashing::before {
-    left: -10px;
-    width: 8px;
-    height: 8px;
-    border-radius: 5px;
-    background-color: var(--darkgrey);
-    color: var(--lighttreegreen);
-    animation: dotFlashing 1s infinite alternate;
-    animation-delay: 0s;
-  }
-  .dotFlashing::after {
-    left: 10px;
-    width: 8px;
-    height: 8px;
-    border-radius: 5px;
-    background-color: var(--darkgrey);
-    color: var(--lighttreegreen);
-    animation: dotFlashing 1s infinite alternate;
-    animation-delay: .1s;
+
+
+@media (max-width: 768px) {
+
+  .authIconContainer {
+    display: flex;
+    gap: 10px;
   }
 
-  .profileIcon {
-    margin: 0px 0px 0px 0px;
+  .authIcon {
+    margin: -3px 0px 0px 0px;
+    width: 25px;
+    height: 29px;
   }
 
-  
-  @keyframes dotFlashing {
-    0% {
-      background-color: var(--lighttreegreen);
-    }
-    50%, 100% {
-      background-color: rgba(61, 61, 61, 0.2)
-    }
-  }
+  .navText {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-weight: 400; 
+    font-family: 'Montserrat', sans-serif; 
+    margin: 0;
+}
+
+}

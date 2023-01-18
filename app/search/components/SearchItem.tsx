@@ -51,16 +51,15 @@ export default function ResultItem({result, expandSecondary, searchTerm, setLoad
             })
             router.push(`/property/${url}`)
         }
-        
     }
 
-    const street = result.street_line.replaceAll(" ", "-").replaceAll("/", "-").trim().toLowerCase()
+    const street = result.street_line.replaceAll(" ", "-").replaceAll("/", "-").replaceAll(".", "-").replaceAll("@", "-").replaceAll("(", "-").replaceAll(")", "-").replaceAll("&", "-").replaceAll("*", "-").replaceAll("%", "-").replaceAll("'", "-").replaceAll("--", "-").trim().toLowerCase()
     const city = result.city.replaceAll(" ", "-").trim().toLowerCase()
     const state = result.state.replaceAll(" ", "").trim().toUpperCase()
     const zipcode = result.zipcode.replaceAll(" ", "").trim()
     
     if (result.secondary) {
-    
+        console.log(result.secondary, "secondary...................")
         if (result.entries > 1) {
             if (!result.secondary.includes("entries")) {
             result.secondary += ` (${result.entries} entries)`
@@ -75,7 +74,7 @@ export default function ResultItem({result, expandSecondary, searchTerm, setLoad
             ) 
         } 
         if (result.entries === 1) {
-            const unit = result.secondary.replaceAll(" ", "-").replaceAll("/", "-").trim()
+            const unit = result.secondary.replaceAll(" ", "-").replaceAll("/", "-").replaceAll("#", "").trim()
 
             return (
                     <div onClick={(e) => handleClick(e, `${street}-${unit}-${city}-${state}-${zipcode}`, true)} className={styles.container}>
