@@ -15,8 +15,8 @@ export default function Footer(){
                   
                 </div>
                 <div className={styles.buildLinks}>
-                    <Link href="/" className={styles.footerItem}>Terms of Service</Link>
-                    <Link href="/" className={styles.footerItem}>Privacy Policy</Link>
+                    <Link href={"/policies/terms"} className={styles.footerItem}>Terms & Conditions</Link>
+                    <Link href={"/policies/privacy"} className={styles.footerItem}>Privacy Policy</Link>
                    
                 </div>
                 <div className={styles.socialLinks}>
