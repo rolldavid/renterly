@@ -161,3 +161,32 @@
 .welcomeImg {  
   opacity: .7;
 }
+
+.navText {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+
+    .notificationIconContainer {
+      display: flex;
+      gap: 10px;
+    }
+  
+    .authIcon {
+      margin: -3px 0px 0px 0px;
+      width: 25px;
+      height: 29px;
+    }
+  
+    .navText {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      font-weight: 400; 
+      font-family: 'Montserrat', sans-serif; 
+      margin: 0;
+  }
+  
+  }

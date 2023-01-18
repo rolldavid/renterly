@@ -2,13 +2,14 @@
 
 import { useState, useRef, useEffect, SyntheticEvent } from "react";
 import Image from "next/image"
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getNotifications, updateNotifications } from "@/lib/db-utils"
 import { NotificationProps } from "./types";
 import Notification from "./Notification";
 import welcome from "./assets/celebrate.png"
+import bell from "../nav/assets/bell.png"
+import bellNotify from "../nav/assets/bell-notify.png"
 import styles from "./NotificationIcon.module.css"
 
 export default function NotificationIcon() {
@@ -55,14 +56,18 @@ export default function NotificationIcon() {
     }
 
 
+
     if (status === "loading") {
         return (
-            <Image 
-                src={`/images/icons/bell.png`}
-                width={23}
-                height={26}
-                alt="notifications"
-             />
+            <div className={styles.notificationIconContainer}>
+                <Image 
+                    src={bell}
+                    width={23}
+                    height={26}
+                    alt="notifications"
+                />
+                <h2 className={styles.navText}>Notifications</h2>
+            </div>
         )
     }
 
@@ -80,22 +85,31 @@ export default function NotificationIcon() {
     if (status === "success" && data.activeNotifications && data.loggedIn) {
         return (
             <>
-            {data.activeNotifications.length > 0 && <Image 
-                src={`/images/icons/bell-notify.png`}
-                width={23}
-                height={26}
-                alt="notifications"
-                onClick={handleNotifications}
-                className={styles.bellImg}
-             />}
-            {data.activeNotifications.length === 0 && <Image 
-                src={`/images/icons/bell.png`}
-                width={23}
-                height={26}
-                alt="notifications"
-                onClick={handleNotifications}
-                className={styles.bellImg}
-             />}
+            
+            {data.activeNotifications.length > 0 && <div className={styles.notificationIconContainer}>
+                <Image 
+                    src={bellNotify}
+                    width={23}
+                    height={26}
+                    alt="notifications"
+                    onClick={handleNotifications}
+                    className={styles.bellImg}
+                />
+                <h2 className={styles.navText}>Notifications</h2>
+             </div>
+             }
+            {data.activeNotifications.length === 0 && <div className={styles.notificationIconContainer}>
+                <Image 
+                    src={bell}
+                    width={23}
+                    height={26}
+                    alt="notifications"
+                    onClick={handleNotifications}
+                    className={styles.bellImg}
+                />
+                <h2 className={styles.navText}>Notifications</h2>
+             </div>
+             }
 
                 {status === "success" && showNotifications && data.activeNotifications && data.completeNotifications &&
                     <div className={styles.notificationsModuleContainer} ref={ref}>
@@ -152,14 +166,17 @@ export default function NotificationIcon() {
     if (status === "success" && data.loggedIn) {
         return (
             <>
-                <Image 
-                    src={"/images/icons/bell.png"}
-                    width={23}
-                    height={26}
-                    alt="notifications"
-                    onClick={() => setShowNotifications(true)}
-                    className={styles.bellImg}
-                />
+                <div className={styles.notificationIconContainer}>
+                    <Image 
+                        src={bell}
+                        width={23}
+                        height={26}
+                        alt="notifications"
+                        onClick={() => setShowNotifications(true)}
+                        className={styles.bellImg}
+                    />
+                    <h2 className={styles.navText}>Notifications</h2>
+                </div>
                 {showNotifications &&
                     <div className={styles.notificationsModuleContainer} ref={ref}>
                         <div className={styles.notificationsModule}>
@@ -173,15 +190,17 @@ export default function NotificationIcon() {
 
     return (
         <>
-     
-        <Image 
-            src={`/images/icons/bell.png`}
-            width={23}
-            height={26}
-            alt="notifications"
-            onClick={() => setShowNotifications(true)}
-            className={styles.bellImg}
-         />
+        <div className={styles.notificationIconContainer}>
+            <Image 
+                src={bell}
+                width={23}
+                height={26}
+                alt="notifications"
+                onClick={() => setShowNotifications(true)}
+                className={styles.bellImg}
+            />
+            <h2 className={styles.navText}>Notifications</h2>
+        </div>
          {showNotifications &&
                 <div className={styles.notificationsModuleContainer} ref={ref}>
                     <div className={styles.notificationsModule}>

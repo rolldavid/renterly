@@ -1,14 +1,20 @@
 .container {
     display: flex;
+    justify-content: flex-start;
     padding: 8px 12px 8px 12px;
+    width: 100%;
+    text-align: left;
 }
 
 .container:hover {
     cursor: pointer;
-    background-color: var(--color-bg-oppmain);
+    text-decoration: underline var(--color-border-grey);
     color: var(--offblack);
 }
 
 .resultItem {
     margin: 0px 0px 0px 0px;
+}
+
+@media (max-width: 768px) {
 }
