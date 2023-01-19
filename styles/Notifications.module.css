@@ -1,0 +1,131 @@
+/* whole page*/
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 50px 0px 0px 0px;
+}
+
+/* around all notifications */
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  padding: 25px 15px 25px 15px;
+  border-radius: 25px;
+}
+
+/* around individual notifications */
+.notificationWrap {
+    display: flex;
+    border: 1px solid var(--midgrey);
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 0px 5px 0px;
+    width: 100%;
+}
+
+/* when logged out and need to follow properties */
+.followText {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--greygrey);
+    padding: 0px 5px 0px 5px;
+    width: 100%;
+    cursor: default;
+}
+
+/* wrap around new notifications section */
+.notificationNewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    margin: 0px 0px 0px 0px;
+}
+
+/* wrap around complete notifications section */
+.notificationCompleteContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    margin: 25px 0px 0px 0px;
+}
+
+.welcomeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+}
+
+.newTitle {
+    text-align: left;
+    font-weight: 600;
+    color: var(--offblack);
+    margin: 0px 0px 0px 0px;
+}
+
+.recentTitle {
+    text-align: left;
+    font-weight: 600;
+    color: var(--darkgrey);
+    margin: 0px 0px 0px 0px;
+}
+
+.bellImg {
+    cursor: pointer;
+}
+
+.welcomeTitle {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-weight: 500;
+    width: 100%;
+    margin: 0px 0px 10px 0px;
+    color: var(--darkestgrey);
+}
+
+.welcomeText {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: var(--darkestgrey);
+    margin: 0;
+}
+
+.welcomeImg { 
+    margin: 20px 0px 0px 0px;
+    opacity: .6;
+}
+
+.navText {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    
+
+
+
+}

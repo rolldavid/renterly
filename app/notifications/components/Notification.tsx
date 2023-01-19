@@ -1,4 +1,4 @@
-import { NotificationProps } from "./types";
+import { NotificationProps } from "../types"
 import Link from "next/link";
 import styles from './Notification.module.css';
 

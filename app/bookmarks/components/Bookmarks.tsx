@@ -27,10 +27,10 @@ export default function Bookmarks({ isLoggedIn, bookmarks }: BookmarkList) {
         return (
             <div className={styles.placeholderContainer}>
                 <p className={styles.placeholderTitle}>You&apos;re not following any properties yet</p>
-                <p className={styles.searchTitle}>
-                    <Link href="/" className={styles.searchLink}>
-                        Search
-                    </Link> for properties to follow</p>
+                
+                <Link href="/" className={styles.searchLink}>
+                    Search Properties
+                </Link>
                 <div className={styles.innerContainer}>
                     {
                         placeholder.map((bookmark, index) => {

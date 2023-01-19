@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AuthProps } from "../types";
 import AuthButton from "./AuthButton";
-import NotificationIcon from "app/notifications/NotificationIcon";
+import NotificationIcon from "app/notifications/components/NotificationIcon";
 import following from "../assets/house.png"
 import search from "../assets/search.png"
 import styles from "./NavLinks.module.css"
@@ -40,13 +40,19 @@ export default function NavLinks({status, userId, session}: AuthProps) {
                     />
                     <h2 className={styles.navText}>Following</h2>
                 </Link>
-                
-                <div className={styles.navItem}>
+                <div className={styles.notificationDesktop}>
                     <NotificationIcon />
                 </div>
-                <div className={styles.navItem}>
-                    <AuthButton status={status} userId={userId} session={session}/>
+                <Link href="/notifications" className={styles.notificationMobile}>
+                    <NotificationIcon />
+                    <h2 className={styles.navText}>Notifications</h2>
+                </Link>
+                <div className={styles.authDesktop}>
+                    <AuthButton status={status} userId={userId} session={session} />
                 </div>
+                <Link href={session && userId ? `/account/${userId}` : "/auth"} className={styles.authMobile}>
+                    <AuthButton status={status} userId={userId} session={session} />
+                </Link>
             </div>
         </nav>
     )

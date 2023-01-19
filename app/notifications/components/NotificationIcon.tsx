@@ -5,11 +5,11 @@ import Image from "next/image"
 import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getNotifications, updateNotifications } from "@/lib/db-utils"
-import { NotificationProps } from "./types";
+import { NotificationProps } from "../types"
 import Notification from "./Notification";
-import welcome from "./assets/celebrate.png"
-import bell from "../nav/assets/bell.png"
-import bellNotify from "../nav/assets/bell-notify.png"
+import welcome from "../assets/celebrate.png"
+import bell from "../../nav/assets/bell.png"
+import bellNotify from "../../nav/assets/bell-notify.png"
 import styles from "./NotificationIcon.module.css"
 
 export default function NotificationIcon() {
@@ -66,7 +66,6 @@ export default function NotificationIcon() {
                     height={26}
                     alt="notifications"
                 />
-                <h2 className={styles.navText}>Notifications</h2>
             </div>
         )
     }
@@ -95,7 +94,7 @@ export default function NotificationIcon() {
                     onClick={handleNotifications}
                     className={styles.bellImg}
                 />
-                <h2 className={styles.navText}>Notifications</h2>
+                
              </div>
              }
             {data.activeNotifications.length === 0 && <div className={styles.notificationIconContainer}>
@@ -107,7 +106,7 @@ export default function NotificationIcon() {
                     onClick={handleNotifications}
                     className={styles.bellImg}
                 />
-                <h2 className={styles.navText}>Notifications</h2>
+             
              </div>
              }
 
@@ -175,7 +174,7 @@ export default function NotificationIcon() {
                         onClick={() => setShowNotifications(true)}
                         className={styles.bellImg}
                     />
-                    <h2 className={styles.navText}>Notifications</h2>
+                  
                 </div>
                 {showNotifications &&
                     <div className={styles.notificationsModuleContainer} ref={ref}>
@@ -199,7 +198,7 @@ export default function NotificationIcon() {
                 onClick={() => setShowNotifications(true)}
                 className={styles.bellImg}
             />
-            <h2 className={styles.navText}>Notifications</h2>
+            
         </div>
          {showNotifications &&
                 <div className={styles.notificationsModuleContainer} ref={ref}>

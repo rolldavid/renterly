@@ -63,3 +63,15 @@
 .date {
     color: var(--darkergrey);
 }
+
+@media (max-width: 768px) {
+    .card {
+        flex-basis: 100%;
+        margin: 0px 15px 0px 15px;
+    }
+
+    .placeholderCard {
+        flex-basis: 100%;
+        margin: 0px 15px 0px 15px;
+    }
+}

@@ -1,5 +1,6 @@
 "use client"
 
+
 import Image from "next/image"
 import { SyntheticEvent, useState } from "react"
 import { useForm } from "react-hook-form";
@@ -18,9 +19,10 @@ const schema = yup
 })
 .required();
 
-export default function Login({ fromReview }:{ fromReview: boolean }) {
+export default function Login({ fromReview, userId }:{ fromReview: boolean, userId?: string }) {
     const [value, setValue] = useState("")
     const [submitted, setSubmitted] = useState(false);
+
 
     const {
         register,
