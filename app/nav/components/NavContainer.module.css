@@ -11,6 +11,8 @@
 }
 
 @media (max-width: 768px) {
+
+
     .desktop {
         display: none;
     }
@@ -23,6 +25,13 @@
         height: 100%;
         border-bottom: 2px solid var(--color-border-grey);
 
+    }
+
+    .mobileRight {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 15px;
     }
     
     .logoContainer {

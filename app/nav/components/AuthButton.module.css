@@ -45,12 +45,14 @@
   .authIconContainer {
     display: flex;
     gap: 10px;
+    z-index: 55;
   }
 
   .authIcon {
     margin: -3px 0px 0px 0px;
     width: 25px;
     height: 29px;
+    z-index: 55;
   }
 
   .navText {
@@ -60,6 +62,7 @@
     font-weight: 400; 
     font-family: 'Montserrat', sans-serif; 
     margin: 0;
+    z-index: 55;
 }
 
 }

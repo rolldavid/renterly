@@ -87,12 +87,14 @@ body {
   font-family: 'Montserrat', sans-serif; 
   letter-spacing: .03rem; 
   overscroll-behavior: none; 
+  
   font-size: 15px; 
   background: var(--color-bg-main); 
   color: var(--color-text-main); 
   transition: background 0.25s ease-in-out; 
   -ms-overflow-style: none; 
   scrollbar-width: none; 
+
 
 }
 
