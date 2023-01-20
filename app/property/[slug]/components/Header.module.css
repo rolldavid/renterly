@@ -10,10 +10,6 @@
   }
 
 
-  .starItem {
-    margin: 0px 5px 0px 5px;
-  }
-
   .propertyTitle {
     margin: 15px 0px 12px 0px; 
  
@@ -27,4 +23,26 @@
 
   .couch {
     margin: 20px 0px 0px 0px;
+  }
+
+
+
+  @media (max-width: 768px) {
+
+
+    .propertyTitle {
+      margin: 10px 0px 5px 0px; 
+      font-size: 1.5rem;
+    }
+
+    .propertySubtitle {
+      margin: 0px 0px 10px 0px;
+      font-size: 1.25rem;
+    }
+
+    .couch {
+      margin: 10px 0px 0px 0px;
+      height: 45px;
+      width: 82px;
+    }
   }

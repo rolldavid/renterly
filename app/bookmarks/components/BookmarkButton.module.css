@@ -34,7 +34,7 @@ z-index: 30;
     font-family: "Montserrat";
     font-weight: 400;
     color: var(--darkergrey);
-    width: 120px;
+    width: 130px;
     padding: 7px 9px 7px 9px;
     cursor: pointer;
 }
@@ -104,3 +104,12 @@ z-index: 30;
     }
   }
 
+
+  @media (max-width: 768px) {
+    .followButton {
+      
+      width: 125px;
+      padding: 6px 8px 6px 8px;
+   
+  }
+}

@@ -56,3 +56,26 @@
     cursor: pointer;
 }
 
+
+
+@media (max-width: 768px) {
+    .container {
+      width: 100%;
+    }
+
+    .buttonContainer {
+        
+        margin: 0px 0px 0px 0px;
+        gap: 10px;
+    }
+
+    .reviewButton {
+        width: 125px;
+        padding: 6px 8px 6px 8px;
+    }
+
+    .firstContainer {
+        margin: 20px 0px 0px 0px;
+    }
+    
+  }
