@@ -18,8 +18,7 @@ export default function Reviews({ property }: { property: PropertyProps }) {
     const {data, status} = useQuery(["reviews"], () => {
         const res = getProperty(property.id) 
         return res
-    },
-    {cacheTime: 0})
+    })
 
     if (status === "loading") {
         return (

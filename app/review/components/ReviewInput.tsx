@@ -202,9 +202,6 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
             const res = await deleteReview(reviewId, queryResult.userId)
             if (res.status === "success") {
                 setShowDelete(false)
-                localStorage.setItem("slug", "")
-                localStorage.setItem("review", "")
-                localStorage.setItem("star", "")
                 queryClient.invalidateQueries(['reviews'])
                 queryClient.invalidateQueries(['reviewPage'])
                 queryClient.invalidateQueries(['stars'])
