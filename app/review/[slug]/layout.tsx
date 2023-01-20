@@ -7,3 +7,5 @@ export default async function Layout({ children }: {
         <>{children}</>
     );
   }
+
+  export const dynamic = "force-dynamic"
