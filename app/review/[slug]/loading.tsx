@@ -8,3 +8,4 @@ export default function Loading() {
 
 }
 
+export const dynamic = "force-dynamic"
