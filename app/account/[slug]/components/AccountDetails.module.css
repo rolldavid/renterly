@@ -6,7 +6,7 @@
     text-align: center;
     height: 100%;
     width: 100%;
-  
+    
 }
 
 .imageContainer {
@@ -82,13 +82,16 @@
 .editButtonLocation {
     margin: 0px 0px 0px 10px;
     height: 100%;
+    
 }
 
 .optionsContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     margin: 10px 0px 0px 0px;
+   
 }
 
 .optionButton {
@@ -99,5 +102,40 @@
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
     cursor: pointer;
+    min-width: 125px;
     margin: 0px 5px 0px 5px;
+}
+
+
+@media (max-width: 768px) {
+    .optionsContainer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .profileImage {
+        width: 100px;
+        height: 100px;
+    }
+
+    .nameTitle {
+        font-size: 1.35rem;
+    }
+
+    .locationTitle {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .locationContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 0px 0px 0px;
+    }
+
+    .optionsContainer {
+        margin: 20px 0px 0px 0px;
+       
+    }
 }

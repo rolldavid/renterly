@@ -10,7 +10,7 @@ export default function Bookmarks({ isLoggedIn, bookmarks }: BookmarkList) {
     if (bookmarks && bookmarks.length > 0 && isLoggedIn) {
         return (
             <div className={styles.container}>
-                <p className={styles.placeholderTitle}>Followed Properties</p>
+                <p className={styles.placeholderTitle}>Following</p>
                 <div className={styles.innerContainer}>
                     
                     {

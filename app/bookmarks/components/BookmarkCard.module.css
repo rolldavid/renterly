@@ -67,11 +67,11 @@
 @media (max-width: 768px) {
     .card {
         flex-basis: 100%;
-        margin: 0px 15px 0px 15px;
+        margin: 0px 10px 0px 10px;
     }
 
     .placeholderCard {
         flex-basis: 100%;
-        margin: 0px 15px 0px 15px;
+        margin: 0px 10px 0px 10px;
     }
 }
