@@ -46,7 +46,9 @@ export default function NotificationIcon() {
             <>
                 {status === "success" && data.activeNotifications && data.completeNotifications &&
                     <div className={styles.container} >
+                        <p className={styles.followText}>Notifications</p>
                         <div className={styles.innerContainer}>
+                            
                                 {data.activeNotifications.length > 0 && <div className={styles.notificationNewContainer}>
                                     <p className={styles.newTitle}>New</p>
                                     {

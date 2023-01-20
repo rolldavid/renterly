@@ -10,7 +10,7 @@ export default function ({reviews, stars} : {reviews: Review[], stars: Star[] })
         if (reviews.length > 0) {
             return (
                 <div className={styles.container}>
-                    <p className={styles.reviewsTitle}>Your reviews</p>
+                    <p className={styles.reviewsTitle}>Reviews</p>
                     { reviews.map((review, index) => {
                         const matchingReview = stars.filter(function(star){
                             return star.reviewId === review.id 
