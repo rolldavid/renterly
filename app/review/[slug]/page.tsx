@@ -98,3 +98,5 @@ export default async function Page({params: {slug}}: {params: { slug: string }})
         }
 
 }
+
+export const dynamic = 'force-dynamic'
