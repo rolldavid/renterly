@@ -1,6 +1,6 @@
 import PostCard from "./[slug]/components/PostCard"
 import { PostList } from "./[slug]/components/types"
-import styles from "@/styles/Post.module.css"
+import styles from "@/styles/Blog.module.css"
 
 const getPosts = async () => {
     const res = await fetch(`${process.env.BLOG_URL}/api/posts`, {
@@ -20,13 +20,17 @@ export default async function Page() {
     const posts: PostList[] = await getPosts()
     
     return (
+        <>
+        <p className={styles.blogTitle}>Renterly Blog</p>
         <div className={styles.postContainer}>
+            
         {
             posts.map((post, index) => {
                 return <PostCard post={post} key={index}/>
             })
         }
         </div>
+        </>
     )
 
 }

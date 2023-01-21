@@ -18,12 +18,13 @@ export default function PostContent({ post }: { post: PostList }) {
             const image = node.children[0];
     
             return (
-              <div className={styles.image}>
+              <div className={styles.imageContainer}>
                 <Image
                   src={image.properties.src}
                   width="500"
                   height="300"
                   alt={image.properties.alt}
+                  className={styles.image}
                 />
               </div>
             );
