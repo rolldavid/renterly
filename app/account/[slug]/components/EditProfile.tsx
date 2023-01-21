@@ -1,6 +1,6 @@
 "use client"
 
-import { Dispatch, SetStateAction, useState, useEffect, MouseEvent } from "react"
+import { Dispatch, SetStateAction, useState, useEffect, MouseEvent, SyntheticEvent } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,6 +13,10 @@ import { EditProfileProps, ProfileUser } from "app/account/types";
 
 let timeoutId: ReturnType<typeof setTimeout>;
 let timeoutCity: ReturnType<typeof setTimeout>;
+
+const names = ["Cow", "Dog", "Chicken", "Cat", "Piggy", "Duck", "Giraffe", "Bear", "Snake", "Grasshopper", "Daffodil", "Bones", "Rose", "Iris", "Ghost", "Cactus"]
+const adj = ["Silly", "Happy", "Mad", "Brave", "Bright", "Wise", "Cranky", "Kind", "Super", "Funny", "Wild", "Power"]
+
 
 const schema = yup
 .object({
@@ -34,7 +38,7 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
     const [cityAvailable, setCityAvailable] = useState(true)
     const [nameStyle, setNameStyle] = useState("available")
     const [cityStyle, setCityStyle] = useState("cityStyleAvailable")
-    const [activeIndex, setActiveIndex] = useState(parseInt(user.image))
+    const [activeName, setActiveName] = useState(user.image)
 
     const queryClient = useQueryClient()
 
@@ -53,7 +57,7 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
         }
 
         if (user.userId) {
-            await mutateAsync({displayName: data.displayName, city: data.city, state: data.state, image: activeIndex.toString(), userId: user.userId})
+            await mutateAsync({displayName, city: data.city, state: data.state, image: activeName, userId: user.userId})
             setEditProfile(false)
         }
     }
@@ -129,6 +133,14 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
         return
     }, [cityAvailable])
 
+    const updateName = async (e: SyntheticEvent, name: string) => {
+        e.preventDefault()
+        setActiveName(name)
+        const randomAdj = adj[Math.floor(Math.random() * adj.length)]; 
+        const randomNum = Math.floor(Math.random() * 10000) 
+        const displayName = randomAdj + name + randomNum
+        setDisplayName(displayName)
+    }
    
     return (
         <div className={styles.container}>
@@ -157,15 +169,15 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
                         </select>
                     </div>
                     <div className={styles.imageContainer}>
-                        {[...Array(12)].map((item, index) => {
+                        {names.map((name, index) => {
                             return (
                                     <Image 
-                                        src={`/images/profile/${index}.png`} 
+                                        src={`/images/profile/${name}.png`} 
                                         width={75} 
                                         height={75} 
                                         alt="profile image"
-                                        className={activeIndex === index ? styles.imageItemSelected : styles.imageItem}
-                                        onClick={() => setActiveIndex(index)}
+                                        className={activeName === name ? styles.imageItemSelected : styles.imageItem}
+                                        onClick={(e) => updateName(e, name)}
                                         key={index}
                                     />
                                
