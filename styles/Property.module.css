@@ -1,3 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  padding: 25px;
+}
+
 .propertyWrapper {
   display: flex;
   justify-content: center;
@@ -6,19 +17,6 @@
   flex-grow: 1;
   
 }
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-    width: 800px;
-    padding: 25px;
-    border-radius: 20px;
-    background-color: var(--white);
-  }
 
   .starContainer {
     display: flex;

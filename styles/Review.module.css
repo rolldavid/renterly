@@ -4,8 +4,12 @@
     justify-content: flex-start;
     align-items: center;
     text-align: center;
-    min-height: 95vh;
-    height: 100%;
-    width: 100%;
-    margin: 50px 0px 0px 0px;
+    
+    margin: 25px 0px 0px 0px;
   }
+
+
+
+@media (max-width: 768px) {
+
+}

@@ -19,7 +19,7 @@
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  height: 100%;
+  
 }
 
 .content {
@@ -27,7 +27,6 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  flex-grow: 1;
   margin: 50px 0px 0px 0px;
 }
 
@@ -77,9 +76,8 @@
 @media (max-width: 768px) {
 
   .content {
-    width: 100vw;
-    margin: 35px;
-    
+    margin-top: 35px;
+    width: 100%;
   }
 
   .nav {

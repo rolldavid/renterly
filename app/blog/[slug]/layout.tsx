@@ -1,4 +1,4 @@
-import styles from "@/styles/Post.module.css"
+import styles from "@/styles/Blog.module.css"
 export default async function Layout({ children }: {
     children: React.ReactNode;
   }) {

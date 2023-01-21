@@ -3,13 +3,46 @@
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    margin: 0px 0px 100px 0px;
+    margin: 0px 0px 0px 0px;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
 
 .inputContainer::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
+}
+
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    margin-top: 25px;
+}
+
+
+.submitContainer {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.reviewContainer {
+    width: 100%;
+    border: 2px solid var(--placeholdergrey);
+    border-radius: 5px;
+    padding: 15px 10px 10px 15px;
+
+}
+
+.starContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 0px 20px 0px;
+
 }
 
 
@@ -126,29 +159,6 @@
   }
 
 
-.formContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 600px;
-    margin-top: 25px;
-}
-
-.reviewContainer {
-    width: 100%;
-    border: 2px solid var(--placeholdergrey);
-    border-radius: 5px;
-    padding: 15px 10px 10px 15px;
-}
-
-.starContainer {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    margin: 0px 0px 20px 0px;
-
-}
 
 .starImgContainer {
     display: flex;
@@ -179,17 +189,12 @@
 
 .inputField::placeholder {
     color: var(--placeholdergrey);
+
 }
 
 .errorMessage {
     font-size: .9rem;
     color: var(--lightred);
-}
-
-.submitContainer {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
 }
 
 .submitButton {
@@ -259,4 +264,61 @@
     padding: 10px 15px 10px 15px;
     cursor: pointer;
     opacity: .95;
+}
+
+
+@media (max-width: 768px) {
+    .inputContainer {
+        padding: 0px 10px 0px 10px;
+    }
+
+    .formContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+       
+    }
+
+    .deleteButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--greygrey);
+        background-color: var(--white);
+        border-radius: 25px;
+        font-size: 1rem;
+        font-family: "Montserrat";
+        font-weight: 400;
+        color: var(--greygrey);
+        width: 200px;
+        margin-top: 15px;
+        padding: 10px 15px 10px 15px;
+        cursor: pointer;
+        opacity: .95;
+    }
+    
+    .editButtonContainer {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .confirmDelete {
+        flex-direction: column;
+        gap: 0px;   
+    }
+
+    .deleteModule {
+        width: 95%;
+        margin: 0px 10px 0px 10px;
+        height: 225px;
+        background-color: var(--white);
+        padding: 10px 0px 10px 0px;
+        border: none;
+        border-radius: 25px;
+        z-index: 30;
+        cursor: default;
+    }
+    
 }
