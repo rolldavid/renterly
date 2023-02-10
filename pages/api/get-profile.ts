@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 stars: true
             },
            })
-    
+
         
         const session = await unstable_getServerSession(req, res, authOptions)
         const accountOwner = session?.user?.email === user?.email ? true : false

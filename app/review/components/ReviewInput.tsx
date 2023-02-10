@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, SyntheticEvent } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-
+import { useScroll } from "@/lib/utils/ScrollPosition";
 import { createReview, getUserSession, updateReview, deleteReview } from "@/lib/db-utils"
 import { ReviewProps, PropertyProps } from "./types";
 import AuthContainer from "../../auth/components/AuthContainer"
@@ -26,8 +26,7 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
     const [loading, setLoading] = useState(false)
     const ref = useRef<HTMLInputElement>(null)
     const router = useRouter()
-
-
+    const scrollPosition = useScroll()
     const [showDelete, setShowDelete] = useState(false)
     const deleteRef = useRef<HTMLInputElement>(null)
 
@@ -299,7 +298,7 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
             
             {showAuth &&
                 <div className={styles.authModuleContainer} ref={ref}>
-                    <div className={styles.authModule}>
+                    <div className={styles.authModule} style={{ top: `${scrollPosition + 100}px`}} >
                         <AuthContainer fromReview={true}/>
                     </div>
                 </div>

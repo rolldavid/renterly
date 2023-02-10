@@ -51,7 +51,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             if (property && property.reviews.length > 1) {
              
-    
                 const propertyReviewers = property.reviews.filter(review => review.userId !== userId)
 
                 const receivers = propertyReviewers.map(review => {

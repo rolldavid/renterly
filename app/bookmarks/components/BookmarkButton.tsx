@@ -50,7 +50,6 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
     }, [showAuth])
 
     
-
     const queryClient = useQueryClient()
    
     const handleBookmark = (mutateObj: BookmarkProps, e: SyntheticEvent) => {

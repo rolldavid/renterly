@@ -107,7 +107,7 @@ export default function Login({ fromReview, userId }:{ fromReview: boolean, user
 
         {submitted && <section className={styles.checkContainer}>
         <Image src={wand} width={30} height={30} alt="magic wand" className={styles.noteImg}/>
-            <p className={styles.checkText}>We've emailed you a magic link!</p>
+            <p className={styles.checkText}>We've emailed you a magic link - <span className={styles.highlight}>return to this tab</span> once you&apos;ve confirmed.</p>
             </section>}
         
         </>

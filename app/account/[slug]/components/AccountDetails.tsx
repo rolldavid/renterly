@@ -1,22 +1,22 @@
 "use client"
 
 import Image from "next/image";
-import { SyntheticEvent, useState, useEffect } from "react"
+import { SyntheticEvent, useState, Dispatch, SetStateAction } from "react"
 import { signOut } from "next-auth/react"
 import { ProfileUser } from "app/account/types";
 import styles from "./AccountDetails.module.css"
 import EditProfile from "./EditProfile";
 
 
-export default function AccountDetails({user, accountOwner} : { user: ProfileUser, accountOwner: boolean }) {
-    const [editProfile, setEditProfile] = useState(false)
+export default function AccountDetails({user, accountOwner, setEditProfile} : { user: ProfileUser, accountOwner: boolean, setEditProfile: Dispatch<SetStateAction<boolean>> }) {
+   
     const [city, setCity] = useState("")
 
     const handleLogout = (e: SyntheticEvent) => {
         signOut({
             callbackUrl: "/"
         });
-    }
+    } 
 
     if (!accountOwner && user.image) {
         return (
@@ -65,7 +65,6 @@ export default function AccountDetails({user, accountOwner} : { user: ProfileUse
                 <h2 className={styles.locationTitle}>{user.citystate}</h2>
                 
             </div>
-            {editProfile && <EditProfile user={user} setEditProfile={setEditProfile}/>}
             <div className={styles.optionsContainer}>
                 <div className={styles.optionButton} onClick={() => setEditProfile(prev => !prev)}>
                     Edit Profile
@@ -80,3 +79,5 @@ export default function AccountDetails({user, accountOwner} : { user: ProfileUse
     }
     return null;
 }
+
+
