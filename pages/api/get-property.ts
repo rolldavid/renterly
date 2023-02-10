@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
-import { unstable_getServerSession } from "next-auth/next"
+import { getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]";
 import { Star } from "@prisma/client";
 
@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
         })
 
-        const session = await unstable_getServerSession(req, res, authOptions)
+        const session = await getServerSession(req, res, authOptions)
 
         if (session?.user?.email && propertyReviews) {
             const user = await prisma.user.findFirst({

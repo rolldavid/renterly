@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
-import { unstable_getServerSession } from "next-auth/next"
-import { authOptions } from "./auth/[...nextauth]";
-import { Star } from "@prisma/client";
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { propertyId } = req.body;

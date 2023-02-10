@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
-import { unstable_getServerSession } from "next-auth/next"
+import { getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]";
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { propertyId, type } = req.body;
 
-    const session = await unstable_getServerSession(req, res, authOptions)
+    const session = await getServerSession(req, res, authOptions)
 
     try {
         if (session?.user?.email) {
