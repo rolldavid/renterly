@@ -53,7 +53,7 @@ export default function ResultItem({result, expandSecondary, searchTerm, setLoad
         }
     }
 
-    const street = result.street_line.replaceAll(" ", "-").replaceAll("/", "-").replaceAll(".", "-").replaceAll("@", "-").replaceAll("(", "-").replaceAll(")", "-").replaceAll("&", "-").replaceAll("*", "-").replaceAll("%", "-").replaceAll("'", "-").replaceAll("--", "-").trim().toLowerCase()
+    const street = result.street_line.replaceAll(" ", "-").replaceAll("/", "-").replaceAll("#", "").replaceAll(".", "-").replaceAll("@", "-").replaceAll("(", "-").replaceAll(")", "-").replaceAll("&", "-").replaceAll("*", "-").replaceAll("%", "-").replaceAll("'", "-").replaceAll("--", "-").trim().toLowerCase()
     const city = result.city.replaceAll(" ", "-").trim().toLowerCase()
     const state = result.state.replaceAll(" ", "").trim().toUpperCase()
     const zipcode = result.zipcode.replaceAll(" ", "").trim()

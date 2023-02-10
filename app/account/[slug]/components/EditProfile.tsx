@@ -7,14 +7,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Image from "next/image"
 import { updateProfile, checkDisplayName, checkCity } from "@/lib/db-utils";
+import { useScroll } from "@/lib/utils/ScrollPosition";
 import styles from "./EditProfile.module.css"
-
 import { EditProfileProps, ProfileUser } from "app/account/types";
 
 let timeoutId: ReturnType<typeof setTimeout>;
 let timeoutCity: ReturnType<typeof setTimeout>;
 
-const names = ["Cow", "Dog", "Chicken", "Cat", "Piggy", "Duck", "Giraffe", "Bear", "Snake", "Grasshopper", "Daffodil", "Bones", "Rose", "Iris", "Ghost", "Cactus"]
+const names = ["Cow", "Dog", "Chicken", "Cat", "Piggy", "Duck", "Giraffe", "Bear", "Snake", "Grasshopper", "Daffodil", "Bones", "Rose", "Ghost", "Cactus"]
 const adj = ["Silly", "Happy", "Mad", "Brave", "Bright", "Wise", "Cranky", "Kind", "Super", "Funny", "Wild", "Power"]
 
 
@@ -39,6 +39,8 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
     const [nameStyle, setNameStyle] = useState("available")
     const [cityStyle, setCityStyle] = useState("cityStyleAvailable")
     const [activeName, setActiveName] = useState(user.image)
+
+    const scrollPosition = useScroll()
 
     const queryClient = useQueryClient()
 
@@ -141,9 +143,11 @@ export default function EditProfile({user, setEditProfile} : { user: ProfileUser
         const displayName = randomAdj + name + randomNum
         setDisplayName(displayName)
     }
+
    
     return (
-        <div className={styles.container}>
+        
+            <div className={styles.container}>
                 <div className={styles.cancelContainer}>
                     <p className={styles.cancelButton} onClick={() => setEditProfile(false)}>X</p>
                 </div>

@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { useQuery } from '@tanstack/react-query';
 import AuthContainer from "./components/AuthContainer"
 import styles from "@/styles/Auth.module.css"
-
-
 import { getUserSession } from '@/lib/db-utils';
 import Spinner from '@/lib/utils/Spinner';
 

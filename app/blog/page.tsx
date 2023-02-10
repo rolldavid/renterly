@@ -21,15 +21,15 @@ export default async function Page() {
     
     return (
         <>
-        <p className={styles.blogTitle}>Renterly Blog</p>
-        <div className={styles.postContainer}>
-            
-        {
-            posts.map((post, index) => {
-                return <PostCard post={post} key={index}/>
-            })
-        }
-        </div>
+            <p className={styles.blogTitle}>Renterly Blog</p>
+            <div className={styles.postContainer}>
+                
+            {
+                posts.map((post, index) => {
+                    return <PostCard post={post} key={index}/>
+                })
+            }
+            </div>
         </>
     )
 

@@ -42,7 +42,6 @@
     display: flex;
     justify-content: flex-start;
     margin: 0px 0px 20px 0px;
-
 }
 
 
@@ -65,7 +64,6 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 50vh;
     width: 500px;
     height: 500px;
     background-color: none;
@@ -320,5 +318,17 @@
         z-index: 30;
         cursor: default;
     }
+
+    .authModuleContainer {
+        height: 100%;
+        background-color: rgb(100, 100, 100, .5);
+        z-index: 10;
+    }
+
+    .authModule {
+        width: 100%;
+        height: 500px;
+    }
     
+
 }
