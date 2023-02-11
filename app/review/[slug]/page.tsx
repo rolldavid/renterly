@@ -1,13 +1,13 @@
 
 import { prisma } from "@/lib/prisma";
-import { unstable_getServerSession } from "next-auth/next"
+import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/api/auth/[...nextauth]";
 import ReviewInput from "../components/ReviewInput";
 import styles from "@/styles/Review.module.css"
 
 export default async function Page({params: {slug}}: {params: { slug: string }}) {
 
-        const session = await unstable_getServerSession(authOptions)
+        const session = await getServerSession(authOptions)
 
         if (session?.user?.email) {
        
