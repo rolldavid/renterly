@@ -44,7 +44,13 @@ export default async function RootLayout({ children }: {
       maximumScale: 1,
     },
     title: "renterly",
-    description: "Search and review any US address. A voice for every renter.",
+    description: "Search and review any US address.",
+    twitter: {
+      card: 'summary_large_image',
+      title: 'renterly',
+      description: 'Search and review any US address.',
+      images: ['https://d3h42dhdxazsqn.cloudfront.net/renterly.png'],
+    },
     openGraph: {
       title: "renterly",
       description: "Search and review any US address. A voice for every renter.",
