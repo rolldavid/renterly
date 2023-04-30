@@ -8,7 +8,6 @@ import AuthContainer from "../../auth/components/AuthContainer"
 import profile from "../assets/profile.png"
 import styles from "./AuthButton.module.css"
 
-
 export default function AuthButton({status, userId, session}: AuthProps) {
     const [showAuth, setShowAuth] = useState(false)
 
@@ -70,7 +69,7 @@ export default function AuthButton({status, userId, session}: AuthProps) {
                 {showAuth &&
                     <div className={styles.authModuleContainer} ref={ref}>
                         <div className={styles.authModule}>
-                            <AuthContainer fromReview={false}/>
+                            <AuthContainer />
                         </div>
                     </div>
                 }
