@@ -253,7 +253,7 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
                 <div className={styles.preSubmitContainer}>
                     <div className={styles.presubmitTip}>
                         <p className={styles.presubmitTitle}> <Image src={"/images/icons/lock.png"} width={15} height={15} alt="magic wand" className={styles.presubmitImg}/>Anonymous by Default </p>
-                        <p className={styles.presubmitText}>We'll create an anonymous profile for you. Update your information any time in your account settings.</p>
+                        <p className={styles.presubmitText}>{`We'll create an anonymous profile for you. Update your information any time in your account settings.`}</p>
                     </div>
                 </div>
                 <div className={styles.submitContainer}>

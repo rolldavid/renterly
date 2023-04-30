@@ -18,7 +18,7 @@
     "@types/react-dom": "18.0.9",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
-    "next": "^13.1.6",
+    "next": "^13.3.2",
     "nodemailer": "^6.8.0",
     "postmark": "^3.0.14",
     "prisma": "^4.9.0",
