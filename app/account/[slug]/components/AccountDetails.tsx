@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import Image from "next/image";
 import { SyntheticEvent, useState, Dispatch, SetStateAction } from "react"
 import { signOut } from "next-auth/react"
@@ -69,9 +70,10 @@ export default function AccountDetails({user, accountOwner, setEditProfile} : { 
                 <div className={styles.optionButton} onClick={() => setEditProfile(prev => !prev)}>
                     Edit Profile
                 </div>
-                <div className={styles.optionButton} onClick={handleLogout}>
+               
+                <Link className={styles.optionButton} href="/api/auth/logout" target="_top" prefetch={false}>
                     Logout
-                </div>
+                </Link>
             </div>
             
         </div>
