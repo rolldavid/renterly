@@ -45,6 +45,7 @@
 }
 
 
+
 .authModuleContainer {
     display: flex;
     align-items: center;
@@ -52,23 +53,46 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
+    min-height: 100vh;
     height: 100%;
-    background-color: rgb(100, 100, 100, .5);
-    z-index: 10;
+    background-color: rgb(100, 100, 100, .2);
+    z-index: 40;
 }
-
 
 .authModule {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background-color: none;
-    z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10vh;
+  width: 500px;
+  height: 500px;
+  background-color: none;
+  z-index: 50;
 }
+
+
+.authWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .xWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 0px 0px -50px 0px;
+    padding: 0px 20px 0px 0px;
+    z-index: 50;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+
+  .x {
+    cursor: pointer;
+  }
 
 .deleteModuleContainer {
     display: flex;

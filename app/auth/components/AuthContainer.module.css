@@ -16,7 +16,6 @@
     border: 1.5px solid var(--wenge);
     background-color: white;
     box-shadow: 1px 1px 5px var(--greygrey);
-  
 }
 
 .errorMessage {
@@ -67,9 +66,10 @@
     justify-content: center;
     width: 100%;
     padding: 5px 0px 20px 0px;
+
 }
 
-.authButton {
+.loginButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,121 +78,16 @@
     font-size: 1rem;
     font-family: "Montserrat";
     font-weight: 400;
-    color: var(--cream);
-    background-color: var(--bluegreen);
+    color: white;
+    background-color: var(--verydarkgrey);
     width: 100%;
     padding: 12px 15px 12px 15px;
     cursor: pointer;
+    
 }
 
-.authText {
-    margin: 0px 0px 0px 10px;
-    font-family: "Montserrat";
-    font-weight: 400;
-    color: var(--cream);
-}
 
-.emailContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 20px 0px 20px 0px;
-}
 
-.formContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.inputContainer {
-    width: 100%;
-    border: 1.5px solid var(--wenge);
-    border-radius: 25px;
-    padding: 12px 20px 12px 20px;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 1rem;
-    outline: none;
-    margin: 5px 0px 5px 0px;
-}
-
-.emailButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-family: "Montserrat";
-    font-weight: 400;
-    color: var(--cream);
-    background-color: var(--wenge);
-    width: 100%;
-    margin-top: 5px;
-    padding: 12px 15px 12px 15px;
-    cursor: pointer;
-}
-
-.emailNote {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    color: var(--blueblack);
-    border-radius: 10px;
-    font-size: .75rem;
-    font-family: "Montserrat";
-    font-weight: 400;
-    width: 100%;
-    opacity: .8;
-    margin-top: 15px;
-}
-
-.noteImg {
-  margin-right: 5px;
-  margin-bottom: -2px;
-  opacity: .7;
-}
-
-.noteText {
-    text-align: center;
-    width: 100%;
-    color: var(--darkgrey);
-}
-
-.loginLine {
-    display: flex;
-    align-items: center;
-    width: 80%;
-    margin: 8px 0px 8px 0px;
-  }
-  
-.loginLine::before {
-    margin-right: 10px;
-}
-
-.loginLine::after {
-    margin-left: 10px;;
-}
-
-.loginLine::before, .loginLine::after {
-    content: "";
-    flex: 0 1 100%;
-    border-bottom: 1px solid var(--wenge);
-    opacity: .3;
-    transform: translateY(50%);
-}
-
-.loginOr {
-    font-size: 1rem;
-    color: var(--blueblack);
-    opacity: .3;
-}
 
 .authHeader {
     display: flex;
@@ -226,7 +121,7 @@
 }
 
 
-@media screen and (min-width: 550px) {
+@media screen and (max-width: 768px) {
 
 
     .container {

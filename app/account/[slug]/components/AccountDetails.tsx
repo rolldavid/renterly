@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SyntheticEvent, useState, Dispatch, SetStateAction } from "react"
-import { signOut } from "next-auth/react"
 import { ProfileUser } from "app/account/types";
 import styles from "./AccountDetails.module.css"
 import EditProfile from "./EditProfile";
@@ -13,11 +12,6 @@ export default function AccountDetails({user, accountOwner, setEditProfile} : { 
    
     const [city, setCity] = useState("")
 
-    const handleLogout = (e: SyntheticEvent) => {
-        signOut({
-            callbackUrl: "/"
-        });
-    } 
 
     if (!accountOwner && user.image) {
         return (

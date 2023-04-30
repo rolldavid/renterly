@@ -11,12 +11,11 @@ export default function Footer(){
             </div>
             <div className={styles.footerContent}>  
                 <Link href="/" className={styles.footerItem}>About Us</Link>
-                <Link href="/blog" className={styles.footerItem}>Blog</Link>
                 <Link href={"/policies/terms"} className={styles.footerItem}>Terms & Conditions</Link>
                 <Link href={"/policies/privacy"} className={styles.footerItem}>Privacy Policy</Link>
             </div>
             <div className={styles.socialLinks}>
-                <Link href="/" className={styles.footerSocialImg}>
+                <Link href="https://twitter.com/_renterly" className={styles.footerSocialImg}>
                     <Image 
                         src={"/images/icons/twitter.png"} 
                         width={20} 
@@ -25,15 +24,7 @@ export default function Footer(){
                         className={styles.socialImg}
                     />
                 </Link>
-                <Link href="/" className={styles.footerSocialImg}>
-                    <Image 
-                        src={"/images/icons/instagram.png"} 
-                        width={20} 
-                        height={20} 
-                        alt="Twitter icon"
-                        className={styles.socialImg}
-                    />
-                </Link>
+                
             </div>
                 
         
