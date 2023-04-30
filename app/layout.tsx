@@ -46,7 +46,7 @@ export default async function RootLayout({ children }: {
     title: "renterly",
     description: "Search and review any US address. A voice for every renter.",
     openGraph: {
-      title: "binkyboard",
+      title: "renterly",
       description: "Search and review any US address. A voice for every renter.",
       url: `https://renterly.org`,
       images: [
