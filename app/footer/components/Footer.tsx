@@ -10,7 +10,7 @@ export default function Footer(){
                 <h1 className={styles.logo}>renterly</h1>
             </div>
             <div className={styles.footerContent}>  
-                {/* <Link href="/" className={styles.footerItem}>About Us</Link> */}
+                <Link href="/about" className={styles.footerItem}>About Us</Link>
                 <Link href={"/policies/terms"} className={styles.footerItem}>Terms & Conditions</Link>
                 <Link href={"/policies/privacy"} className={styles.footerItem}>Privacy Policy</Link>
             </div>
