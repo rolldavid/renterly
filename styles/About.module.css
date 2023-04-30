@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 500px;
+    width: 100%;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.aboutHeader {
+    font-weight: 400;
+}
