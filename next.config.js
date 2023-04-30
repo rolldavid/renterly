@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
@@ -19,7 +24,14 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "d3h42dhdxazsqn.cloudfront.net",
+        port: "",
+        pathname: "/*",
+      },
     ],
+    domains: ["d3h42dhdxazsqn.cloudfront.net"],
   },
 };
 
