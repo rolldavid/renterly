@@ -49,15 +49,15 @@ export default async function RootLayout({ children }: {
       card: 'summary_large_image',
       title: 'renterly',
       description: 'Search and review any US address.',
-      images: ['https://d3h42dhdxazsqn.cloudfront.net/renterly.png'],
+      images: ['https://d3h42dhdxazsqn.cloudfront.net/renterlyblue.png'],
     },
     openGraph: {
       title: "renterly",
       description: "Search and review any US address. A voice for every renter.",
-      url: `https://renterly.org`,
+      url: `https://renterly.org/`,
       images: [
         {
-        url: `https://d3h42dhdxazsqn.cloudfront.net/renterly.png`,
+        url: `https://d3h42dhdxazsqn.cloudfront.net/renterlyblue.png`,
         width: 1200,
         height: 675,
         alt: "renterly"
