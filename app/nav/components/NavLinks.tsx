@@ -25,7 +25,7 @@ export default function NavLinks({status, userId, session}: AuthProps) {
                         src={search}
                         width={23}
                         height={26}
-                        alt="notifications"
+                        alt="home"
                         className={styles.linkIcon}
                     />
                     <h2 className={styles.navText}>Search</h2>
@@ -35,7 +35,7 @@ export default function NavLinks({status, userId, session}: AuthProps) {
                         src={following}
                         width={23}
                         height={26}
-                        alt="notifications"
+                        alt="bookmarks"
                         className={styles.linkIcon}
                     />
                     <h2 className={styles.navText}>Following</h2>

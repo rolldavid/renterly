@@ -14,7 +14,7 @@ import { EditProfileProps, ProfileUser } from "app/account/types";
 let timeoutId: ReturnType<typeof setTimeout>;
 let timeoutCity: ReturnType<typeof setTimeout>;
 
-const names = ["Cow", "Dog", "Chicken", "Cat", "Piggy", "Duck", "Giraffe", "Bear", "Snake", "Grasshopper", "Daffodil", "Bones", "Rose", "Ghost", "Cactus"]
+const names = ["Cow", "Dog", "Cat", "Piggy", "Duck", "Giraffe", "Bear", "Rose", "Ghost", "Cactus"]
 const adj = ["Silly", "Happy", "Mad", "Brave", "Bright", "Wise", "Cranky", "Kind", "Super", "Funny", "Wild", "Power"]
 
 

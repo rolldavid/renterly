@@ -299,7 +299,7 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
             {showAuth &&
                 <div className={styles.authModuleContainer} ref={ref}>
                     <div className={styles.authModule} style={{ top: `${scrollPosition + 100}px`}} >
-                        <AuthContainer fromReview={true}/>
+                        <AuthContainer />
                     </div>
                 </div>
             }

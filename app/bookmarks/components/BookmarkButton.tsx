@@ -145,7 +145,7 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
             {showAuth &&
                     <div className={styles.authModuleContainer} ref={ref}>
                         <div className={styles.authModule}>
-                            <AuthContainer fromReview={false}/>
+                            <AuthContainer />
                         </div>
                     </div>
                 }

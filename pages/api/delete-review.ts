@@ -1,12 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "./auth/[...nextauth]";
+import { getSession } from '@auth0/nextjs-auth0';
 import { prisma } from "@/lib/prisma";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { userId, reviewId } = req.body;
     try {
-        const session = await getServerSession(req, res, authOptions)
+        const session = await getSession(req, res)
 
         if (session?.user?.email) {
             const user = await prisma.user.findUnique({

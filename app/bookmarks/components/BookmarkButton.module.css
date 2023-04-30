@@ -12,15 +12,15 @@
 }
 
 .authModule {
-display: flex;
-align-items: center;
-justify-content: center;
-position: absolute;
-top: 10vh;
-width: 500px;
-height: 500px;
-background-color: none;
-z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10vh;
+  width: 500px;
+  height: 500px;
+  background-color: none;
+  z-index: 30;
 }
 
 .followButton {
