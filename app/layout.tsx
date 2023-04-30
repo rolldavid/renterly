@@ -1,4 +1,4 @@
-
+import { Analytics } from '@vercel/analytics/react';
 import styles from "@/styles/Home.module.css"
 import { Metadata } from 'next'
 import "@/styles/globals.css"
@@ -32,6 +32,7 @@ export default async function RootLayout({ children }: {
               </footer>
             </QueryProvider>
             </UserProvider>
+            < Analytics />
         </body>
       </html>
     );
