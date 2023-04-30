@@ -150,27 +150,6 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
         }
     }, [queryResult])
 
-    const handleModalClose = (e: MouseEvent) => {
-        e.preventDefault()
-        if (e.target instanceof Element) {
-            if (ref.current?.classList[0] === e.target.classList[0]) {
-                setShowAuth(false)
-            }
-        }
-    }
-
-    useEffect(() => {
-        const element = ref.current
-        if (showAuth && element) {
-            element.addEventListener("click", e => handleModalClose(e))
-        }
-     
-        return () => {
-            if (element) {
-            element.removeEventListener("click", e => handleModalClose(e))
-            }
-        }
-    }, [showAuth])
 
     const handleDeleteClose = (e: MouseEvent) => {
         e.preventDefault()
@@ -274,7 +253,7 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
                 <div className={styles.preSubmitContainer}>
                     <div className={styles.presubmitTip}>
                         <p className={styles.presubmitTitle}> <Image src={"/images/icons/lock.png"} width={15} height={15} alt="magic wand" className={styles.presubmitImg}/>Anonymous by Default </p>
-                        <p className={styles.presubmitText}>We'll create an anonymous profile for you. Update your information any time in your account settings.</p>
+                        <p className={styles.presubmitText}>{`We'll create an anonymous profile for you. Update your information any time in your account settings.`}</p>
                     </div>
                 </div>
                 <div className={styles.submitContainer}>
@@ -299,7 +278,16 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
             {showAuth &&
                 <div className={styles.authModuleContainer} ref={ref}>
                     <div className={styles.authModule} style={{ top: `${scrollPosition + 100}px`}} >
-                        <AuthContainer />
+                        <div className={styles.authWrapper}>
+                                <div className={styles.xWrapper}>
+                                    <p  
+                                        className={styles.x}
+                                        onClick={() => setShowAuth(false)}
+                                    >X</p>
+                                </div>
+                                
+                                <AuthContainer/>
+                            </div>
                     </div>
                 </div>
             }

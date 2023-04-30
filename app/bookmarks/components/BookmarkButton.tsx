@@ -27,27 +27,7 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
         }
     }, [data])
 
-    const handleModalClose = (e: MouseEvent) => {
-        e.preventDefault()
-        if (e.target instanceof Element) {
-            if (ref.current?.classList[0] === e.target.classList[0]) {
-                setShowAuth(false)
-            }
-        }
-    }
-
-    useEffect(() => {
-        const element = ref.current
-        if (showAuth && element) {
-            element.addEventListener("click", e => handleModalClose(e))
-        }
-     
-        return () => {
-            if (element) {
-            element.removeEventListener("click", e => handleModalClose(e))
-            }
-        }
-    }, [showAuth])
+   
 
     
     const queryClient = useQueryClient()
@@ -145,7 +125,16 @@ export default function Bookmark({ propertyId }: { propertyId: string }) {
             {showAuth &&
                     <div className={styles.authModuleContainer} ref={ref}>
                         <div className={styles.authModule}>
-                            <AuthContainer />
+                            <div className={styles.authWrapper}>
+                                <div className={styles.xWrapper}>
+                                    <p  
+                                        className={styles.x}
+                                        onClick={() => setShowAuth(false)}
+                                    >X</p>
+                                </div>
+                                
+                                <AuthContainer/>
+                            </div>
                         </div>
                     </div>
                 }
