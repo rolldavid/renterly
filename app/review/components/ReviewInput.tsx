@@ -241,7 +241,7 @@ export default function ReviewInput({ property, editingReview, comment, stars, r
                         {...register("review")}
                         className={styles.inputField}
                         rows={10}
-                        placeholder="The landlord withheld almost half of my deposit, claiming it was to cover cleaning, but I left the apartment cleaner than how I found it. Unfortunately I didn’t have the time or money to pursue legal action against them and recoup my lost money. I also noticed water damage around my bedroom window after I had moved in, so if you’re considering this place, ask them to weatherize the window and maybe test for mold before moving in."
+                        placeholder="Leave your review..."
                         value={review}
                         onChange={e => setReview(e.target.value)}
                     />

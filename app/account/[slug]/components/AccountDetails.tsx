@@ -73,6 +73,8 @@ export default function AccountDetails({user, accountOwner, setEditProfile} : { 
         </div>
     )
     }
+
+    
     return null;
 }
 
