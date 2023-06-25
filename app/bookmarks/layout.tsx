@@ -16,7 +16,7 @@ export const metadata: Metadata = {
       initialScale: 1,
       maximumScale: 1,
     },
-    title: "Bookmarks - rate your landlord",
+    title: "Bookmarks",
     description: "Rate your landlord. Search and review any property.",
     twitter: {
       card: 'summary_large_image',
