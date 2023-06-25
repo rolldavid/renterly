@@ -44,17 +44,17 @@ export default async function RootLayout({ children }: {
       initialScale: 1,
       maximumScale: 1,
     },
-    title: "renterly",
-    description: "Search and review any US address.",
+    title: "renterly - rate your landlord",
+    description: "Rate your landlord. Search and review any property.",
     twitter: {
       card: 'summary_large_image',
       title: 'renterly',
-      description: 'Search and review any US address.',
+      description: 'Search and review any property.',
       images: ['https://d3h42dhdxazsqn.cloudfront.net/renterlyblue.png'],
     },
     openGraph: {
       title: "renterly",
-      description: "Search and review any US address. A voice for every renter.",
+      description: "Search and review any property. A voice for every renter.",
       url: `https://renterly.org/`,
       images: [
         {
