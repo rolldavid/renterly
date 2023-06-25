@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import styles from "@/styles/Property.module.css"
 export default async function Layout({ children }: {
     children: React.ReactNode;
